@@ -171,19 +171,26 @@ class F1DataCollector:
             return []
 
 if __name__ == "__main__":
-    collector = F1DataCollector() # 自动获取当前年份
+    collector = F1DataCollector()
     print(f"Starting F1 Data Collector for Season {collector.season}...")
     
-    # 赛程文件名
     schedule_file = f'schedule_{collector.season}.json'
     
-    # 检查是否需要执行深度爬取 (基于赛历窗口或文件不存在)
-    if collector.check_is_race_window(schedule_file) or not os.path.exists(schedule_file):
-        print("Fetching Schedule and Results...")
+    # 强制更新逻辑：1. 处于赛后窗口期 2. 赛历文件不存在 3. 赛历文件超过 24 小时未更新
+    should_run = collector.check_is_race_window(schedule_file) or not os.path.exists(schedule_file)
+    
+    # 增加一个时间检查，保证即使非窗口期，每天也至少更新一次赛历
+    if not should_run and os.path.exists(schedule_file):
+        file_age = time.time() - os.path.getmtime(schedule_file)
+        if file_age > 86400: # 24 小时
+            print("Schedule file is old. Forcing a refresh.")
+            should_run = True
+
+    if should_run:
+        print("Executing sync...")
         sched = collector.get_schedule()
         if sched:
             collector.save_data(sched, schedule_file)
-            for s in sched:
-                print(f"{s['round']}: {s['location']} - {s['dates']}")
+            print(f"Sync successful. Found {len(sched)} events.")
     else:
-        print("Scraper exited: Not in a post-race update window.")
+        print("System is up to date. No action required today.")
