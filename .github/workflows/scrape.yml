@@ -1,0 +1,39 @@
+name: F1 Data Scraper
+
+on:
+  schedule:
+    # 每天凌晨 2 点执行 (UTC)，由 Python 脚本内部判断是否执行深度抓取
+    - cron: '0 2 * * *'
+  workflow_dispatch: # 支持手动触发
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/checkout@v3
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          cd f1-collector
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Scraper
+        run: |
+          cd f1-collector
+          python scraper.py
+          # 这里可以添加运行 syncer.py 生成 JSON 的逻辑
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add f1-collector/*.json
+          git commit -m "Auto-update race results [skip ci]" || echo "No changes to commit"
+          git push
