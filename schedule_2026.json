@@ -1,38 +1,30 @@
 [
-  {
-    "round": "TESTING",
-    "name": "FORMULA 1 ARAMCO PRE-SEASON TESTING 1 2026",
-    "location": "Bahrain",
-    "dates": "11 - 13 FEB",
-    "key": "1304",
-    "url": "/en/racing/2026/pre-season-testing-1",
-    "isTest": true
-  },
-  {
-    "round": "TESTING",
-    "name": "FORMULA 1 ARAMCO PRE-SEASON TESTING 2 2026",
-    "location": "Bahrain",
-    "dates": "18 - 20 FEB",
-    "key": "1305",
-    "url": "/en/racing/2026/pre-season-testing-2",
-    "isTest": true
-  },
-  {
-    "round": "ROUND 1",
-    "name": "FORMULA 1 QATAR AIRWAYS AUSTRALIAN GRAND PRIX 2026",
-    "location": "Australia",
-    "dates": "06 - 08 MAR",
-    "key": "1279",
-    "url": "/en/racing/2026/australia",
-    "isTest": false
-  },
-  {
-    "round": "ROUND 2",
-    "name": "FORMULA 1 HEINEKEN CHINESE GRAND PRIX 2026",
-    "location": "China",
-    "dates": "13 - 15 MAR",
-    "key": "1280",
-    "url": "/en/racing/2026/china",
-    "isTest": false
-  }
+    {
+        "round": "TESTING",
+        "location": "Bahrain",
+        "dates": "11 - 13 FEB",
+        "url": "https://www.formula1.com/en/racing/2026/pre-season-testing-1",
+        "isTest": true
+    },
+    {
+        "round": "TESTING",
+        "location": "Bahrain",
+        "dates": "18 - 20 FEB",
+        "url": "https://www.formula1.com/en/racing/2026/pre-season-testing-2",
+        "isTest": true
+    },
+    {
+        "round": "ROUND 1",
+        "location": "Australia",
+        "dates": "06 - 08 MAR",
+        "url": "https://www.formula1.com/en/racing/2026/australia",
+        "isTest": false
+    },
+    {
+        "round": "ROUND 2",
+        "location": "China",
+        "dates": "13 - 15 MAR",
+        "url": "https://www.formula1.com/en/racing/2026/china",
+        "isTest": false
+    }
 ]
