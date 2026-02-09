@@ -52,6 +52,6 @@ if __name__ == "__main__":
     # 默认路径配置 (可根据 NAS 实际目录调整)
     current_dir = os.path.dirname(os.path.abspath(__file__))
     json_file = os.path.join(current_dir, 'schedule_2026.json')
-    db_file = os.path.join(current_dir, '../f1-website/public/f1.db')
+    db_file = os.path.join(current_dir, '../f1-website/f1.db')
     
     sync_schedule(json_file, db_file)
