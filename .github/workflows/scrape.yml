@@ -20,13 +20,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd f1-collector
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run Scraper
         run: |
-          cd f1-collector
           python scraper.py
           # 这里可以添加运行 syncer.py 生成 JSON 的逻辑
 
@@ -34,6 +32,6 @@ jobs:
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git add f1-collector/*.json
+          git add *.json
           git commit -m "Auto-update race results [skip ci]" || echo "No changes to commit"
           git push
