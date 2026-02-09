@@ -3,8 +3,8 @@ import time
 import json
 import re
 from bs4 import BeautifulSoup
-
 import datetime
+import os
 
 class F1DataCollector:
     def __init__(self, season=None):
@@ -14,6 +14,12 @@ class F1DataCollector:
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
+
+    def save_data(self, data, filename):
+        """保存数据到 JSON 文件"""
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        print(f"Data saved to {filename}")
 
     def _reconstruct_next_data(self, html):
         """还原 Next.js 碎片数据"""
@@ -166,16 +172,18 @@ class F1DataCollector:
 
 if __name__ == "__main__":
     collector = F1DataCollector() # 自动获取当前年份
-    
     print(f"Starting F1 Data Collector for Season {collector.season}...")
     
-    # 首先检查是否需要执行深度爬取 (基于赛历)
-    # 如果是手动触发或 schedule.json 不存在，则默认运行
-    if collector.check_is_race_window():
+    # 赛程文件名
+    schedule_file = f'schedule_{collector.season}.json'
+    
+    # 检查是否需要执行深度爬取 (基于赛历窗口或文件不存在)
+    if collector.check_is_race_window(schedule_file) or not os.path.exists(schedule_file):
         print("Fetching Schedule and Results...")
         sched = collector.get_schedule()
-        for s in sched:
-            print(f"{s['round']}: {s['location']} - {s['dates']}")
-            # 后续可以增加对具体分站 URL 的结果抓取逻辑
+        if sched:
+            collector.save_data(sched, schedule_file)
+            for s in sched:
+                print(f"{s['round']}: {s['location']} - {s['dates']}")
     else:
         print("Scraper exited: Not in a post-race update window.")
