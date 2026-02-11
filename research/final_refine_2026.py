@@ -235,6 +235,33 @@ def final_refine():
         "madring": {"length": "5.47km", "laps": 0, "record": "N/A", "first_gp": 2026, "distance": "306.32km"}
     }
 
+    gmt_offsets = {
+        "AUSTRALIA": "+11:00",
+        "CHINA": "+08:00",
+        "JAPAN": "+09:00",
+        "BAHRAIN": "+03:00",
+        "SAUDI ARABIA": "+03:00",
+        "MIAMI": "-04:00",
+        "CANADA": "-04:00",
+        "MONACO": "+02:00",
+        "BARCELONA": "+02:00",
+        "AUSTRIA": "+02:00",
+        "GREAT BRITAIN": "+01:00",
+        "BELGIUM": "+02:00",
+        "HUNGARY": "+02:00",
+        "NETHERLANDS": "+02:00",
+        "ITALY": "+02:00",
+        "SPAIN": "+02:00",
+        "AZERBAIJAN": "+04:00",
+        "SINGAPORE": "+08:00",
+        "UNITED STATES": "-05:00",
+        "MEXICO": "-06:00",
+        "BRAZIL": "-03:00",
+        "LAS VEGAS": "-07:00",
+        "QATAR": "+03:00",
+        "ABU DHABI": "+04:00"
+    }
+
     final_rounds = []
     seen_rounds = set()
     
@@ -244,6 +271,7 @@ def final_refine():
 
     for i, r in enumerate(rounds):
         rt = r['round']
+        country_upper = r['country'].upper()
         # 显式移除季前测试
         if rt == "TESTING":
             continue
@@ -275,13 +303,13 @@ def final_refine():
             session_idx += 1
 
         # Track Spec
-        track_key = track_lookup.get(r['country'].upper(), "")
+        track_key = track_lookup.get(country_upper, "")
         specs = circuit_specs.get(track_key, {})
 
         final_rounds.append({
             "round": rt,
             "roundNumber": round_num,
-            "country": r['country'].upper(),
+            "country": country_upper,
             "gpName": r['gpName'],
             "location": r['location'],
             "dates": r['dates'],
@@ -291,7 +319,8 @@ def final_refine():
             "detailedImage": get_detailed_track_url(r['country'], r['gpName']),
             "flag": svg_map.get(r['country']) or next((v for k,v in svg_map.items() if k in r['country']), None),
             "sessions": my_sessions,
-            "circuitSpecs": specs
+            "circuitSpecs": specs,
+            "gmtOffset": gmt_offsets.get(country_upper, "Z")
         })
 
     # Final Sort

@@ -22,4 +22,5 @@ if __name__ == "__main__":
     print("Starting 2026 Data Sync...")
     sync_file('schedule_2026.json')
     sync_file('drivers_2026.json')
+    sync_file('teams_2026.json')
     print("Sync process complete.")
