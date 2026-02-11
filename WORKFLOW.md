@@ -36,7 +36,11 @@
   - 规则：所有 SVG 均标准化为 `viewBox="0 0 56 56"`，支持前端圆形切边展示。
 - **赛道线稿图 (Track Outlines)**:
   - 模式：使用 F1 官方 CDN 路径 `https://media.formula1.com/image/upload/.../2026track{slug}blackoutline.svg`。
-  - 映射表：在 `research/final_refine_2026.py` 中定义维护（如 Australia -> `melbourne`, Belgium -> `spafrancorchamps`）。
+  - 映射表：在 `research/final_refine_2026.py` 中定义维护。
+- **2026 车手肖像 (Driver Imagery)**:
+  - 模式：遵循 2026 专用 CDN 路径 `common/f1/2026/{team_slug}/{driver_id}/2026{team_slug}{driver_id}right.webp`。
+  - 采集器：通过 `scraper_drivers_2026.py` 自动化生成。
+  - 同步：由 `sync_data.py` 推送至前端项目。
 
 ---
 
