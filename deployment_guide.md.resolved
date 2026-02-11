@@ -1,0 +1,97 @@
+# F1 数据采集与展示系统部署指南
+
+本指南将教您如何分步实现：**GitHub 自动化采集** 与 **NAS 跨环境同步展示**。
+
+---
+
+## 第一阶段：GitHub 采集端部署
+
+### 步骤 1：上传代码至 GitHub
+1. 在 GitHub 上创建一个新的私有或公开仓库（例如 `f1-collector`）。
+2. 将本地 `f1-collector` 目录下的所有文件推送 (Push) 到该仓库。
+   - 确保包含 [.github/workflows/scrape.yml](file:///c:/Users/jaymz/Desktop/oc/f1-collector/.github/workflows/scrape.yml)。
+
+### 步骤 2：开启写入权限 (极其重要)
+为了让自动化脚本能够把抓取到的数据写回仓库，必须开启写入权限：
+1. 进入 GitHub 仓库页面，点击 **Settings**。
+2. 在左侧菜单找到 **Actions** -> **General**。
+3. 滚动到页面底部，找到 **Workflow permissions**。
+4. 选择 **"Read and write permissions"**。
+5. 点击 **Save**。
+
+### 步骤 3：验证手动触发
+1. 点击仓库顶部的 **Actions** 标签。
+2. 在左侧列表点击 **"F1 Data Scraper"**。
+3. 点击右侧的 **Run workflow** 下拉按钮，手动触发一次。
+4. 等待几分钟，检查仓库中是否自动生成/更新了 `schedule_2026.json`。
+
+---
+
+## 第二阶段：群晖 NAS 环境准备 (数据下游)
+
+由于您的网站通过 **Web Station** 部署，我们需要在 DSM 系统中配置自动化同步。
+
+### 步骤 4：安装必要套件
+1. 打开群晖 **套件中心**，搜索并安装以下套件：
+   - **Git**
+   - **Python 3.10** (或更高版本)
+
+### 步骤 5：克隆代码到 NAS
+建议将采集器放在与网站目录并列的位置，方便脚本访问数据库。
+1. 使用 SSH 登录 NAS，或者在“任务计划”中运行一次性脚本：
+   ```bash
+   # 假设您的网站在 /volume1/web/f1-website
+   cd /volume1/web
+   git clone https://github.com/crashdada/f1-collector.git
+   ```
+
+### 步骤 6：配置路径适配
+如果您的目录结构如下：
+- `/volume1/web/f1-website` (网站)
+- `/volume1/web/f1-collector` (采集同步器)
+那么 [syncer.py](file:///c:/Users/jaymz/Desktop/oc/f1-collector/syncer.py) 默认的路径配置就是正确的。
+
+---
+
+## 第三阶段：打通群晖任务计划 (自动化)
+
+### 步骤 7：创建“任务计划”
+1. 控制面板 -> **任务计划** -> 新增 -> **计划的任务** -> **用户定义的脚本**。
+2. **常规**：
+   - 任务名称：`F1_Data_Sync`
+   - 用户：`root` (或具有 web 目录写入权限的用户)
+3. **计划**：
+   - 每天运行，时间设为凌晨 4:00 (保证晚于 GitHub 采集完成时间)。
+4. **任务设置**：
+   - 运行命令中输入：
+   ```bash
+   cd /volume1/web/f1-collector
+   # 同步最新数据
+   git pull origin master
+   # 注入数据库 (请确保 syncer.py 里的 db_path 指向正确)
+   python3 syncer.py
+   ```
+
+---
+
+## 第三阶段：打通自动化链路
+
+### 步骤 6：设置 NAS 定期拉取 (Cron)
+在 NAS 上设置一个定时任务，每天拉取一次最新数据：
+1. 打开 NAS 终端，输入 `crontab -e`。
+2. 添加以下行（每天凌晨 4 点执行，晚于 GitHub 采集）：
+   ```bash
+   0 4 * * * cd /path/to/your/project && git pull && node init-db.cjs
+   ```
+   - *注：`/path/to/your/project` 请替换为您在 NAS 上的实际路径。*
+
+### 步骤 7：验证同步
+- 当 GitHub 端完成采集并 Push 后，NAS 端的 `git pull` 会拉取到最新的 JSON。
+- 随后的 `node init-db.cjs` 会读取该 JSON 并刷新 [public/f1.db](file:///c:/Users/jaymz/Desktop/oc/f1-website/public/f1.db)。
+- 此时刷新您的展示网站，2026 赛季的新数据就会自动出现。
+
+---
+
+## 💡 维护小贴士
+- **数据延迟**：由于我们设计了“延后机制”，如果比赛刚结束官网还没出分，脚本会自动重试。建议 NAS 的同步时间设在赛后第二天早上，最为保险。
+- **跨年支持**：系统已设定为自动通过 `datetime` 获取年份，2027 年您无需任何操作，系统会自动切换采集地址。
