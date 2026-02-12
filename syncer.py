@@ -49,11 +49,14 @@ if IS_LOCAL:
     DB_TARGET = os.path.join(WEBSITE_DIR, 'public')
     ENV_NAME = '本地开发'
 else:
-    # NAS 部署：JSON → data/，DB → 根目录
+    # NAS 部署：检测是否有 dist 目录（针对只部署生成的网页内容的情况）
+    potential_dist = os.path.join(WEBSITE_DIR, 'dist')
+    DEPLOY_ROOT = potential_dist if os.path.exists(potential_dist) else WEBSITE_DIR
+    
     JSON_SOURCE = os.path.join(COLLECTOR_DIR, 'data')
-    JSON_TARGET = os.path.join(WEBSITE_DIR, 'data')
-    DB_TARGET = WEBSITE_DIR
-    ENV_NAME = 'NAS 部署'
+    JSON_TARGET = os.path.join(DEPLOY_ROOT, 'data')
+    DB_TARGET = DEPLOY_ROOT
+    ENV_NAME = f'NAS 部署 (目标: {os.path.basename(DEPLOY_ROOT)})'
 
 # 要同步的 JSON 文件
 JSON_FILES = [
