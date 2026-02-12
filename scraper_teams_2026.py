@@ -164,8 +164,8 @@ def generate_teams_2026():
         }
         processed.append(team_data)
 
-    # 保存
-    output_path = "teams_2026.json"
+    os.makedirs("data", exist_ok=True)
+    output_path = "data/teams_2026.json"
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(processed, f, indent=4, ensure_ascii=False)
     

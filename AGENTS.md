@@ -9,21 +9,48 @@ pip install -r requirements.txt
 # Run main scraper (Core Workflow)
 python scraper.py
 
-# Sync data to web project
-python sync_data.py
+# Sync data to web project (auto-detects local vs NAS)
+python syncer.py
 
-# Historical/Maintenance scripts (in maintenance/)
-python maintenance/update_flags_json.py
-
-# Research scripts (in research/)
-# These are for debugging or exploring new data structures
-python research/deep_search_2026.py
+# Sync with options
+python syncer.py --schedule    # Schedule JSON only
+python syncer.py --db           # Database only
+python syncer.py --all          # JSON + DB
+python syncer.py --scrape       # Run scraper first, then sync
 ```
 
 ## Directory Structure
-- `/` - Core logic, data files (JSON), and CI/CD configurations.
-- `maintenance/` - Scripts for data correction and one-time updates (e.g., flag URL fixes).
-- `research/` - Experimental scripts, HTML analysis, and data discovery tools.
+```
+f1-collector/
+├── scraper.py                    # 赛历采集 → data/schedule_2026.json
+├── scraper_drivers_2026.py       # 车手数据生成 → data/drivers_2026.json
+├── scraper_teams_2026.py         # 车队数据生成 → data/teams_2026.json
+├── scraper_results_2026.py       # 赛后成绩采集框架（待实测）
+├── syncer.py                     # 统一同步（自动检测本地/NAS）
+├── refine_with_stats.py          # 数据增强辅助
+├── requirements.txt
+├── AGENTS.md / WORKFLOW.md / README.md
+├── data/                         # 📦 采集产物（脚本与数据分离）
+│   ├── schedule_2026.json
+│   ├── drivers_2026.json
+│   └── teams_2026.json
+├── results_2026/                 # 赛后成绩（待赛季开始）
+├── baseline_2026-02-12/          # 数据基线快照
+├── assets/flags/                 # 国旗 SVG（56x56）
+├── maintenance/
+│   └── standardize_svgs.py
+├── research/
+│   ├── final_refine_2026.py
+│   ├── extract_rsc_2026.py
+│   └── debug_2026.html
+└── .github/workflows/
+    └── scrape.yml                # GitHub Actions：每日自动采集
+```
+
+## Data Architecture
+- 脚本在根目录，产物在 `data/` — **脚本与数据分离**
+- `syncer.py` 从 `data/` 读取 JSON，同步到展示端
+- 展示端通过运行时 `fetch()` 加载，**不打包进 JS**，支持热更新
 
 ## Code Style Guidelines
 

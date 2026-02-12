@@ -174,7 +174,7 @@ if __name__ == "__main__":
     collector = F1DataCollector()
     print(f"Starting F1 Data Collector for Season {collector.season}...")
     
-    schedule_file = f'schedule_{collector.season}.json'
+    schedule_file = f'data/schedule_{collector.season}.json'
     
     # 强制更新逻辑：1. 处于赛后窗口期 2. 赛历文件不存在 3. 赛历文件超过 24 小时未更新
     should_run = collector.check_is_race_window(schedule_file) or not os.path.exists(schedule_file)

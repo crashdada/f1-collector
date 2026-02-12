@@ -2,42 +2,54 @@ name: F1 Data Scraper
 
 on:
   schedule:
-    # 每天凌晨 2 点执行 (UTC)，由 Python 脚本内部判断是否执行深度抓取
+    # 每天 UTC 02:00 执行（北京时间 10:00）
     - cron: '0 2 * * *'
-  workflow_dispatch: # 支持手动触发
+  workflow_dispatch:
+    inputs:
+      force_results:
+        description: 'Force scrape race results'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
-          ls -R
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Scraper
+      - name: Run Schedule Scraper
+        run: python scraper.py
+
+      - name: Run Drivers & Teams Scraper
         run: |
-          python scraper.py
-          # 这里可以添加运行 syncer.py 生成 JSON 的逻辑
+          python scraper_drivers_2026.py
+          python scraper_teams_2026.py
+
+      - name: Run Results Scraper (if in race window or forced)
+        if: ${{ github.event.inputs.force_results == 'true' || github.event_name == 'schedule' }}
+        run: |
+          python scraper_results_2026.py || echo "Not in race window, skipping."
 
       - name: Commit and Push changes
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git add *.json
+          git add data/*.json results_2026/ 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Auto-update race results [skip ci]"
-            git push origin main
-            git push origin master --force
+            git commit -m "Auto-update F1 data $(date -u +'%Y-%m-%d') [skip ci]"
+            git push
           fi

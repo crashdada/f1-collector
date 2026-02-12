@@ -65,7 +65,7 @@ def generate_drivers_2026():
         {"firstName": "Oscar", "lastName": "Piastri", "firstNameCn": "奥斯卡", "lastNameCn": "皮亚斯特里", "code": "PIA", "number": 81, "team": "McLaren", "teamCn": "迈凯伦", "country": "Australia"},
         {"firstName": "George", "lastName": "Russell", "lastName": "Russell", "firstNameCn": "乔治", "lastNameCn": "拉塞尔", "code": "RUS", "number": 63, "team": "Mercedes", "teamCn": "梅赛德斯", "country": "United Kingdom"},
         {"firstName": "Kimi", "lastName": "Antonelli", "firstNameCn": "安德里亚", "lastNameCn": "安东内利", "code": "ANT", "number": 12, "team": "Mercedes", "teamCn": "梅赛德斯", "country": "Italy"},
-        {"firstName": "Fernando", "lastName": "Alonso", "firstNameCn": "费尔南多", "lastNameCn": "阿隆索", "code": "ALO", "number": 14, "team": "Aston Martin", "teamCn": "阿斯顿·马丁", "country": "Spain"},
+        {"firstName": "Fernando", "lastName": "Alonso", "firstNameCn": "费尔南多", "lastNameCn": "阿隆索", "code": "ALO", "number": 14, "team": "Aston Martin", "teamCn": "阿斯顿·马丁", "country": "Spain", "bioCn": "迈克尔·舒马赫是 2000 年代初期一级方程式赛车当之无愧的王者，他获胜和夺冠的速度在当时简直闻所未闻。只有非常特别的人才能将这位法拉利传奇从王座上拉下来——而正是费尔南多·阿隆索做到了这一点，这足以说明这位西班牙车手的一切。\n\n阿隆索极具竞争力，他对自己的才华直言不讳，评价自己在“每一项”上都是 9/10，业内很少有人会对此表示异议。他在 F1 中的表现以惊人的速度、出色的战术思维、示范性的驾驶技术、对细节的敏锐洞察以及对胜利的不懈决心为特征。\n\n早年间，他是一名连破纪录的车手，曾一度是 F1 最年轻的杆位获得者、分站冠军、世界冠军和两届世界冠军，当时他在雷诺车队取得了巨大的成功。然而，即使是阿隆索也无法在职业生涯后期延续这种惊人的势头，尽管效力过迈凯伦和法拉利，但他没能为自己的收藏增添另一个冠军头衔。\n\n在离开 F1 两年后（期间他在勒芒获得了两场胜利），阿隆索于 2021 年随阿尔卑车队回归。他的速度和决心丝毫未减，在那一年重返领奖台，但由于可靠性不佳以及缺乏长期合同，他在随后的赛季感到沮丧，并选择再次跳槽。\n\n在加入阿斯顿·马丁的首个赛季获得 8 次领奖台之后，他已成为首位达成 400 场大奖赛首发的车手。随着技术传奇安德里安·纽维的加入，阿隆索希望这支绿色车队最终能让他重回胜利之路，因为他在 F1 还有未竟的事业……"},
         {"firstName": "Lance", "lastName": "Stroll", "firstNameCn": "兰斯", "lastNameCn": "斯特罗尔", "code": "STR", "number": 18, "team": "Aston Martin", "teamCn": "阿斯顿·马丁", "country": "Canada"},
         {"firstName": "Carlos", "lastName": "Sainz", "firstNameCn": "卡洛斯", "lastNameCn": "赛恩斯", "code": "SAI", "number": 55, "team": "Williams", "teamCn": "威廉姆斯", "country": "Spain"},
         {"firstName": "Alexander", "lastName": "Albon", "firstNameCn": "亚历山大", "lastNameCn": "阿尔本", "code": "ALB", "number": 23, "team": "Williams", "teamCn": "威廉姆斯", "country": "Thailand"},
@@ -94,8 +94,8 @@ def generate_drivers_2026():
         d['image'] = image_url
         processed.append(d)
 
-    # 保存
-    with open("drivers_2026.json", 'w', encoding='utf-8') as f:
+    os.makedirs("data", exist_ok=True)
+    with open("data/drivers_2026.json", 'w', encoding='utf-8') as f:
         json.dump(processed, f, indent=4, ensure_ascii=False)
     
     print(f"Successfully generated {len(processed)} drivers with official 2026 image URLs.")

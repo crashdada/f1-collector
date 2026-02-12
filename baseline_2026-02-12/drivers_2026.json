@@ -10,7 +10,21 @@
         "teamCn": "法拉利",
         "country": "United Kingdom",
         "id": "lewham",
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/ferrari/lewham01/2026ferrarilewham01right.webp"
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/ferrari/lewham01/2026ferrarilewham01right.webp",
+        "careerStats": {
+            "wins": 105,
+            "podiums": 202,
+            "poles": 105,
+            "points": 4956,
+            "entries": 380,
+            "championships": 7
+        },
+        "signatureStats": {
+            "debut": 2007,
+            "avgPoints": 13.04,
+            "peak": "世界冠军",
+            "winRate": "27.6%"
+        }
     },
     {
         "firstName": "Max",
@@ -23,7 +37,21 @@
         "teamCn": "红牛",
         "country": "Netherlands",
         "id": "maxver",
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/redbullracing/maxver01/2026redbullracingmaxver01right.webp"
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/redbullracing/maxver01/2026redbullracingmaxver01right.webp",
+        "careerStats": {
+            "wins": 71,
+            "podiums": 127,
+            "poles": 47,
+            "points": 3282,
+            "entries": 233,
+            "championships": 4
+        },
+        "signatureStats": {
+            "debut": 2015,
+            "avgPoints": 14.09,
+            "peak": "世界冠军",
+            "winRate": "30.5%"
+        }
     },
     {
         "firstName": "Charles",
@@ -36,7 +64,21 @@
         "teamCn": "法拉利",
         "country": "Monaco",
         "id": "chalec",
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/ferrari/chalec01/2026ferrarichalec01right.webp"
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/ferrari/chalec01/2026ferrarichalec01right.webp",
+        "careerStats": {
+            "wins": 8,
+            "podiums": 50,
+            "poles": 27,
+            "points": 1588,
+            "entries": 173,
+            "championships": 0
+        },
+        "signatureStats": {
+            "debut": 2018,
+            "avgPoints": 9.18,
+            "peak": "P2",
+            "winRate": "4.6%"
+        }
     },
     {
         "firstName": "Lando",
@@ -49,7 +91,21 @@
         "teamCn": "迈凯伦",
         "country": "United Kingdom",
         "id": "lannor",
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/mclaren/lannor01/2026mclarenlannor01right.webp"
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/mclaren/lannor01/2026mclarenlannor01right.webp",
+        "careerStats": {
+            "wins": 11,
+            "podiums": 44,
+            "poles": 16,
+            "points": 1344,
+            "entries": 152,
+            "championships": 1
+        },
+        "signatureStats": {
+            "debut": 2019,
+            "avgPoints": 8.84,
+            "peak": "世界冠军",
+            "winRate": "7.2%"
+        }
     },
     {
         "firstName": "Oscar",
@@ -100,8 +156,23 @@
         "team": "Aston Martin",
         "teamCn": "阿斯顿·马丁",
         "country": "Spain",
+        "bioCn": "迈克尔·舒马赫是 2000 年代初期一级方程式赛车当之无愧的王者，他获胜和夺冠的速度在当时简直闻所未闻。只有非常特别的人才能将这位法拉利传奇从王座上拉下来——而正是费尔南多·阿隆索做到了这一点，这足以说明这位西班牙车手的一切。\n\n阿隆索极具竞争力，他对自己的才华直言不讳，评价自己在“每一项”上都是 9/10，业内很少有人会对此表示异议。他在 F1 中的表现以惊人的速度、出色的战术思维、示范性的驾驶技术、对细节的敏锐洞察以及对胜利的不懈决心为特征。\n\n早年间，他是一名连破纪录的车手，曾一度是 F1 最年轻的杆位获得者、分站冠军、世界冠军和两届世界冠军，当时他在雷诺车队取得了巨大的成功。然而，即使是阿隆索也无法在职业生涯后期延续这种惊人的势头，尽管效力过迈凯伦和法拉利，但他没能为自己的收藏增添另一个冠军头衔。\n\n在离开 F1 两年后（期间他在勒芒获得了两场胜利），阿隆索于 2021 年随阿尔卑车队回归。他的速度和决心丝毫未减，在那一年重返领奖台，但由于可靠性不佳以及缺乏长期合同，他在随后的赛季感到沮丧，并选择再次跳槽。\n\n在加入阿斯顿·马丁的首个赛季获得 8 次领奖台之后，他已成为首位达成 400 场大奖赛首发的车手。随着技术传奇安德里安·纽维的加入，阿隆索希望这支绿色车队最终能让他重回胜利之路，因为他在 F1 还有未竟的事业……",
         "id": "feralo",
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/astonmartin/feralo01/2026astonmartinferalo01right.webp"
+        "image": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/astonmartin/feralo01/2026astonmartinferalo01right.webp",
+        "careerStats": {
+            "wins": 32,
+            "podiums": 106,
+            "poles": 22,
+            "points": 2380,
+            "entries": 427,
+            "championships": 2
+        },
+        "signatureStats": {
+            "debut": 2001,
+            "avgPoints": 5.57,
+            "peak": "世界冠军",
+            "winRate": "7.5%"
+        }
     },
     {
         "firstName": "Lance",

@@ -39,7 +39,8 @@
             "laps": 58,
             "distance": "306.124km",
             "record": "1:19.813 (Charles Leclerc (2024))"
-        }
+        },
+        "gmtOffset": "+11:00"
     },
     {
         "round": "ROUND 2",
@@ -81,7 +82,8 @@
             "laps": 56,
             "distance": "305.066km",
             "record": "1:32.238 (Michael Schumacher (2004))"
-        }
+        },
+        "gmtOffset": "+08:00"
     },
     {
         "round": "ROUND 3",
@@ -123,7 +125,8 @@
             "laps": 53,
             "distance": "307.471km",
             "record": "1:30.965 (Kimi Antonelli (2025))"
-        }
+        },
+        "gmtOffset": "+09:00"
     },
     {
         "round": "ROUND 4",
@@ -165,7 +168,8 @@
             "laps": 57,
             "distance": "308.238km",
             "record": "1:31.447 (Pedro de la Rosa (2005))"
-        }
+        },
+        "gmtOffset": "+03:00"
     },
     {
         "round": "ROUND 5",
@@ -207,7 +211,8 @@
             "laps": 50,
             "distance": "308.5km",
             "record": null
-        }
+        },
+        "gmtOffset": "+03:00"
     },
     {
         "round": "ROUND 6",
@@ -249,7 +254,8 @@
             "laps": 57,
             "distance": "308.326km",
             "record": "1:29.708 (Max Verstappen (2023))"
-        }
+        },
+        "gmtOffset": "-04:00"
     },
     {
         "round": "ROUND 7",
@@ -291,7 +297,8 @@
             "laps": 70,
             "distance": "305.27km",
             "record": "1:13.078 (Valtteri Bottas (2019))"
-        }
+        },
+        "gmtOffset": "-04:00"
     },
     {
         "round": "ROUND 8",
@@ -333,7 +340,8 @@
             "laps": 78,
             "distance": "260.286km",
             "record": "1:12.909 (Lewis Hamilton (2021))"
-        }
+        },
+        "gmtOffset": "+02:00"
     },
     {
         "round": "ROUND 9",
@@ -375,7 +383,8 @@
             "laps": 66,
             "distance": "307.236km",
             "record": "1:15.743 (Oscar Piastri (2025))"
-        }
+        },
+        "gmtOffset": "Z"
     },
     {
         "round": "ROUND 10",
@@ -417,7 +426,8 @@
             "laps": 71,
             "distance": "307.018km",
             "record": "1:07.924 (Oscar Piastri (2025))"
-        }
+        },
+        "gmtOffset": "+02:00"
     },
     {
         "round": "ROUND 11",
@@ -459,7 +469,8 @@
             "laps": 52,
             "distance": "306.198km",
             "record": "1:27.097 (Max Verstappen (2020))"
-        }
+        },
+        "gmtOffset": "+01:00"
     },
     {
         "round": "ROUND 12",
@@ -501,7 +512,8 @@
             "laps": 44,
             "distance": "308.052km",
             "record": "1:44.701 (Sergio Perez (2024))"
-        }
+        },
+        "gmtOffset": "+02:00"
     },
     {
         "round": "ROUND 13",
@@ -543,7 +555,8 @@
             "laps": 70,
             "distance": "306.63km",
             "record": "1:16.627 (Lewis Hamilton (2020))"
-        }
+        },
+        "gmtOffset": "+02:00"
     },
     {
         "round": "ROUND 14",
@@ -585,7 +598,8 @@
             "laps": 72,
             "distance": "306.587km",
             "record": "1:11.097 (Lewis Hamilton (2021))"
-        }
+        },
+        "gmtOffset": "+02:00"
     },
     {
         "round": "ROUND 15",
@@ -670,7 +684,8 @@
             "laps": 57,
             "distance": "308.524km",
             "record": null
-        }
+        },
+        "gmtOffset": "+02:00"
     },
     {
         "round": "ROUND 17",
@@ -712,7 +727,8 @@
             "laps": 51,
             "distance": "306.049km",
             "record": "1:43.009 (Charles Leclerc (2019))"
-        }
+        },
+        "gmtOffset": "+04:00"
     },
     {
         "round": "ROUND 18",
@@ -754,7 +770,8 @@
             "laps": 62,
             "distance": "305.337km",
             "record": "1:33.808 (Lewis Hamilton (2025))"
-        }
+        },
+        "gmtOffset": "+08:00"
     },
     {
         "round": "ROUND 19",
@@ -796,7 +813,8 @@
             "laps": 56,
             "distance": "308.405km",
             "record": "1:36.169 (Charles Leclerc (2019))"
-        }
+        },
+        "gmtOffset": "-05:00"
     },
     {
         "round": "ROUND 20",
@@ -838,7 +856,8 @@
             "laps": 71,
             "distance": "305.354km",
             "record": "1:17.774 (Valtteri Bottas (2021))"
-        }
+        },
+        "gmtOffset": "-06:00"
     },
     {
         "round": "ROUND 21",
@@ -880,7 +899,8 @@
             "laps": 71,
             "distance": "305.879km",
             "record": "1:10.540 (Valtteri Bottas (2018))"
-        }
+        },
+        "gmtOffset": "-03:00"
     },
     {
         "round": "ROUND 22",
@@ -922,7 +942,8 @@
             "laps": 50,
             "distance": "309.958km",
             "record": "1:33.365 (Max Verstappen (2025))"
-        }
+        },
+        "gmtOffset": "-08:00"
     },
     {
         "round": "ROUND 23",
@@ -964,7 +985,8 @@
             "laps": 57,
             "distance": "308.611km",
             "record": "1:22.384 (Lando Norris (2024))"
-        }
+        },
+        "gmtOffset": "+03:00"
     },
     {
         "round": "ROUND 24",
@@ -985,6 +1007,7 @@
             "record": "1:26.103 (Verstappen)",
             "first_gp": 2009,
             "distance": "306.183km"
-        }
+        },
+        "gmtOffset": "+04:00"
     }
 ]
