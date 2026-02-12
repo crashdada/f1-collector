@@ -13,7 +13,21 @@
         "engine": "Ferrari",
         "engineCn": "法拉利",
         "base": "Maranello, Italy",
-        "baseCn": "马拉内罗，意大利"
+        "baseCn": "马拉内罗，意大利",
+        "history": {
+            "championships": 16,
+            "wins": 248,
+            "podiums": 836,
+            "poles": 0,
+            "entries": 1122,
+            "firstEntry": "1950"
+        },
+        "stats": {
+            "points": 0,
+            "rank": 0,
+            "wins": 0,
+            "podiums": 0
+        }
     },
     {
         "id": "red_bull",
@@ -29,7 +43,21 @@
         "engine": "Red Bull Ford",
         "engineCn": "红牛福特",
         "base": "Milton Keynes, United Kingdom",
-        "baseCn": "米尔顿凯恩斯，英国"
+        "baseCn": "米尔顿凯恩斯，英国",
+        "history": {
+            "championships": 6,
+            "wins": 130,
+            "podiums": 297,
+            "poles": 0,
+            "entries": 418,
+            "firstEntry": "2005"
+        },
+        "stats": {
+            "points": 0,
+            "rank": 0,
+            "wins": 0,
+            "podiums": 0
+        }
     },
     {
         "id": "mercedes",
@@ -45,7 +73,21 @@
         "engine": "Mercedes",
         "engineCn": "梅赛德斯",
         "base": "Brackley, United Kingdom",
-        "baseCn": "布拉克利，英国"
+        "baseCn": "布拉克利，英国",
+        "history": {
+            "championships": 8,
+            "wins": 131,
+            "podiums": 310,
+            "poles": 0,
+            "entries": 341,
+            "firstEntry": "1954"
+        },
+        "stats": {
+            "points": 0,
+            "rank": 0,
+            "wins": 0,
+            "podiums": 0
+        }
     },
     {
         "id": "mclaren",
@@ -61,7 +103,21 @@
         "engine": "Mercedes",
         "engineCn": "梅赛德斯",
         "base": "Woking, United Kingdom",
-        "baseCn": "沃金，英国"
+        "baseCn": "沃金，英国",
+        "history": {
+            "championships": 10,
+            "wins": 203,
+            "podiums": 558,
+            "poles": 0,
+            "entries": 989,
+            "firstEntry": "1966"
+        },
+        "stats": {
+            "points": 0,
+            "rank": 0,
+            "wins": 0,
+            "podiums": 0
+        }
     },
     {
         "id": "aston_martin",
@@ -77,7 +133,21 @@
         "engine": "Honda",
         "engineCn": "本田",
         "base": "Silverstone, United Kingdom",
-        "baseCn": "银石，英国"
+        "baseCn": "银石，英国",
+        "history": {
+            "championships": 0,
+            "wins": 0,
+            "podiums": 9,
+            "poles": 0,
+            "entries": 119,
+            "firstEntry": "1959"
+        },
+        "stats": {
+            "points": 0,
+            "rank": 0,
+            "wins": 0,
+            "podiums": 0
+        }
     },
     {
         "id": "audi",
@@ -93,7 +163,21 @@
         "engine": "Audi",
         "engineCn": "奥迪",
         "base": "Hinwil, Switzerland",
-        "baseCn": "欣维尔，瑞士"
+        "baseCn": "欣维尔，瑞士",
+        "history": {
+            "championships": 0,
+            "wins": 10,
+            "podiums": 53,
+            "poles": 0,
+            "entries": 726,
+            "firstEntry": "1950"
+        },
+        "stats": {
+            "points": 0,
+            "rank": 0,
+            "wins": 0,
+            "podiums": 0
+        }
     },
     {
         "id": "williams",
@@ -109,7 +193,21 @@
         "engine": "Mercedes",
         "engineCn": "梅赛德斯",
         "base": "Grove, United Kingdom",
-        "baseCn": "格罗夫，英国"
+        "baseCn": "格罗夫，英国",
+        "history": {
+            "championships": 9,
+            "wins": 114,
+            "podiums": 315,
+            "poles": 0,
+            "entries": 862,
+            "firstEntry": "1975"
+        },
+        "stats": {
+            "points": 0,
+            "rank": 0,
+            "wins": 0,
+            "podiums": 0
+        }
     },
     {
         "id": "alpine",
@@ -125,7 +223,21 @@
         "engine": "Mercedes",
         "engineCn": "梅赛德斯",
         "base": "Enstone, United Kingdom",
-        "baseCn": "恩斯通，英国"
+        "baseCn": "恩斯通，英国",
+        "history": {
+            "championships": 2,
+            "wins": 36,
+            "podiums": 109,
+            "poles": 0,
+            "entries": 514,
+            "firstEntry": "1977"
+        },
+        "stats": {
+            "points": 0,
+            "rank": 0,
+            "wins": 0,
+            "podiums": 0
+        }
     },
     {
         "id": "haas",
@@ -141,7 +253,21 @@
         "engine": "Ferrari",
         "engineCn": "法拉利",
         "base": "Kannapolis, United States",
-        "baseCn": "坎纳波利斯，美国"
+        "baseCn": "坎纳波利斯，美国",
+        "history": {
+            "championships": 0,
+            "wins": 0,
+            "podiums": 0,
+            "poles": 0,
+            "entries": 214,
+            "firstEntry": "2016"
+        },
+        "stats": {
+            "points": 0,
+            "rank": 0,
+            "wins": 0,
+            "podiums": 0
+        }
     },
     {
         "id": "rb",
@@ -157,7 +283,21 @@
         "engine": "Red Bull Ford",
         "engineCn": "红牛福特",
         "base": "Faenza, Italy",
-        "baseCn": "法恩扎，意大利"
+        "baseCn": "法恩扎，意大利",
+        "history": {
+            "championships": 0,
+            "wins": 0,
+            "podiums": 0,
+            "poles": 0,
+            "entries": 0,
+            "firstEntry": "2026"
+        },
+        "stats": {
+            "points": 0,
+            "rank": 0,
+            "wins": 0,
+            "podiums": 0
+        }
     },
     {
         "id": "cadillac",
@@ -173,6 +313,20 @@
         "engine": "Ferrari",
         "engineCn": "法拉利",
         "base": "Detroit, United States",
-        "baseCn": "底特律，美国"
+        "baseCn": "底特律，美国",
+        "history": {
+            "championships": 0,
+            "wins": 0,
+            "podiums": 0,
+            "poles": 0,
+            "entries": 0,
+            "firstEntry": "2026"
+        },
+        "stats": {
+            "points": 0,
+            "rank": 0,
+            "wins": 0,
+            "podiums": 0
+        }
     }
 ]
