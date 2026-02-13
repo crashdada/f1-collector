@@ -42,13 +42,13 @@
             "wins": 71,
             "podiums": 127,
             "poles": 48,
-            "points": 3425.5,
+            "points": 3444.5,
             "entries": 233,
             "championships": 4
         },
         "signatureStats": {
             "debut": 2015,
-            "avgPoints": 14.7,
+            "avgPoints": 14.78,
             "peak": "世界冠军",
             "winRate": "30.5%"
         }
@@ -292,7 +292,7 @@
         "signatureStats": {
             "debut": 2019,
             "avgPoints": 2.43,
-            "peak": "P7",
+            "peak": "P6",
             "winRate": "0.0%"
         }
     },
@@ -481,7 +481,7 @@
         "signatureStats": {
             "debut": 2023,
             "avgPoints": 1.26,
-            "peak": "P14",
+            "peak": "P15",
             "winRate": "0.0%"
         }
     },
