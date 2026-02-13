@@ -77,7 +77,7 @@ def sync_json(filename):
     target = os.path.join(JSON_TARGET, filename)
 
     if not os.path.exists(source):
-        log(f'⚠ 源文件不存在: {source}')
+        log(f'[!] 源文件不存在: {source}')
         return False
 
     os.makedirs(JSON_TARGET, exist_ok=True)
@@ -87,7 +87,7 @@ def sync_json(filename):
         with open(source, 'r', encoding='utf-8') as f:
             data = json.load(f)
     except json.JSONDecodeError as e:
-        log(f'✗ JSON 格式错误 {filename}: {e}')
+        log(f'[!] JSON 格式错误 {filename}: {e}')
         return False
 
     # 跳过无变更的文件
@@ -102,7 +102,7 @@ def sync_json(filename):
 
     shutil.copy2(source, target)
     count = len(data) if isinstance(data, list) else 'object'
-    log(f'✓ {filename} ({count} entries) → {target}')
+    log(f'[OK] {filename} ({count} entries) → {target}')
     return True
 
 
@@ -112,7 +112,7 @@ def sync_db():
     target = os.path.join(DB_TARGET, 'f1.db')
 
     if not os.path.exists(source):
-        log(f'⚠ 数据库文件不存在: {source}')
+        log(f'[!] 数据库文件不存在: {source}')
         return False
 
     if os.path.exists(target):
@@ -121,7 +121,7 @@ def sync_db():
             return True
 
     shutil.copy2(source, target)
-    log(f'✓ f1.db ({os.path.getsize(target):,} bytes) → {target}')
+    log(f'[OK] f1.db ({os.path.getsize(target):,} bytes) → {target}')
     return True
 
 
@@ -129,10 +129,10 @@ def run_scraper():
     """运行 scraper.py"""
     scraper = os.path.join(COLLECTOR_DIR, 'scraper.py')
     if not os.path.exists(scraper):
-        log('✗ scraper.py 不存在')
+        log('[!] scraper.py 不存在')
         return False
 
-    log('🔄 运行 scraper.py ...')
+    log('[...] 运行 scraper.py ...')
     result = subprocess.run(
         [sys.executable, scraper],
         cwd=COLLECTOR_DIR,
@@ -141,13 +141,13 @@ def run_scraper():
     )
 
     if result.returncode != 0:
-        log(f'✗ scraper.py 失败:\n{result.stderr}')
+        log(f'[!] scraper.py 失败:\n{result.stderr}')
         return False
 
     if result.stdout.strip():
         for line in result.stdout.strip().split('\n'):
             log(f'  scraper: {line}')
-    log('✓ scraper.py 完成')
+    log('[OK] scraper.py 完成')
     return True
 
 
@@ -167,12 +167,12 @@ def main():
     log('=' * 50)
 
     if not os.path.exists(WEBSITE_DIR):
-        log(f'✗ 展示站目录不存在: {WEBSITE_DIR}')
+        log(f'[!] 展示站目录不存在: {WEBSITE_DIR}')
         sys.exit(1)
 
     if args.scrape:
         if not run_scraper():
-            log('⚠ 采集失败，继续同步已有数据...')
+            log('[!] 采集失败，继续同步已有数据...')
 
     if args.schedule:
         sync_json('schedule_2026.json')
@@ -186,7 +186,7 @@ def main():
         for f in JSON_FILES:
             sync_json(f)
 
-    log('同步完成 ✅')
+    log('同步完成 [OK]')
 
 
 if __name__ == '__main__':

@@ -2,7 +2,9 @@ import sqlite3
 import json
 import os
 
-DB_PATH = r'C:/Users/jaymz/Desktop/oc/f1-website/public/f1.db'
+# 路径配置
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(os.path.dirname(CURRENT_DIR), 'f1-website', 'public', 'f1.db')
 
 def get_stats():
     conn = sqlite3.connect(DB_PATH)
@@ -14,8 +16,8 @@ def get_stats():
         "red_bull": ["Red Bull Racing", "Red Bull", "红牛", "红牛车队"],
         "mercedes": ["Mercedes", "Mercedes-AMG", "梅赛德斯", "梅赛德斯-奔驰"],
         "mclaren": ["McLaren", "迈凯伦"],
-        "aston_martin": ["Aston Martin", "Racing Point", "Force India", "Jordan", "Spyker", "Midland", "阿斯顿马丁"],
-        "audi": ["Sauber", "Alfa Romeo", "BMW Sauber", "索伯", "阿尔法·罗密欧"],
+        "aston_martin": ["Aston Martin", "Racing Point", "Force India", "Jordan", "Spyker", "Midland", "阿斯顿马丁", "阿斯顿·马丁"],
+        "audi": ["Sauber", "Alfa Romeo", "BMW Sauber", "索伯", "阿尔法·罗密欧", "阿尔法罗密欧"],
         "williams": ["Williams", "威廉姆斯"],
         "alpine": ["Alpine", "Renault", "Lotus F1", "Benetton", "Toleman", "阿尔派", "雷诺"],
         "haas": ["Haas F1 Team", "Haas", "哈斯"],
@@ -35,66 +37,59 @@ def get_stats():
             
         placeholders = ', '.join(['?' for _ in names])
         
+        # Get team_ids for these names
+        cur.execute(f"SELECT team_id FROM teams WHERE name IN ({placeholders})", names)
+        team_ids = [row[0] for row in cur.fetchall()]
+        
+        if not team_ids:
+            results[team_id] = {
+                "history": {"championships": 0, "wins": 0, "podiums": 0, "poles": 0, "entries": 0, "firstEntry": "2026"},
+                "stats": {"points": 0, "rank": 0, "wins": 0, "podiums": 0}
+            }
+            continue
+
+        id_placeholders = ', '.join(['?' for _ in team_ids])
+
         # Championship Count
         try:
             cur.execute(f"""
-                SELECT COUNT(*) FROM team_championships tc
-                JOIN teams t ON tc.team_id = t.team_id
-                WHERE t.name IN ({placeholders}) AND tc.rank = 1
-            """, names)
+                SELECT COUNT(*) FROM team_championships
+                WHERE team_id IN ({id_placeholders}) AND rank = 1
+            """, team_ids)
             championships = cur.fetchone()[0]
         except:
             championships = 0
             
-        # Wins, Podiums, Poles from race_results
+        # Stats from season_stats for accuracy (includes my sprint/2021 corrections)
         cur.execute(f"""
-            SELECT COUNT(*) FROM race_results res 
-            JOIN teams t ON res.team_id = t.team_id 
-            WHERE t.name IN ({placeholders}) AND res.position = 1
-        """, names)
-        wins = cur.fetchone()[0]
-        
-        cur.execute(f"""
-            SELECT COUNT(*) FROM race_results res 
-            JOIN teams t ON res.team_id = t.team_id 
-            WHERE t.name IN ({placeholders}) AND res.position <= 3
-        """, names)
-        podiums = cur.fetchone()[0]
-        
-        cur.execute(f"""
-            SELECT COUNT(*) FROM race_results res 
-            JOIN teams t ON res.team_id = t.team_id 
-            WHERE t.name IN ({placeholders}) AND res.grid_position = 1
-        """, names)
-        poles = cur.fetchone()[0]
-        
-        cur.execute(f"""
-            SELECT COUNT(DISTINCT race_id) FROM race_results res 
-            JOIN teams t ON res.team_id = t.team_id 
-            WHERE t.name IN ({placeholders})
-        """, names)
-        entries = cur.fetchone()[0]
+            SELECT SUM(wins), SUM(podiums), SUM(poles), SUM(races)
+            FROM team_season_stats
+            WHERE team_id IN ({id_placeholders})
+        """, team_ids)
+        row = cur.fetchone()
+        wins, podiums, poles, entries = row if row and row[0] is not None else (0, 0, 0, 0)
         
         # First entry year
         cur.execute(f"""
-            SELECT MIN(r.season) FROM races r
-            JOIN race_results res ON res.race_id = r.race_id
-            JOIN teams t ON res.team_id = t.team_id
-            WHERE t.name IN ({placeholders})
-        """, names)
+            SELECT MIN(season) FROM team_season_stats
+            WHERE team_id IN ({id_placeholders})
+        """, team_ids)
         first_year = cur.fetchone()[0] or 2026
         
         results[team_id] = {
             "history": {
                 "championships": championships,
-                "wins": wins,
-                "podiums": podiums,
-                "poles": poles,
-                "entries": entries,
+                "wins": int(wins),
+                "podiums": int(podiums),
+                "poles": int(poles),
+                "entries": int(entries),
                 "firstEntry": str(first_year)
             },
             "stats": {"points": 0, "rank": 0, "wins": 0, "podiums": 0}
         }
+    
+    conn.close()
+    return results
     
     conn.close()
     return results

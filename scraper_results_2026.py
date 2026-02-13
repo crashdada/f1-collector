@@ -35,7 +35,7 @@ RESULTS_DIR = os.path.join(SCRIPT_DIR, 'results_2026')
 def load_schedule():
     """加载赛历"""
     if not os.path.exists(SCHEDULE_FILE):
-        print(f'✗ 赛历不存在: {SCHEDULE_FILE}')
+        print(f'[!] 赛历不存在: {SCHEDULE_FILE}')
         return []
     with open(SCHEDULE_FILE, 'r', encoding='utf-8') as f:
         return json.load(f)
@@ -99,19 +99,19 @@ def scrape_race_results(collector, race):
     # 格式可能为: /en/results/2026/races/round-X/slug/race-result
     result_url = f"{collector.base_url}/en/results/2026/races/{slug}/race-result"
 
-    print(f'🏎️  采集: {country} ({round_text})')
+    print(f'Race: 采集: {country} ({round_text})')
     print(f'   URL: {result_url}')
 
     # 获取并解析页面
     html = collector.fetch_page(result_url, max_retries=2, initial_delay=60)
     if not html:
-        print(f'   ✗ 页面获取失败')
+        print(f'   [!] 页面获取失败')
         return None
 
     # 解析结果
     results = collector.get_race_results(result_url)
     if not results:
-        print(f'   ✗ 未找到成绩数据（页面结构可能已变化）')
+        print(f'   [!] 未找到成绩数据（页面结构可能已变化）')
         return None
 
     # 构造输出
@@ -123,7 +123,7 @@ def scrape_race_results(collector, race):
         'results': results
     }
 
-    print(f'   ✓ 获取到 {len(results)} 条成绩')
+    print(f'   [OK] 获取到 {len(results)} 条成绩')
     return output
 
 
@@ -164,14 +164,14 @@ def main():
     if args.round:
         race = find_race_by_round(schedule, args.round)
         if not race:
-            print(f'✗ 未找到第 {args.round} 轮比赛')
+            print(f'[!] 未找到第 {args.round} 轮比赛')
             sys.exit(1)
     elif args.force:
         # 取最近的非测试赛事
         races = [r for r in schedule if not r.get('isTest', False)]
         race = races[-1] if races else None
         if not race:
-            print('✗ 赛历中无有效赛事')
+            print('[!] 赛历中无有效赛事')
             sys.exit(1)
     else:
         race = find_recent_race(schedule)
@@ -184,9 +184,9 @@ def main():
     results = scrape_race_results(collector, race)
     if results:
         save_results(results, race)
-        print('\n采集完成 ✅')
+        print('\n采集完成 [OK]')
     else:
-        print('\n采集失败 ✗')
+        print('\n采集失败 [!]')
         sys.exit(1)
 
 
