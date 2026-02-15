@@ -75,29 +75,52 @@ def log(msg):
     print(f'[{ts}] {msg}')
 
 
+# 预设的基础映射（作为 fallback，防止 mappings.json 加载失败）
+DEFAULT_FLAGS = {
+    'UNITED STATES': 'USA',
+    'MIAMI': 'USA',
+    'LAS VEGAS': 'USA',
+    'BARCELONA-CATALUNYA': 'Spain',
+    'ABU DHABI': 'UAE',
+    'GREAT BRITAIN': 'Great_Britain',
+    'SAUDI ARABIA': 'Saudi_Arabia',
+}
+
 # 加载映射配置
 MAPPINGS_FILE = os.path.join(COLLECTOR_DIR, 'config', 'mappings.json')
-MAPPINGS = {"flags": {}, "teams": {}}
+MAPPINGS = {"flags": DEFAULT_FLAGS, "teams": {}}
 
 if os.path.exists(MAPPINGS_FILE):
     try:
         with open(MAPPINGS_FILE, 'r', encoding='utf-8') as f:
-            MAPPINGS = json.load(f)
+            extra_mappings = json.load(f)
+            # 合并配置
+            if 'flags' in extra_mappings:
+                MAPPINGS['flags'].update(extra_mappings['flags'])
+            if 'teams' in extra_mappings:
+                MAPPINGS['teams'].update(extra_mappings['teams'])
+        log(f'[OK] 已加载自定义映射: {MAPPINGS_FILE}')
     except Exception as e:
         log(f'[!] 加载 mappings.json 失败: {e}')
+else:
+    log(f'[!] 映射配置文件不存在，使用内置预设: {MAPPINGS_FILE}')
 
 MISSING_RESOURCES = set()
 
 
 def get_flag_name(country_raw):
     """根据国家名称获取对应的国旗文件名"""
-    upper_country = country_raw.upper()
+    if not country_raw:
+        return "Unknown"
+        
+    upper_country = country_raw.upper().strip()
+    
     # 1. 检查映射表
     if upper_country in MAPPINGS.get('flags', {}):
         return MAPPINGS['flags'][upper_country]
     
     # 2. 默认转换逻辑
-    return country_raw.title().replace(' ', '_')
+    return country_raw.strip().title().replace(' ', '_')
 
 
 def normalize_json_paths(filename, data):
