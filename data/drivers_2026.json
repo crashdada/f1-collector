@@ -10,7 +10,7 @@
         "teamCn": "法拉利",
         "country": "United Kingdom",
         "id": "lewham",
-        "image": "/photos/seasons/2026/drivers/lewham.webp",
+        "image": "/photos/seasons/2026/drivers/HAM.webp",
         "careerStats": {
             "wins": 105,
             "podiums": 202,
@@ -37,7 +37,7 @@
         "teamCn": "红牛",
         "country": "Netherlands",
         "id": "maxver",
-        "image": "/photos/seasons/2026/drivers/maxver.webp",
+        "image": "/photos/seasons/2026/drivers/VER.webp",
         "careerStats": {
             "wins": 71,
             "podiums": 127,
@@ -64,7 +64,7 @@
         "teamCn": "法拉利",
         "country": "Monaco",
         "id": "chalec",
-        "image": "/photos/seasons/2026/drivers/chalec.webp",
+        "image": "/photos/seasons/2026/drivers/LEC.webp",
         "careerStats": {
             "wins": 8,
             "podiums": 50,
@@ -91,7 +91,7 @@
         "teamCn": "迈凯伦",
         "country": "United Kingdom",
         "id": "lannor",
-        "image": "/photos/seasons/2026/drivers/lannor.webp",
+        "image": "/photos/seasons/2026/drivers/NOR.webp",
         "careerStats": {
             "wins": 11,
             "podiums": 44,
@@ -118,7 +118,7 @@
         "teamCn": "迈凯伦",
         "country": "Australia",
         "id": "oscpia",
-        "image": "/photos/seasons/2026/drivers/oscpia.webp",
+        "image": "/photos/seasons/2026/drivers/PIA.webp",
         "careerStats": {
             "wins": 9,
             "podiums": 26,
@@ -145,7 +145,7 @@
         "teamCn": "梅赛德斯",
         "country": "United Kingdom",
         "id": "georus",
-        "image": "/photos/seasons/2026/drivers/georus.webp",
+        "image": "/photos/seasons/2026/drivers/RUS.webp",
         "careerStats": {
             "wins": 5,
             "podiums": 24,
@@ -172,7 +172,7 @@
         "teamCn": "梅赛德斯",
         "country": "Italy",
         "id": "andant",
-        "image": "/photos/seasons/2026/drivers/andant.webp",
+        "image": "/photos/seasons/2026/drivers/ANT.webp",
         "careerStats": {
             "wins": 0,
             "podiums": 3,
@@ -199,7 +199,7 @@
         "teamCn": "阿斯顿·马丁",
         "country": "Spain",
         "id": "feralo",
-        "image": "/photos/seasons/2026/drivers/feralo.webp",
+        "image": "/photos/seasons/2026/drivers/ALO.webp",
         "careerStats": {
             "wins": 32,
             "podiums": 106,
@@ -226,7 +226,7 @@
         "teamCn": "阿斯顿·马丁",
         "country": "Canada",
         "id": "lanstr",
-        "image": "/photos/seasons/2026/drivers/lanstr.webp",
+        "image": "/photos/seasons/2026/drivers/STR.webp",
         "careerStats": {
             "wins": 0,
             "podiums": 3,
@@ -253,7 +253,7 @@
         "teamCn": "威廉姆斯",
         "country": "Spain",
         "id": "carsai",
-        "image": "/photos/seasons/2026/drivers/carsai.webp",
+        "image": "/photos/seasons/2026/drivers/SAI.webp",
         "careerStats": {
             "wins": 4,
             "podiums": 29,
@@ -280,7 +280,7 @@
         "teamCn": "威廉姆斯",
         "country": "Thailand",
         "id": "alealb",
-        "image": "/photos/seasons/2026/drivers/alealb.webp",
+        "image": "/photos/seasons/2026/drivers/ALB.webp",
         "careerStats": {
             "wins": 0,
             "podiums": 2,
@@ -307,7 +307,7 @@
         "teamCn": "阿尔派",
         "country": "France",
         "id": "piegas",
-        "image": "/photos/seasons/2026/drivers/piegas.webp",
+        "image": "/photos/seasons/2026/drivers/GAS.webp",
         "careerStats": {
             "wins": 1,
             "podiums": 5,
@@ -334,7 +334,7 @@
         "teamCn": "阿尔派",
         "country": "Argentina",
         "id": "fracol",
-        "image": "/photos/seasons/2026/drivers/fracol.webp",
+        "image": "/photos/seasons/2026/drivers/COL.webp",
         "careerStats": {
             "wins": 0,
             "podiums": 0,
@@ -361,7 +361,7 @@
         "teamCn": "哈斯",
         "country": "France",
         "id": "estoco",
-        "image": "/photos/seasons/2026/drivers/estoco.webp",
+        "image": "/photos/seasons/2026/drivers/OCO.webp",
         "careerStats": {
             "wins": 1,
             "podiums": 4,
@@ -388,7 +388,7 @@
         "teamCn": "哈斯",
         "country": "United Kingdom",
         "id": "olibea",
-        "image": "/photos/seasons/2026/drivers/olibea.webp",
+        "image": "/photos/seasons/2026/drivers/BEA.webp",
         "careerStats": {
             "wins": 0,
             "podiums": 0,
@@ -415,7 +415,7 @@
         "teamCn": "奥迪 (Sauber)",
         "country": "Germany",
         "id": "nichul",
-        "image": "/photos/seasons/2026/drivers/nichul.webp",
+        "image": "/photos/seasons/2026/drivers/HUL.webp",
         "careerStats": {
             "wins": 0,
             "podiums": 1,
@@ -442,7 +442,7 @@
         "teamCn": "奥迪 (Sauber)",
         "country": "Brazil",
         "id": "gabbor",
-        "image": "/photos/seasons/2026/drivers/gabbor.webp",
+        "image": "/photos/seasons/2026/drivers/BOR.webp",
         "careerStats": {
             "wins": 0,
             "podiums": 0,
@@ -469,7 +469,7 @@
         "teamCn": "RB",
         "country": "New Zealand",
         "id": "lialaw",
-        "image": "/photos/seasons/2026/drivers/lialaw.webp",
+        "image": "/photos/seasons/2026/drivers/LAW.webp",
         "careerStats": {
             "wins": 0,
             "podiums": 0,
@@ -496,7 +496,7 @@
         "teamCn": "RB",
         "country": "United Kingdom",
         "id": "arvlin",
-        "image": "/photos/seasons/2026/drivers/arvlin.webp",
+        "image": "/photos/seasons/2026/drivers/LIN.webp",
         "careerStats": {
             "wins": 0,
             "podiums": 0,
@@ -523,7 +523,7 @@
         "teamCn": "凯迪拉克",
         "country": "Mexico",
         "id": "serper",
-        "image": "/photos/seasons/2026/drivers/serper.webp",
+        "image": "/photos/seasons/2026/drivers/PER.webp",
         "careerStats": {
             "wins": 6,
             "podiums": 39,
@@ -550,7 +550,7 @@
         "teamCn": "凯迪拉克",
         "country": "Finland",
         "id": "valbot",
-        "image": "/photos/seasons/2026/drivers/valbot.webp",
+        "image": "/photos/seasons/2026/drivers/BOT.webp",
         "careerStats": {
             "wins": 10,
             "podiums": 67,
@@ -577,7 +577,7 @@
         "teamCn": "红牛",
         "country": "France",
         "id": "isahad",
-        "image": "/photos/seasons/2026/drivers/isahad.webp",
+        "image": "/photos/seasons/2026/drivers/HAD.webp",
         "careerStats": {
             "wins": 0,
             "podiums": 1,
