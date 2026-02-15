@@ -48,7 +48,7 @@ if IS_LOCAL:
     # 本地开发：目标是源码的 public 目录
     ENV_NAME = '本地源码环境 (Development)'
     JSON_TARGET = os.path.join(WEBSITE_DIR, 'public', 'data')
-    DB_TARGET = os.path.join(WEBSITE_DIR, 'public')
+    DB_TARGET = JSON_TARGET  # 数据库现在也放在 data 目录下
 else:
     # NAS 部署：目标通常是构建好的产物目录 (dist)
     potential_dist = os.path.join(WEBSITE_DIR, 'dist')
@@ -60,7 +60,7 @@ else:
         ENV_NAME = f'NAS 根目录环境 (Target: {os.path.basename(WEBSITE_DIR)})'
     
     JSON_TARGET = os.path.join(DEPLOY_ROOT, 'data')
-    DB_TARGET = DEPLOY_ROOT
+    DB_TARGET = JSON_TARGET  # 数据库现在也放在 data 目录下
 
 # 要同步的 JSON 文件
 JSON_FILES = [
@@ -227,7 +227,8 @@ def sync_json(filename):
 
 def sync_db():
     """同步 f1.db"""
-    source = os.path.join(COLLECTOR_DIR, 'f1.db')
+    # 数据库源现在也在 collector 的 data 目录下
+    source = os.path.join(COLLECTOR_DIR, 'data', 'f1.db')
     target = os.path.join(DB_TARGET, 'f1.db')
 
     if not os.path.exists(source):

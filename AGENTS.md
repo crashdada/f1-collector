@@ -14,7 +14,7 @@ python syncer.py
 
 # Sync with options
 python syncer.py --schedule    # Schedule JSON only
-python syncer.py --db           # Database only
+python syncer.py --db           # Database (f1.db) only
 python syncer.py --all          # JSON + DB
 python syncer.py --scrape       # Run scraper first, then sync
 ```
@@ -31,6 +31,7 @@ f1-collector/
 ├── requirements.txt
 ├── AGENTS.md / WORKFLOW.md / README.md
 ├── data/                         # 📦 采集产物（脚本与数据分离）
+│   ├── f1.db                      # 历史数据库快照
 │   ├── schedule_2026.json
 │   ├── drivers_2026.json
 │   └── teams_2026.json
