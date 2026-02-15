@@ -8,9 +8,9 @@
         "dates": "06 - 08 MAR",
         "slug": "australia",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackmelbourneblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackmelbournedetailed.webp",
-        "flag": "/assets/flags/Australia.svg",
+        "image": "/photos/seasons/2026/tracks/australia_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/australia_detailed.webp",
+        "flag": "/photos/seasons/flags/Australia.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -51,9 +51,9 @@
         "dates": "13 - 15 MAR",
         "slug": "china",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackshanghaiblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackshanghaidetailed.webp",
-        "flag": "/assets/flags/China.svg",
+        "image": "/photos/seasons/2026/tracks/china_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/china_detailed.webp",
+        "flag": "/photos/seasons/flags/China.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -94,9 +94,9 @@
         "dates": "27 - 29 Mar",
         "slug": "japan",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026tracksuzukablackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026tracksuzukadetailed.webp",
-        "flag": "/assets/flags/Japan.svg",
+        "image": "/photos/seasons/2026/tracks/japan_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/japan_detailed.webp",
+        "flag": "/photos/seasons/flags/Japan.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -137,9 +137,9 @@
         "dates": "10 - 12 Apr",
         "slug": "bahrain",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026tracksakhirblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026tracksakhirdetailed.webp",
-        "flag": "/assets/flags/Bahrain.svg",
+        "image": "/photos/seasons/2026/tracks/bahrain_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/bahrain_detailed.webp",
+        "flag": "/photos/seasons/flags/Bahrain.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -180,9 +180,9 @@
         "dates": "17 - 19 Apr",
         "slug": "saudi-arabia",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackjeddahblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackjeddahdetailed.webp",
-        "flag": "/assets/flags/Saudi_Arabia.svg",
+        "image": "/photos/seasons/2026/tracks/saudi-arabia_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/saudi-arabia_detailed.webp",
+        "flag": "/photos/seasons/flags/Saudi_Arabia.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -223,9 +223,9 @@
         "dates": "01 - 03 May",
         "slug": "miami",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackmiamiblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackmiamidetailed.webp",
-        "flag": "/assets/flags/USA.svg",
+        "image": "/photos/seasons/2026/tracks/miami_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/miami_detailed.webp",
+        "flag": "/photos/seasons/flags/USA.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -266,9 +266,9 @@
         "dates": "22 - 24 May",
         "slug": "canada",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackmontrealblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackmontrealdetailed.webp",
-        "flag": "/assets/flags/Canada.svg",
+        "image": "/photos/seasons/2026/tracks/canada_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/canada_detailed.webp",
+        "flag": "/photos/seasons/flags/Canada.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -309,9 +309,9 @@
         "dates": "05 - 07 Jun",
         "slug": "monaco",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackmontecarloblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackmontecarlodetailed.webp",
-        "flag": "/assets/flags/Monaco.svg",
+        "image": "/photos/seasons/2026/tracks/monaco_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/monaco_detailed.webp",
+        "flag": "/photos/seasons/flags/Monaco.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -352,9 +352,9 @@
         "dates": "12 - 14 Jun",
         "slug": "barcelona-catalunya",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackcatalunyablackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackcatalunyadetailed.webp",
-        "flag": "/assets/flags/Spain.svg",
+        "image": "/photos/seasons/2026/tracks/barcelona-catalunya_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/barcelona-catalunya_detailed.webp",
+        "flag": "/photos/seasons/flags/Spain.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -395,9 +395,9 @@
         "dates": "26 - 28 Jun",
         "slug": "austria",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackspielbergblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackspielbergdetailed.webp",
-        "flag": "/assets/flags/Austria.svg",
+        "image": "/photos/seasons/2026/tracks/austria_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/austria_detailed.webp",
+        "flag": "/photos/seasons/flags/Austria.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -438,9 +438,9 @@
         "dates": "03 - 05 Jul",
         "slug": "great-britain",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026tracksilverstoneblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026tracksilverstonedetailed.webp",
-        "flag": "/assets/flags/Great_Britain.svg",
+        "image": "/photos/seasons/2026/tracks/great-britain_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/great-britain_detailed.webp",
+        "flag": "/photos/seasons/flags/Great_Britain.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -481,9 +481,9 @@
         "dates": "17 - 19 Jul",
         "slug": "belgium",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackspafrancorchampsblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackspafrancorchampsdetailed.webp",
-        "flag": "/assets/flags/Belgium.svg",
+        "image": "/photos/seasons/2026/tracks/belgium_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/belgium_detailed.webp",
+        "flag": "/photos/seasons/flags/Belgium.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -524,9 +524,9 @@
         "dates": "24 - 26 Jul",
         "slug": "hungary",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackhungaroringblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackhungaroringdetailed.webp",
-        "flag": "/assets/flags/Hungary.svg",
+        "image": "/photos/seasons/2026/tracks/hungary_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/hungary_detailed.webp",
+        "flag": "/photos/seasons/flags/Hungary.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -567,9 +567,9 @@
         "dates": "21 - 23 Aug",
         "slug": "netherlands",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackzandvoortblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackzandvoortdetailed.webp",
-        "flag": "/assets/flags/Netherlands.svg",
+        "image": "/photos/seasons/2026/tracks/netherlands_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/netherlands_detailed.webp",
+        "flag": "/photos/seasons/flags/Netherlands.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -610,9 +610,9 @@
         "dates": "04 - 06 Sep",
         "slug": "italy",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackmonzablackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackmonzadetailed.webp",
-        "flag": "/assets/flags/Italy.svg",
+        "image": "/photos/seasons/2026/tracks/italy_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/italy_detailed.webp",
+        "flag": "/photos/seasons/flags/Italy.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -653,9 +653,9 @@
         "dates": "11 - 13 Sep",
         "slug": "spain",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackmadringblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackmadringdetailed.webp",
-        "flag": "/assets/flags/Spain.svg",
+        "image": "/photos/seasons/2026/tracks/spain_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/spain_detailed.webp",
+        "flag": "/photos/seasons/flags/Spain.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -696,9 +696,9 @@
         "dates": "24 - 26 Sep",
         "slug": "azerbaijan",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackbakublackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackbakudetailed.webp",
-        "flag": "/assets/flags/Azerbaijan.svg",
+        "image": "/photos/seasons/2026/tracks/azerbaijan_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/azerbaijan_detailed.webp",
+        "flag": "/photos/seasons/flags/Azerbaijan.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -739,9 +739,9 @@
         "dates": "09 - 11 Oct",
         "slug": "singapore",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026tracksingaporeblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026tracksingaporedetailed.webp",
-        "flag": "/assets/flags/Singapore.svg",
+        "image": "/photos/seasons/2026/tracks/singapore_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/singapore_detailed.webp",
+        "flag": "/photos/seasons/flags/Singapore.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -782,9 +782,9 @@
         "dates": "23 - 25 Oct",
         "slug": "united-states",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackaustinblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackaustindetailed.webp",
-        "flag": "/assets/flags/USA.svg",
+        "image": "/photos/seasons/2026/tracks/united-states_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/united-states_detailed.webp",
+        "flag": "/photos/seasons/flags/USA.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -825,9 +825,9 @@
         "dates": "TBC",
         "slug": "mexico",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackmexicocityblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackmexicocitydetailed.webp",
-        "flag": "/assets/flags/Mexico.svg",
+        "image": "/photos/seasons/2026/tracks/mexico_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/mexico_detailed.webp",
+        "flag": "/photos/seasons/flags/Mexico.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -868,9 +868,9 @@
         "dates": "06 - 08 Nov",
         "slug": "brazil",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackinterlagosblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackinterlagosdetailed.webp",
-        "flag": "/assets/flags/Brazil.svg",
+        "image": "/photos/seasons/2026/tracks/brazil_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/brazil_detailed.webp",
+        "flag": "/photos/seasons/flags/Brazil.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -911,9 +911,9 @@
         "dates": "19 - 21 Nov",
         "slug": "las-vegas",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026tracklasvegasblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026tracklasvegasdetailed.webp",
-        "flag": "/assets/flags/USA.svg",
+        "image": "/photos/seasons/2026/tracks/las-vegas_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/las-vegas_detailed.webp",
+        "flag": "/photos/seasons/flags/USA.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -954,9 +954,9 @@
         "dates": "27 - 29 Nov",
         "slug": "qatar",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026tracklusailblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026tracklusaildetailed.webp",
-        "flag": "/assets/flags/Qatar.svg",
+        "image": "/photos/seasons/2026/tracks/qatar_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/qatar_detailed.webp",
+        "flag": "/photos/seasons/flags/Qatar.svg",
         "sessions": [
             {
                 "name": "Practice 1",
@@ -997,9 +997,9 @@
         "dates": "04 - 06 Dec",
         "slug": "abu-dhabi",
         "isTest": false,
-        "image": "https://media.formula1.com/image/upload/c_lfill,w_3392/v1740000000/common/f1/2026/track/2026trackyasmarinacircuitblackoutline.svg",
-        "detailedImage": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000000/common/f1/2026/track/2026trackyasmarinacircuitdetailed.webp",
-        "flag": "/assets/flags/UAE.svg",
+        "image": "/photos/seasons/2026/tracks/abu-dhabi_outline.svg",
+        "detailedImage": "/photos/seasons/2026/tracks/abu-dhabi_detailed.webp",
+        "flag": "/photos/seasons/flags/UAE.svg",
         "sessions": [],
         "circuitSpecs": {
             "length": "5.281km",
