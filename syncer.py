@@ -75,13 +75,37 @@ def log(msg):
     print(f'[{ts}] {msg}')
 
 
+# 加载映射配置
+MAPPINGS_FILE = os.path.join(COLLECTOR_DIR, 'config', 'mappings.json')
+MAPPINGS = {"flags": {}, "teams": {}}
+
+if os.path.exists(MAPPINGS_FILE):
+    try:
+        with open(MAPPINGS_FILE, 'r', encoding='utf-8') as f:
+            MAPPINGS = json.load(f)
+    except Exception as e:
+        log(f'[!] 加载 mappings.json 失败: {e}')
+
+MISSING_RESOURCES = set()
+
+
+def get_flag_name(country_raw):
+    """根据国家名称获取对应的国旗文件名"""
+    upper_country = country_raw.upper()
+    # 1. 检查映射表
+    if upper_country in MAPPINGS.get('flags', {}):
+        return MAPPINGS['flags'][upper_country]
+    
+    # 2. 默认转换逻辑
+    return country_raw.title().replace(' ', '_')
+
+
 def normalize_json_paths(filename, data):
     """强制标准化 JSON 中的图片路径，确保与 assets 命名一致"""
     modified = False
     
     if filename == 'drivers_2026.json' and isinstance(data, list):
         for d in data:
-            # 统一使用全名作为文件名 (如 lewis_hamilton.webp)
             first = d.get('firstName', '').lower().replace(' ', '_')
             last = d.get('lastName', '').lower().replace(' ', '_')
             full_name_id = f"{first}_{last}"
@@ -92,9 +116,17 @@ def normalize_json_paths(filename, data):
                 
     elif filename == 'teams_2026.json' and isinstance(data, list):
         for t in data:
+            # 1. 获取基础 ID
             tid = t.get('id')
-            logo_path = f"/photos/seasons/2026/teams/{tid}_logo.webp"
-            car_path = f"/photos/seasons/2026/teams/{tid}_car.webp"
+            raw_name = t.get('name', '').upper()
+            
+            # 2. 检查是否有映射覆盖 (例如 KICK SAUBER -> audi)
+            mapped_id = MAPPINGS.get('teams', {}).get(raw_name, tid)
+            
+            # 3. 标准化路径
+            logo_path = f"/photos/seasons/2026/teams/{mapped_id}_logo.webp"
+            car_path = f"/photos/seasons/2026/teams/{mapped_id}_car.webp"
+            
             if t.get('logo') != logo_path:
                 t['logo'] = logo_path
                 modified = True
@@ -105,12 +137,15 @@ def normalize_json_paths(filename, data):
     elif filename == 'schedule_2026.json' and isinstance(data, list):
         for event in data:
             slug = event.get('slug')
-            country = event.get('country', '').title().replace(' ', '_')
+            country_raw = event.get('country', '')
             
-            # 标准化赛道图路径
+            # 使用映射系统获取国旗
+            flag_name = get_flag_name(country_raw)
+            
+            # 标准化路径
             image_path = f"/photos/seasons/2026/tracks/{slug}_outline.svg"
             detailed_path = f"/photos/seasons/2026/tracks/{slug}_detailed.webp"
-            flag_path = f"/photos/seasons/flags/{country}.svg"
+            flag_path = f"/photos/seasons/flags/{flag_name}.svg"
             
             if event.get('image') and event.get('image') != image_path:
                 event['image'] = image_path
@@ -118,7 +153,7 @@ def normalize_json_paths(filename, data):
             if event.get('detailedImage') and event.get('detailedImage') != detailed_path:
                 event['detailedImage'] = detailed_path
                 modified = True
-            if event.get('flag') and event.get('flag') != flag_path:
+            if event.get('flag') != flag_path:
                 event['flag'] = flag_path
                 modified = True
                 
@@ -282,6 +317,13 @@ def main():
         for f in JSON_FILES:
             sync_json(f)
         sync_assets()
+
+    # 最后自动生成照片索引，确保前端能找到新同步的文件
+    log('[...] 正在生成照片索引...')
+    photo_indexer = os.path.join(WEBSITE_DIR, 'generate_photo_index.py')
+    if os.path.exists(photo_indexer):
+        subprocess.run([sys.executable, photo_indexer], cwd=WEBSITE_DIR)
+        log('[OK] 照片索引已更新')
 
     log('同步完成 [OK]')
 
