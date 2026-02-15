@@ -47,20 +47,21 @@ JSON_SOURCE = os.path.join(COLLECTOR_DIR, 'data')
 if IS_LOCAL:
     # 本地开发：目标是源码的 public 目录
     ENV_NAME = '本地源码环境 (Development)'
-    JSON_TARGET = os.path.join(WEBSITE_DIR, 'public', 'data')
-    DB_TARGET = JSON_TARGET  # 数据库现在也放在 data 目录下
+    WEBSITE_ROOT = os.path.join(WEBSITE_DIR, 'public') # 本地源码根目录
+    JSON_TARGET = os.path.join(WEBSITE_ROOT, 'data')
+    DB_TARGET = JSON_TARGET  # 数据库放在 data 目录下
 else:
     # NAS 部署：目标通常是构建好的产物目录 (dist)
     potential_dist = os.path.join(WEBSITE_DIR, 'dist')
     if os.path.exists(potential_dist):
-        DEPLOY_ROOT = potential_dist
+        WEBSITE_ROOT = potential_dist
         ENV_NAME = f'NAS 生产构建环境 (Target: {os.path.basename(potential_dist)})'
     else:
-        DEPLOY_ROOT = WEBSITE_DIR
+        WEBSITE_ROOT = WEBSITE_DIR
         ENV_NAME = f'NAS 根目录环境 (Target: {os.path.basename(WEBSITE_DIR)})'
     
-    JSON_TARGET = os.path.join(DEPLOY_ROOT, 'data')
-    DB_TARGET = JSON_TARGET  # 数据库现在也放在 data 目录下
+    JSON_TARGET = os.path.join(WEBSITE_ROOT, 'data')
+    DB_TARGET = JSON_TARGET  # 数据库放在 data 目录下
 
 # 要同步的 JSON 文件
 JSON_FILES = [
@@ -246,32 +247,39 @@ def sync_db():
 
 
 def sync_assets():
-    """同步 assets 目录 (包含新赛季本地化图片)"""
-    source = os.path.join(COLLECTOR_DIR, 'assets')
-    target = os.path.join(DB_TARGET, 'photos')  # 对应 public/photos 或 dist/photos
-
-    if not os.path.exists(source):
-        return True
-
-    log(f'[...] 同步 assets 目录 → {target}')
+    """同步 assets 和 photos 目录"""
+    # 同步 assets (通常是静态资源图标等)
+    source_assets = os.path.join(COLLECTOR_DIR, 'assets')
+    target_assets = os.path.join(WEBSITE_ROOT, 'assets')
     
-    # 使用 shutil.copytree 实现增量或覆盖同步
-    if os.path.exists(target):
-        # 如果目标已存在，手动遍历拷贝以实现“合并/覆盖”
-        for root, dirs, files in os.walk(source):
-            relative_path = os.path.relpath(root, source)
-            dest_dir = os.path.join(target, relative_path)
-            os.makedirs(dest_dir, exist_ok=True)
-            for f in files:
-                src_file = os.path.join(root, f)
-                dst_file = os.path.join(dest_dir, f)
-                # 仅当文件不存在或大小不同时拷贝
-                if not os.path.exists(dst_file) or os.path.getsize(src_file) != os.path.getsize(dst_file):
-                    shutil.copy2(src_file, dst_file)
-    else:
-        shutil.copytree(source, target)
+    # 同步 photos (车手照片、车队赛车图片等)
+    source_photos = os.path.join(COLLECTOR_DIR, 'photos')
+    target_photos = os.path.join(WEBSITE_ROOT, 'photos')
+
+    # 处理两个文件夹
+    for source, target in [(source_assets, target_assets), (source_photos, target_photos)]:
+        if not os.path.exists(source):
+            continue
+            
+        log(f'[...] 同步 {os.path.basename(source)} 目录 → {target}')
     
-    log(f'[OK] Assets 目录同步完成')
+        # 使用 shutil.copytree 实现增量或覆盖同步
+        if os.path.exists(target):
+            # 如果目标已存在，手动遍历拷贝以实现“合并/覆盖”
+            for root, dirs, files in os.walk(source):
+                relative_path = os.path.relpath(root, source)
+                dest_dir = os.path.join(target, relative_path)
+                os.makedirs(dest_dir, exist_ok=True)
+                for f in files:
+                    src_file = os.path.join(root, f)
+                    dst_file = os.path.join(dest_dir, f)
+                    # 仅当文件不存在或大小不同时拷贝
+                    if not os.path.exists(dst_file) or os.path.getsize(src_file) != os.path.getsize(dst_file):
+                        shutil.copy2(src_file, dst_file)
+        else:
+            shutil.copytree(source, target)
+    
+    log(f'[OK] 资源目录 (assets/photos) 同步完成')
     return True
 
 
