@@ -7,17 +7,16 @@ F1 Data Syncer — 跨环境数据同步工具
   - NAS 部署（网页产物）：检测到 dist/ 目录 → 优先写入 dist/data/ 实现热更新
   - NAS 部署（根目录模式）：若无 dist/ → 降级写入根目录 data/
 
-NAS 实际部署结构 (模式 B):               本地开发源码结构 (模式 A):
-  /workspace/ (或 web/)                 /your-path/oc/ (或 Desktop/oc/)
-  ├── f1-collector/ (抓取工具)           ├── f1-collector/ (抓取工具)
-  │   ├── syncer.py                     │   ├── syncer.py
-  │   └── data/*.json                   │   └── data/*.json
-  └── f1-website/   (生产产物)           └── f1-website/   (React 源码)
-      ├── index.html                    ├── package.json
-      ├── f1.db                         ├── public/
-      └── data/*.json  <-- 同步点        │   ├── f1.db
-                                        │   └── data/*.json  <-- 同步点
-                                        └── src/
+# NAS 实际部署结构 (模式 B):               本地开发源码结构 (模式 A):
+#   /workspace/ (或 web/)                 /your-path/oc/ (或 Desktop/oc/)
+#   ├── f1-collector/ (抓取工具)           ├── f1-collector/ (抓取工具)
+#   │   ├── syncer.py                     │   ├── syncer.py
+#   │   └── data/f1.db                    │   └── data/f1.db
+#   └── f1-website/   (生产产物)           └── f1-website/   (React 源码)
+#       ├── index.html                    ├── package.json
+#       ├── data/f1.db                    ├── public/data/f1.db
+#       └── data/*.json  <-- 同步点        │   └── data/*.json  <-- 同步点
+#                                         └── src/
 
 用法：
   python syncer.py               # 同步所有 2026 JSON (热更新推荐)
@@ -247,17 +246,18 @@ def sync_db():
 
 
 def sync_assets():
-    """同步 assets 和 photos 目录"""
-    # 同步 assets (通常是静态资源图标等)
+    """同步 assets 和 photos 目录 (合并至展示端 photos 目录)"""
+    # 同步 assets (国旗图标等) -> 目标网站的 photos 目录
     source_assets = os.path.join(COLLECTOR_DIR, 'assets')
-    target_assets = os.path.join(WEBSITE_ROOT, 'assets')
-    
-    # 同步 photos (车手照片、车队赛车图片等)
+    # 同步 photos (车手照片等) -> 目标网站的 photos 目录
     source_photos = os.path.join(COLLECTOR_DIR, 'photos')
+    
+    # 统一目标：无论是 assets 还是 photos，在展示端都放在 photos 目录下
     target_photos = os.path.join(WEBSITE_ROOT, 'photos')
 
-    # 处理两个文件夹
-    for source, target in [(source_assets, target_assets), (source_photos, target_photos)]:
+    # 处理两个源文件夹至同一个目标文件夹
+    for source in [source_assets, source_photos]:
+        target = target_photos
         if not os.path.exists(source):
             continue
             
