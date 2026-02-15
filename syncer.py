@@ -75,9 +75,59 @@ def log(msg):
     print(f'[{ts}] {msg}')
 
 
+def normalize_json_paths(filename, data):
+    """强制标准化 JSON 中的图片路径，确保与 assets 命名一致"""
+    modified = False
+    
+    if filename == 'drivers_2026.json' and isinstance(data, list):
+        for d in data:
+            # 统一使用全名作为文件名 (如 lewis_hamilton.webp)
+            first = d.get('firstName', '').lower().replace(' ', '_')
+            last = d.get('lastName', '').lower().replace(' ', '_')
+            full_name_id = f"{first}_{last}"
+            target_path = f"/photos/seasons/2026/drivers/{full_name_id}.webp"
+            if d.get('image') != target_path:
+                d['image'] = target_path
+                modified = True
+                
+    elif filename == 'teams_2026.json' and isinstance(data, list):
+        for t in data:
+            tid = t.get('id')
+            logo_path = f"/photos/seasons/2026/teams/{tid}_logo.webp"
+            car_path = f"/photos/seasons/2026/teams/{tid}_car.webp"
+            if t.get('logo') != logo_path:
+                t['logo'] = logo_path
+                modified = True
+            if t.get('carImage') != car_path:
+                t['carImage'] = car_path
+                modified = True
+                
+    elif filename == 'schedule_2026.json' and isinstance(data, list):
+        for event in data:
+            slug = event.get('slug')
+            country = event.get('country', '').title().replace(' ', '_')
+            
+            # 标准化赛道图路径
+            image_path = f"/photos/seasons/2026/tracks/{slug}_outline.svg"
+            detailed_path = f"/photos/seasons/2026/tracks/{slug}_detailed.webp"
+            flag_path = f"/photos/seasons/flags/{country}.svg"
+            
+            if event.get('image') and event.get('image') != image_path:
+                event['image'] = image_path
+                modified = True
+            if event.get('detailedImage') and event.get('detailedImage') != detailed_path:
+                event['detailedImage'] = detailed_path
+                modified = True
+            if event.get('flag') and event.get('flag') != flag_path:
+                event['flag'] = flag_path
+                modified = True
+                
+    return data, modified
+
+
 def sync_json(filename):
-    """同步单个 JSON 文件"""
-    source = os.path.join(JSON_SOURCE, filename)
+    """同步单个 JSON 文件并自动执行路径本地化"""
+    source = os.path.join(COLLECTOR_DIR, 'data', filename)
     target = os.path.join(JSON_TARGET, filename)
 
     if not os.path.exists(source):
@@ -86,7 +136,7 @@ def sync_json(filename):
 
     os.makedirs(JSON_TARGET, exist_ok=True)
 
-    # 验证 JSON 合法性
+    # 加载源数据
     try:
         with open(source, 'r', encoding='utf-8') as f:
             data = json.load(f)
@@ -94,7 +144,10 @@ def sync_json(filename):
         log(f'[!] JSON 格式错误 {filename}: {e}')
         return False
 
-    # 跳过无变更的文件
+    # 核心自动化：无论源数据是什么路径，同步时强制本地化
+    data, modified = normalize_json_paths(filename, data)
+
+    # 检查目标文件是否已存在且内容一致
     if os.path.exists(target):
         with open(target, 'r', encoding='utf-8') as f:
             try:
@@ -104,10 +157,14 @@ def sync_json(filename):
             except json.JSONDecodeError:
                 pass
 
-    shutil.copy2(source, target)
+    # 写入目标文件 (如果是 NAS 环境，这步实现了“热修复”)
+    with open(target, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+        
     count = len(data) if isinstance(data, list) else 'object'
-    log(f'[OK] {filename} ({count} entries) → {target}')
+    log(f'[OK] {filename} ({count} entries) -> {target} (Localized: {modified})')
     return True
+
 
 
 def sync_db():
