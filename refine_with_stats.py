@@ -21,55 +21,59 @@ def get_accurate_stats():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     
-    # Driver Mapping: 2026 Code -> (First Name, Last Name) in DB
-    code_to_name = {
-        "HAM": ("Lewis", "Hamilton"),
-        "VER": ("Max", "Verstappen"),
-        "NOR": ("Lando", "Norris"),
-        "LEC": ("Charles", "Leclerc"),
-        "ALO": ("Fernando", "Alonso"),
-        "PIA": ("Oscar", "Piastri"),
-        "RUS": ("George", "Russell"),
-        "SAI": ("Carlos", "Sainz"),
-        "ALB": ("Alexander", "Albon"),
-        "GAS": ("Pierre", "Gasly"),
-        "PER": ("Sergio", "Perez"),
-        "BOT": ("Valtteri", "Bottas"),
-        "HUL": ("Nico", "Hulkenberg"),
-        "OCO": ("Esteban", "Ocon"),
-        "STR": ("Lance", "Stroll"),
-        "ANT": ("Kimi", "Antonelli"),
-        "BEA": ("Oliver", "Bearman"),
-        "COL": ("Franco", "Colapinto"),
-        "HAD": ("Isack", "Hadjar"),
-        "LIN": ("Arvid", "Lindblad"),
-        "BOR": ("Gabriel", "Bortoleto"),
-        "LAW": ("Liam", "Lawson"),
-        "TSU": ("Yuki", "Tsunoda"),
-        "ZHO": ("Guanyu", "Zhou")
-    }
+    # -------------------------------------------------------------------------
+    # 动态数据注入优化 (Dynamic Injection)
+    # 不再依赖硬编码列表，而是直接遍历 JSON 中的所有车手进行数据库查询修正
+    # -------------------------------------------------------------------------
     
+    # 读取原始 JSON (在 main 函数中会用到，这里作为辅助函数改为直接接收 JSON 对象并返回 updates)
+    # 为了保持函数签名兼容，我们稍微调整逻辑：
+    # get_accurate_stats 现在不仅返回 authoritative (按 code 索引), 
+    # 还会尝试匹配所有车手。
+    
+    # 但由于原函数结构是先计算再注入，我们这里改变策略：
+    # 我们不返回一个 dict，而是返回一个 function 或者在这里直接处理不太好。
+    # 既然调用者期望返回 dict，我们就构建一个通过 JSON 现有车手生成的 dict。
+    
+    # 我们需要先读取 JSON 文件来知道有哪些车手 (虽然函数没传进来，但可以通过全局路径读)
+    # 或者，我们通过 main 函数传进来比较好？
+    # 为了最小化改动，我们在函数内部读取一次 JSON 文件作为"花名册"
+    
+    with open(JSON_OUT_PATH, 'r', encoding='utf-8') as f:
+        drivers_list = json.load(f)
+        
     authoritative = {}
     
-    for code, (first, last) in code_to_name.items():
-        # Get driver_id
+    print(f"Refining stats for {len(drivers_list)} drivers found in JSON...")
+    
+    for driver in drivers_list:
+        code = driver.get('code', 'UNK')
+        first = driver.get('firstName', '')
+        last = driver.get('lastName', '')
+        
+        # 尝试通过名字匹配数据库
+        rows = []
+        
+        # 1. 精确匹配
         cur.execute("SELECT driver_id FROM drivers WHERE first_name = ? AND last_name = ?", (first, last))
-        row = cur.fetchone()
-        if not row:
-            # Fallback for newcomers or name variations
-            authoritative[code] = {
-                "wins": 0, "podiums": 0, "poles": 0, "points": 0, "entries": 0, "championships": 0,
-                "signature": {"debut": 2026, "avgPoints": 0, "peak": "Rookie", "winRate": "0%"}
-            }
+        rows = cur.fetchall()
+        
+        # 2. 如果没找到，尝试模糊匹配 (Case Insensitive)
+        if not rows:
+             cur.execute("SELECT driver_id FROM drivers WHERE first_name LIKE ? AND last_name LIKE ?", (first, last))
+             rows = cur.fetchall()
+
+        if not rows:
+            print(f"  [Skip] No DB record for {first} {last} ({code})")
             continue
             
-        did = row[0]
+        did = rows[0][0]
         
         # Get championships
         cur.execute("SELECT COUNT(*) FROM driver_championships WHERE driver_id = ? AND rank = 1", (did,))
         championships = cur.fetchone()[0]
         
-        # Get aggregate stats from driver_season_stats
+        # Get aggregate stats
         cur.execute("""
             SELECT SUM(wins), SUM(podiums), SUM(poles), SUM(points), SUM(races), MIN(season)
             FROM driver_season_stats 
@@ -92,6 +96,7 @@ def get_accurate_stats():
         avg_points = round(points / entries, 2) if entries > 0 else 0
         win_rate = f"{round((wins / entries) * 100, 1)}%" if entries > 0 else "0%"
         
+        # 存入 updates 字典
         authoritative[code] = {
             "wins": wins,
             "podiums": podiums,
@@ -106,6 +111,8 @@ def get_accurate_stats():
                 "winRate": win_rate
             }
         }
+        
+    print(f"  -> Successfully refined stats for {len(authoritative)} drivers.")
     
     # Team stats calculation
     try:
