@@ -32,10 +32,30 @@ jobs:
       - name: Run Schedule Scraper
         run: python scraper.py
 
+      - name: Checkout F1 Website (for DB access)
+        uses: actions/checkout@v4
+        with:
+          repository: crashdada/f1-website
+          path: f1-website
+          token: ${{ secrets.GH_PAT }}
+
       - name: Run Drivers & Teams Scraper
         run: |
           python scraper_drivers_2026.py
           python scraper_teams_2026.py
+
+      - name: Refine with Historical Stats
+        env:
+          F1_DB_PATH: f1-website/public/data/f1.db
+        run: |
+          # Use f1.db from the checked out f1-website repo
+          # Structure:
+          #   workspace/
+          #     f1-collector/ (current dir)
+          #     f1-website/ (checked out in parallel)
+          # refine_with_stats.py uses F1_DB_PATH env var to locate the DB.
+          
+          python refine_with_stats.py
 
       - name: Run Results Scraper (if in race window or forced)
         if: ${{ github.event.inputs.force_results == 'true' || github.event_name == 'schedule' }}
