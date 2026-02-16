@@ -6,13 +6,18 @@ import os
 # 路径配置
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 # 优先使用环境变量 (CI环境)，否则回退到相对路径 (本地开发)
-default_db_path = os.path.join(os.path.dirname(CURRENT_DIR), 'f1-website', 'public', 'f1.db')
+# 注意：DB 已移动到 public/data/f1.db
+default_db_path = os.path.join(os.path.dirname(CURRENT_DIR), 'f1-website', 'public', 'data', 'f1.db')
 DB_PATH = os.environ.get('F1_DB_PATH', default_db_path)
 SCRAPER_PATH = os.path.join(CURRENT_DIR, 'scraper_drivers_2026.py')
 JSON_OUT_PATH = os.path.join(CURRENT_DIR, 'data', 'drivers_2026.json')
 TEAM_JSON_PATH = os.path.join(CURRENT_DIR, 'data', 'teams_2026.json')
 
 def get_accurate_stats():
+    if not os.path.exists(DB_PATH):
+        print(f"⚠️ Warning: Database not found at {DB_PATH}. Historical stats will be empty.")
+        return {}, {}
+    
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     
