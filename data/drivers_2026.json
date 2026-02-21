@@ -393,13 +393,13 @@
             "wins": 0,
             "podiums": 0,
             "poles": 0,
-            "points": 46,
+            "points": 48,
             "entries": 27,
             "championships": 0
         },
         "signatureStats": {
             "debut": 2024,
-            "avgPoints": 1.7,
+            "avgPoints": 1.78,
             "peak": "P13",
             "winRate": "0.0%"
         }
@@ -568,13 +568,13 @@
             "wins": 0,
             "podiums": 1,
             "poles": 0,
-            "points": 50,
+            "points": 51,
             "entries": 24,
             "championships": 0
         },
         "signatureStats": {
             "debut": 2025,
-            "avgPoints": 2.08,
+            "avgPoints": 2.12,
             "peak": "P12",
             "winRate": "0.0%"
         }

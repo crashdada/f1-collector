@@ -133,18 +133,24 @@ class F1DataCollector:
         except:
             return []
 
-    def get_race_results(self, race_url):
-        """解析比赛结果"""
-        html = self.fetch_page(race_url)
-        if not html: return []
-        
+    def get_race_results(self, url_or_html: str):
+        """解析比赛结果。可传入 URL（自动 fetch）或已有 HTML 字符串。"""
+        # 判断是 URL 还是 HTML
+        if url_or_html.startswith('http'):
+            html = self.fetch_page(url_or_html)
+            if not html:
+                return []
+        else:
+            html = url_or_html
+
         full_text = self._reconstruct_next_data(html)
-        
+
         # 寻找 rows
         start_tag = '"rows":['
         start_idx = full_text.find(start_tag)
-        if start_idx == -1: return []
-        
+        if start_idx == -1:
+            return []
+
         content = full_text[start_idx + len(start_tag) - 1:]
         brace_count, end_idx = 0, 0
         for i, char in enumerate(content):
@@ -153,21 +159,20 @@ class F1DataCollector:
             if brace_count == 0:
                 end_idx = i + 1
                 break
-        
+
         try:
             rows = json.loads(content[:end_idx])
             results = []
             for row in rows:
-                # 简单解析逻辑 (具体索引需根据 Bahrain 2024 rows 分析微调)
-                # 假设 Cell 0=Pos, Cell 2=Driver, Cell 3=Team, Cell 6=Pts
                 res = {
-                    "pos": row[0].get('content', [None])[0] if len(row) > 0 else None,
-                    "no": row[1].get('content', [None])[0] if len(row) > 1 else None,
-                    "points": row[6].get('content', [0])[0] if len(row) > 6 else 0
+                    'pos':    row[0].get('content', [None])[0] if len(row) > 0 else None,
+                    'no':     row[1].get('content', [None])[0] if len(row) > 1 else None,
+                    'points': row[6].get('content', [0])[0]    if len(row) > 6 else 0,
                 }
                 results.append(res)
             return results
-        except:
+        except Exception as e:
+            print(f'  [!] 解析 rows 失败: {e}')
             return []
 
 if __name__ == "__main__":

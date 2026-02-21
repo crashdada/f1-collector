@@ -227,7 +227,6 @@ def sync_json(filename):
 
 def sync_db():
     """同步 f1.db"""
-    # 数据库源现在也在 collector 的 data 目录下
     source = os.path.join(COLLECTOR_DIR, 'data', 'f1.db')
     target = os.path.join(DB_TARGET, 'f1.db')
 
@@ -236,8 +235,12 @@ def sync_db():
         return False
 
     if os.path.exists(target):
-        if os.path.getsize(source) == os.path.getsize(target):
-            log(f'• f1.db 大小未变 ({os.path.getsize(source)} bytes)，跳过')
+        src_stat = os.stat(source)
+        dst_stat = os.stat(target)
+        # 同时比较大小和修改时间，避免相同大小不同内容时被跳过
+        if (src_stat.st_size == dst_stat.st_size and
+                src_stat.st_mtime <= dst_stat.st_mtime):
+            log(f'• f1.db 无变更，跳过')
             return True
 
     shutil.copy2(source, target)

@@ -3,10 +3,8 @@ import json
 import os
 
 # 路径配置
-# 路径配置
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-# 优先使用环境变量 (CI环境)，否则回退到相对路径 (本地开发)
-# 注意：DB 已移动到 public/data/f1.db
+# CI 环境通过 F1_DB_PATH 环境变量覆盖，本地开发回落到相对路径
 default_db_path = os.path.join(os.path.dirname(CURRENT_DIR), 'f1-website', 'public', 'data', 'f1.db')
 DB_PATH = os.environ.get('F1_DB_PATH', default_db_path)
 SCRAPER_PATH = os.path.join(CURRENT_DIR, 'scraper_drivers_2026.py')
@@ -25,24 +23,6 @@ def get_accurate_stats():
     # 动态数据注入优化 (Dynamic Injection)
     # 不再依赖硬编码列表，而是直接遍历 JSON 中的所有车手进行数据库查询修正
     # -------------------------------------------------------------------------
-    
-    # 读取原始 JSON (在 main 函数中会用到，这里作为辅助函数改为直接接收 JSON 对象并返回 updates)
-    # 为了保持函数签名兼容，我们稍微调整逻辑：
-    # get_accurate_stats 现在不仅返回 authoritative (按 code 索引), 
-    # 还会尝试匹配所有车手。
-    
-    # 但由于原函数结构是先计算再注入，我们这里改变策略：
-    # 我们不返回一个 dict，而是返回一个 function 或者在这里直接处理不太好。
-    # 既然调用者期望返回 dict，我们就构建一个通过 JSON 现有车手生成的 dict。
-    
-    # 我们需要先读取 JSON 文件来知道有哪些车手 (虽然函数没传进来，但可以通过全局路径读)
-    # 或者，我们通过 main 函数传进来比较好？
-    # 为了最小化改动，我们在函数内部读取一次 JSON 文件作为"花名册"
-    
-    with open(JSON_OUT_PATH, 'r', encoding='utf-8') as f:
-        drivers_list = json.load(f)
-        
-    authoritative = {}
     
     print(f"Refining stats for {len(drivers_list)} drivers found in JSON...")
     
@@ -122,9 +102,6 @@ def get_accurate_stats():
     except Exception as e:
         print(f"Warning: Failed to calculate team stats from DB ({e}). Falling back to static.")
         teams_authoritative = {}
-    
-    conn.close()
-    return authoritative, teams_authoritative
     
     conn.close()
     return authoritative, teams_authoritative

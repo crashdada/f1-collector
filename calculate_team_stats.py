@@ -4,7 +4,7 @@ import os
 
 # 路径配置
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(os.path.dirname(CURRENT_DIR), 'f1-website', 'public', 'f1.db')
+DB_PATH = os.path.join(os.path.dirname(CURRENT_DIR), 'f1-website', 'public', 'data', 'f1.db')
 
 def get_stats():
     conn = sqlite3.connect(DB_PATH)
@@ -87,9 +87,6 @@ def get_stats():
             },
             "stats": {"points": 0, "rank": 0, "wins": 0, "podiums": 0}
         }
-    
-    conn.close()
-    return results
     
     conn.close()
     return results

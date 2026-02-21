@@ -38,8 +38,6 @@ f1-collector/
 ├── photos/                       # (可选) 额外照片存储
 └── .github/workflows/
     └── scrape.yml                # GitHub Actions：每日自动采集
-└── .github/workflows/
-    └── scrape.yml                # GitHub Actions：每日自动采集
 ```
 
 ## Data Architecture

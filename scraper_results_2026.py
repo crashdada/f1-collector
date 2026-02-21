@@ -102,14 +102,14 @@ def scrape_race_results(collector, race):
     print(f'Race: 采集: {country} ({round_text})')
     print(f'   URL: {result_url}')
 
-    # 获取并解析页面
+    # 获取页面 HTML
     html = collector.fetch_page(result_url, max_retries=2, initial_delay=60)
     if not html:
         print(f'   [!] 页面获取失败')
         return None
 
-    # 解析结果
-    results = collector.get_race_results(result_url)
+    # 解析成绩（直接传入已有 HTML，避免二次 fetch）
+    results = collector.get_race_results(html)
     if not results:
         print(f'   [!] 未找到成绩数据（页面结构可能已变化）')
         return None
