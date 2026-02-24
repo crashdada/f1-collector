@@ -11,7 +11,8 @@ SCRAPER_PATH = os.path.join(CURRENT_DIR, 'scraper_drivers_2026.py')
 JSON_OUT_PATH = os.path.join(CURRENT_DIR, 'data', 'drivers_2026.json')
 TEAM_JSON_PATH = os.path.join(CURRENT_DIR, 'data', 'teams_2026.json')
 
-def get_accurate_stats():
+def get_accurate_stats(drivers_list):
+    authoritative = {}
     if not os.path.exists(DB_PATH):
         print(f"⚠️ Warning: Database not found at {DB_PATH}. Historical stats will be empty.")
         return {}, {}
@@ -120,7 +121,7 @@ if __name__ == "__main__":
     with open(JSON_OUT_PATH, 'r', encoding='utf-8') as f:
         drivers = json.load(f)
         
-    stats, team_stats = get_accurate_stats()
+    stats, team_stats = get_accurate_stats(drivers)
     
     for d in drivers:
         code = d['code']
