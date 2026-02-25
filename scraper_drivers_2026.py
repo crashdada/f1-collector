@@ -70,11 +70,13 @@ def generate_drivers_2026():
         driver_id = get_driver_id(d['firstName'], d['lastName'])
         team_slug = TEAM_SLUGS.get(d['team'], d['team'].lower().replace(" ", ""))
         
-        # 构建 2026 官方 URL
-        image_url = f"https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/{team_slug}/{driver_id}/2026{team_slug}{driver_id}right.webp"
+        # 构建 2026 官方 URL (保留备用)
+        official_image_url = f"https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/{team_slug}/{driver_id}/2026{team_slug}{driver_id}right.webp"
         
         d['id'] = driver_id.replace("01", "") # 前端习惯 ID
-        d['image'] = image_url
+        # 强制统一使用本地离线地址，这样前端从云端拉取更新 JSON 时，图片依然走本地
+        d['image'] = f"/photos/seasons/2026/drivers/{d['code']}.webp"
+        d['officialImage'] = official_image_url
         processed.append(d)
 
     os.makedirs("data", exist_ok=True)

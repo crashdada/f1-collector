@@ -144,19 +144,21 @@ def generate_teams_2026():
         slug = team['slug']
         
         # 使用彩色版 Logo URL，解决镂空问题
-        logo_url = f"https://media.formula1.com/image/upload/c_lfill,w_48/q_auto/v1740000000/common/f1/2026/{slug}/2026{slug}logo.webp"
+        official_logo_url = f"https://media.formula1.com/image/upload/c_lfill,w_48/q_auto/v1740000000/common/f1/2026/{slug}/2026{slug}logo.webp"
         
         # 赛车图
-        car_url = f"https://media.formula1.com/image/upload/c_lfill,h_224/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000000/common/f1/2026/{slug}/2026{slug}carright.webp"
+        official_car_url = f"https://media.formula1.com/image/upload/c_lfill,h_224/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000000/common/f1/2026/{slug}/2026{slug}carright.webp"
         
         team_data = {
             "id": team['id'],
             "name": team['name'],
             "nameCn": team['nameCn'],
             "color": team['color'],
-            "logo": logo_url,
+            "logo": f"/photos/seasons/2026/teams/{team['id']}_logo.webp",
             "drivers": team['drivers'],
-            "carImage": car_url,
+            "carImage": f"/photos/seasons/2026/teams/{team['id']}_car.webp",
+            "officialLogo": official_logo_url,
+            "officialCar": official_car_url,
             "engine": team['engine'],
             "engineCn": TRANSLATIONS.get(team['engine'], team['engine']),
             "base": team['base'],
