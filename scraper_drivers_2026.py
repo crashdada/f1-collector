@@ -75,7 +75,11 @@ def generate_drivers_2026():
         
         d['id'] = driver_id.replace("01", "") # 前端习惯 ID
         # 强制统一使用本地离线地址，这样前端从云端拉取更新 JSON 时，图片依然走本地
-        d['image'] = f"/photos/seasons/2026/drivers/{d['code']}.webp"
+        
+        first = d['firstName'].lower().replace(' ', '_')
+        last = d['lastName'].lower().replace(' ', '_')
+        d['image'] = f"/photos/seasons/2026/drivers/{first}_{last}.webp"
+        
         d['officialImage'] = official_image_url
         processed.append(d)
 

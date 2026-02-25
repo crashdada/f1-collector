@@ -10,7 +10,7 @@
         "teamCn": "法拉利",
         "country": "United Kingdom",
         "id": "lewham",
-        "image": "/photos/seasons/2026/drivers/HAM.webp",
+        "image": "/photos/seasons/2026/drivers/lewis_hamilton.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/ferrari/lewham01/2026ferrarilewham01right.webp",
         "careerStats": {
             "wins": 105,
@@ -39,7 +39,7 @@
         "teamCn": "红牛",
         "country": "Netherlands",
         "id": "maxver",
-        "image": "/photos/seasons/2026/drivers/VER.webp",
+        "image": "/photos/seasons/2026/drivers/max_verstappen.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/redbullracing/maxver01/2026redbullracingmaxver01right.webp",
         "careerStats": {
             "wins": 71,
@@ -68,7 +68,7 @@
         "teamCn": "法拉利",
         "country": "Monaco",
         "id": "chalec",
-        "image": "/photos/seasons/2026/drivers/LEC.webp",
+        "image": "/photos/seasons/2026/drivers/charles_leclerc.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/ferrari/chalec01/2026ferrarichalec01right.webp",
         "careerStats": {
             "wins": 8,
@@ -97,7 +97,7 @@
         "teamCn": "迈凯伦",
         "country": "United Kingdom",
         "id": "lannor",
-        "image": "/photos/seasons/2026/drivers/NOR.webp",
+        "image": "/photos/seasons/2026/drivers/lando_norris.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/mclaren/lannor01/2026mclarenlannor01right.webp",
         "careerStats": {
             "wins": 11,
@@ -126,7 +126,7 @@
         "teamCn": "迈凯伦",
         "country": "Australia",
         "id": "oscpia",
-        "image": "/photos/seasons/2026/drivers/PIA.webp",
+        "image": "/photos/seasons/2026/drivers/oscar_piastri.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/mclaren/oscpia01/2026mclarenoscpia01right.webp",
         "careerStats": {
             "wins": 9,
@@ -155,7 +155,7 @@
         "teamCn": "梅赛德斯",
         "country": "United Kingdom",
         "id": "georus",
-        "image": "/photos/seasons/2026/drivers/RUS.webp",
+        "image": "/photos/seasons/2026/drivers/george_russell.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/mercedes/georus01/2026mercedesgeorus01right.webp",
         "careerStats": {
             "wins": 5,
@@ -184,7 +184,7 @@
         "teamCn": "梅赛德斯",
         "country": "Italy",
         "id": "andant",
-        "image": "/photos/seasons/2026/drivers/ANT.webp",
+        "image": "/photos/seasons/2026/drivers/kimi_antonelli.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/mercedes/andant01/2026mercedesandant01right.webp",
         "careerStats": {
             "wins": 0,
@@ -213,7 +213,7 @@
         "teamCn": "阿斯顿·马丁",
         "country": "Spain",
         "id": "feralo",
-        "image": "/photos/seasons/2026/drivers/ALO.webp",
+        "image": "/photos/seasons/2026/drivers/fernando_alonso.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/astonmartin/feralo01/2026astonmartinferalo01right.webp",
         "careerStats": {
             "wins": 32,
@@ -242,7 +242,7 @@
         "teamCn": "阿斯顿·马丁",
         "country": "Canada",
         "id": "lanstr",
-        "image": "/photos/seasons/2026/drivers/STR.webp",
+        "image": "/photos/seasons/2026/drivers/lance_stroll.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/astonmartin/lanstr01/2026astonmartinlanstr01right.webp",
         "careerStats": {
             "wins": 0,
@@ -271,7 +271,7 @@
         "teamCn": "威廉姆斯",
         "country": "Spain",
         "id": "carsai",
-        "image": "/photos/seasons/2026/drivers/SAI.webp",
+        "image": "/photos/seasons/2026/drivers/carlos_sainz.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/williams/carsai01/2026williamscarsai01right.webp",
         "careerStats": {
             "wins": 4,
@@ -300,7 +300,7 @@
         "teamCn": "威廉姆斯",
         "country": "Thailand",
         "id": "alealb",
-        "image": "/photos/seasons/2026/drivers/ALB.webp",
+        "image": "/photos/seasons/2026/drivers/alexander_albon.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/williams/alealb01/2026williamsalealb01right.webp",
         "careerStats": {
             "wins": 0,
@@ -329,7 +329,7 @@
         "teamCn": "阿尔派",
         "country": "France",
         "id": "piegas",
-        "image": "/photos/seasons/2026/drivers/GAS.webp",
+        "image": "/photos/seasons/2026/drivers/pierre_gasly.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/alpine/piegas01/2026alpinepiegas01right.webp",
         "careerStats": {
             "wins": 1,
@@ -358,7 +358,7 @@
         "teamCn": "阿尔派",
         "country": "Argentina",
         "id": "fracol",
-        "image": "/photos/seasons/2026/drivers/COL.webp",
+        "image": "/photos/seasons/2026/drivers/franco_colapinto.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/alpine/fracol01/2026alpinefracol01right.webp",
         "careerStats": {
             "wins": 0,
@@ -387,7 +387,7 @@
         "teamCn": "哈斯",
         "country": "France",
         "id": "estoco",
-        "image": "/photos/seasons/2026/drivers/OCO.webp",
+        "image": "/photos/seasons/2026/drivers/esteban_ocon.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/haas/estoco01/2026haasestoco01right.webp",
         "careerStats": {
             "wins": 1,
@@ -416,7 +416,7 @@
         "teamCn": "哈斯",
         "country": "United Kingdom",
         "id": "olibea",
-        "image": "/photos/seasons/2026/drivers/BEA.webp",
+        "image": "/photos/seasons/2026/drivers/oliver_bearman.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/haas/olibea01/2026haasolibea01right.webp",
         "careerStats": {
             "wins": 0,
@@ -445,7 +445,7 @@
         "teamCn": "奥迪 (Sauber)",
         "country": "Germany",
         "id": "nichul",
-        "image": "/photos/seasons/2026/drivers/HUL.webp",
+        "image": "/photos/seasons/2026/drivers/nico_hulkenberg.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/audi/nichul01/2026audinichul01right.webp",
         "careerStats": {
             "wins": 0,
@@ -474,7 +474,7 @@
         "teamCn": "奥迪 (Sauber)",
         "country": "Brazil",
         "id": "gabbor",
-        "image": "/photos/seasons/2026/drivers/BOR.webp",
+        "image": "/photos/seasons/2026/drivers/gabriel_bortoleto.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/audi/gabbor01/2026audigabbor01right.webp",
         "careerStats": {
             "wins": 0,
@@ -503,7 +503,7 @@
         "teamCn": "RB",
         "country": "New Zealand",
         "id": "lialaw",
-        "image": "/photos/seasons/2026/drivers/LAW.webp",
+        "image": "/photos/seasons/2026/drivers/liam_lawson.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/racingbulls/lialaw01/2026racingbullslialaw01right.webp",
         "careerStats": {
             "wins": 0,
@@ -532,7 +532,7 @@
         "teamCn": "RB",
         "country": "United Kingdom",
         "id": "arvlin",
-        "image": "/photos/seasons/2026/drivers/LIN.webp",
+        "image": "/photos/seasons/2026/drivers/arvid_lindblad.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/racingbulls/arvlin01/2026racingbullsarvlin01right.webp",
         "bioCn": "阿维德·林德布拉德是被红牛寄予厚望的未来。他在青少年赛场的统治力让他得以迅速晋升到 F1，这位年轻的英国人在 RB 正经历着职业生涯最重要的成长期。"
     },
@@ -547,7 +547,7 @@
         "teamCn": "凯迪拉克",
         "country": "Mexico",
         "id": "serper",
-        "image": "/photos/seasons/2026/drivers/PER.webp",
+        "image": "/photos/seasons/2026/drivers/sergio_perez.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/cadillac/serper01/2026cadillacserper01right.webp",
         "careerStats": {
             "wins": 6,
@@ -576,7 +576,7 @@
         "teamCn": "凯迪拉克",
         "country": "Finland",
         "id": "valbot",
-        "image": "/photos/seasons/2026/drivers/BOT.webp",
+        "image": "/photos/seasons/2026/drivers/valtteri_bottas.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/cadillac/valbot01/2026cadillacvalbot01right.webp",
         "careerStats": {
             "wins": 10,
@@ -605,7 +605,7 @@
         "teamCn": "红牛",
         "country": "France",
         "id": "isahad",
-        "image": "/photos/seasons/2026/drivers/HAD.webp",
+        "image": "/photos/seasons/2026/drivers/isack_hadjar.webp",
         "officialImage": "https://media.formula1.com/image/upload/c_lfill,w_440/q_auto/d_common:f1:2026:fallback:driver:2026fallbackdriverright.webp/v1740000000/common/f1/2026/redbullracing/isahad01/2026redbullracingisahad01right.webp",
         "careerStats": {
             "wins": 0,
