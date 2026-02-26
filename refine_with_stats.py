@@ -2,14 +2,17 @@ import sqlite3
 import json
 import os
 
+import datetime
+
 # 路径配置
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 # CI 环境通过 F1_DB_PATH 环境变量覆盖，本地开发回落到相对路径
 default_db_path = os.path.join(os.path.dirname(CURRENT_DIR), 'f1-website', 'public', 'data', 'f1.db')
 DB_PATH = os.environ.get('F1_DB_PATH', default_db_path)
-SCRAPER_PATH = os.path.join(CURRENT_DIR, 'scraper_drivers_2026.py')
-JSON_OUT_PATH = os.path.join(CURRENT_DIR, 'data', 'drivers_2026.json')
-TEAM_JSON_PATH = os.path.join(CURRENT_DIR, 'data', 'teams_2026.json')
+season = datetime.datetime.now().year
+SCRAPER_PATH = os.path.join(CURRENT_DIR, 'scraper_drivers.py')
+JSON_OUT_PATH = os.path.join(CURRENT_DIR, 'data', f'drivers_{season}.json')
+TEAM_JSON_PATH = os.path.join(CURRENT_DIR, 'data', f'teams_{season}.json')
 
 def get_accurate_stats(drivers_list):
     authoritative = {}
@@ -67,7 +70,7 @@ def get_accurate_stats(drivers_list):
         poles = int(poles or 0)
         points = round(float(points or 0), 1)
         entries = int(entries or 0)
-        first_year = first_year or 2026
+        first_year = first_year or season
         
         # Peak position
         cur.execute("SELECT MIN(position) FROM driver_season_stats WHERE driver_id = ?", (did,))

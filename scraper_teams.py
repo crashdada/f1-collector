@@ -1,8 +1,12 @@
 import json
 import os
 
-def generate_teams_2026():
-    # 2026 赛季车队 Slug 映射表 (基于官方 2026 CDN 规则)
+import datetime
+
+def generate_teams(season=None):
+    if season is None:
+        season = datetime.datetime.now().year
+    # 赛季车队 Slug 映射表 (基于官方 CDN 规则)
     # 车道图规则: https://media.formula1.com/image/upload/c_lfill,h_224/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000000/common/f1/2026/[TEAM_SLUG]/2026[TEAM_SLUG]carright.webp
     # Logo 规则 (Color): https://media.formula1.com/image/upload/c_lfill,w_48/q_auto/v1740000000/common/f1/2026/[TEAM_SLUG]/2026[TEAM_SLUG]logo.webp
     
@@ -144,19 +148,19 @@ def generate_teams_2026():
         slug = team['slug']
         
         # 使用彩色版 Logo URL，解决镂空问题
-        official_logo_url = f"https://media.formula1.com/image/upload/c_lfill,w_48/q_auto/v1740000000/common/f1/2026/{slug}/2026{slug}logo.webp"
+        official_logo_url = f"https://media.formula1.com/image/upload/c_lfill,w_48/q_auto/v1740000000/common/f1/{season}/{slug}/{season}{slug}logo.webp"
         
         # 赛车图
-        official_car_url = f"https://media.formula1.com/image/upload/c_lfill,h_224/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000000/common/f1/2026/{slug}/2026{slug}carright.webp"
+        official_car_url = f"https://media.formula1.com/image/upload/c_lfill,h_224/q_auto/d_common:f1:{season}:fallback:car:{season}fallbackcarright.webp/v1740000000/common/f1/{season}/{slug}/{season}{slug}carright.webp"
         
         team_data = {
             "id": team['id'],
             "name": team['name'],
             "nameCn": team['nameCn'],
             "color": team['color'],
-            "logo": f"/photos/seasons/2026/teams/{team['id']}_logo.webp",
+            "logo": f"/photos/seasons/{season}/teams/{team['id']}_logo.webp",
             "drivers": team['drivers'],
-            "carImage": f"/photos/seasons/2026/teams/{team['id']}_car.webp",
+            "carImage": f"/photos/seasons/{season}/teams/{team['id']}_car.webp",
             "officialLogo": official_logo_url,
             "officialCar": official_car_url,
             "engine": team['engine'],
@@ -167,11 +171,11 @@ def generate_teams_2026():
         processed.append(team_data)
 
     os.makedirs("data", exist_ok=True)
-    output_path = "data/teams_2026.json"
+    output_path = f"data/teams_{season}.json"
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(processed, f, indent=4, ensure_ascii=False)
     
-    print(f"Successfully generated {len(processed)} teams with localized assets and color logos.")
+    print(f"Successfully generated {len(processed)} teams for {season} with localized assets and color logos.")
 
 if __name__ == "__main__":
-    generate_teams_2026()
+    generate_teams()

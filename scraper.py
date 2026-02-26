@@ -28,8 +28,10 @@ class F1DataCollector:
         full_text = "".join(matches).replace('\\"', '"').replace('\\\\', '\\')
         return full_text
 
-    def check_is_race_window(self, schedule_path='schedule_2026.json'):
+    def check_is_race_window(self, schedule_path=None):
         """检测当前日期是否处于赛后数据更新窗口 (赛后 1-3 天)"""
+        if schedule_path is None:
+            schedule_path = f'data/schedule_{self.season}.json'
         try:
             with open(schedule_path, 'r', encoding='utf-8') as f:
                 schedule = json.load(f)

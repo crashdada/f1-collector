@@ -62,12 +62,12 @@ else:
     JSON_TARGET = os.path.join(WEBSITE_ROOT, 'data')
     DB_TARGET = JSON_TARGET  # 数据库放在 data 目录下
 
-# 要同步的 JSON 文件
-JSON_FILES = [
-    'schedule_2026.json',
-    'drivers_2026.json',
-    'teams_2026.json',
-]
+def get_json_files(season):
+    return [
+        f'schedule_{season}.json',
+        f'drivers_{season}.json',
+        f'teams_{season}.json',
+    ]
 
 
 def log(msg):
@@ -127,17 +127,23 @@ def normalize_json_paths(filename, data):
     """强制标准化 JSON 中的图片路径，确保与 assets 命名一致"""
     modified = False
     
-    if filename == 'drivers_2026.json' and isinstance(data, list):
+    import re
+    season = "2026"
+    match = re.search(r'_(\d{4})\.json$', filename)
+    if match:
+        season = match.group(1)
+    
+    if filename.startswith('drivers_') and isinstance(data, list):
         for d in data:
             first = d.get('firstName', '').lower().replace(' ', '_')
             last = d.get('lastName', '').lower().replace(' ', '_')
             full_name_id = f"{first}_{last}"
-            target_path = f"/photos/seasons/2026/drivers/{full_name_id}.webp"
+            target_path = f"/photos/seasons/{season}/drivers/{full_name_id}.webp"
             if d.get('image') != target_path:
                 d['image'] = target_path
                 modified = True
                 
-    elif filename == 'teams_2026.json' and isinstance(data, list):
+    elif filename.startswith('teams_') and isinstance(data, list):
         for t in data:
             # 1. 获取基础 ID
             tid = t.get('id')
@@ -147,8 +153,8 @@ def normalize_json_paths(filename, data):
             mapped_id = MAPPINGS.get('teams', {}).get(raw_name, tid)
             
             # 3. 标准化路径
-            logo_path = f"/photos/seasons/2026/teams/{mapped_id}_logo.webp"
-            car_path = f"/photos/seasons/2026/teams/{mapped_id}_car.webp"
+            logo_path = f"/photos/seasons/{season}/teams/{mapped_id}_logo.webp"
+            car_path = f"/photos/seasons/{season}/teams/{mapped_id}_car.webp"
             
             if t.get('logo') != logo_path:
                 t['logo'] = logo_path
@@ -157,7 +163,7 @@ def normalize_json_paths(filename, data):
                 t['carImage'] = car_path
                 modified = True
                 
-    elif filename == 'schedule_2026.json' and isinstance(data, list):
+    elif filename.startswith('schedule_') and isinstance(data, list):
         for event in data:
             slug = event.get('slug')
             country_raw = event.get('country', '')
@@ -166,8 +172,8 @@ def normalize_json_paths(filename, data):
             flag_name = get_flag_name(country_raw)
             
             # 标准化路径
-            image_path = f"/photos/seasons/2026/tracks/{slug}_outline.svg"
-            detailed_path = f"/photos/seasons/2026/tracks/{slug}_detailed.webp"
+            image_path = f"/photos/seasons/{season}/tracks/{slug}_outline.svg"
+            detailed_path = f"/photos/seasons/{season}/tracks/{slug}_detailed.webp"
             flag_path = f"/photos/seasons/flags/{flag_name}.svg"
             
             if event.get('image') and event.get('image') != image_path:
@@ -319,10 +325,13 @@ def main():
     parser.add_argument('--assets', action='store_true', help='仅同步 assets 资源')
     parser.add_argument('--all', action='store_true', help='JSON + DB + Assets 全部同步')
     parser.add_argument('--scrape', action='store_true', help='先采集再同步')
+    parser.add_argument('--season', type=int, default=datetime.now().year, help='指定同步的赛季年份')
     args = parser.parse_args()
 
+    json_files = get_json_files(args.season)
+
     log('=' * 50)
-    log(f'F1 Syncer | 环境: {ENV_NAME}')
+    log(f'F1 Syncer | 环境: {ENV_NAME} | 赛季: {args.season}')
     log(f'采集端: {COLLECTOR_DIR}')
     log(f'JSON ←  {JSON_SOURCE}')
     log(f'JSON →  {JSON_TARGET}')
@@ -337,19 +346,19 @@ def main():
             log('[!] 采集失败，继续同步已有数据...')
 
     if args.schedule:
-        sync_json('schedule_2026.json')
+        sync_json(f'schedule_{args.season}.json')
     elif args.db:
         sync_db()
     elif args.assets:
         sync_assets()
     elif args.all:
-        for f in JSON_FILES:
+        for f in json_files:
             sync_json(f)
         sync_db()
         sync_assets()
     else:
         # 默认同步所有 JSON 和 Assets
-        for f in JSON_FILES:
+        for f in json_files:
             sync_json(f)
         sync_assets()
 

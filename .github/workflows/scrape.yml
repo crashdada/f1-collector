@@ -41,8 +41,8 @@ jobs:
 
       - name: Run Drivers & Teams Scraper
         run: |
-          python scraper_drivers_2026.py
-          python scraper_teams_2026.py
+          python scraper_drivers.py
+          python scraper_teams.py
 
       - name: Refine with Historical Stats
         env:
@@ -60,13 +60,13 @@ jobs:
       - name: Run Results Scraper (if in race window or forced)
         if: ${{ github.event.inputs.force_results == 'true' || github.event_name == 'schedule' }}
         run: |
-          python scraper_results_2026.py || echo "Not in race window, skipping."
+          python scraper_results.py || echo "Not in race window, skipping."
 
       - name: Commit and Push changes
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git add data/*.json results_2026/ 2>/dev/null || true
+          git add data/*.json results_*/ 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else

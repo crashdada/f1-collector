@@ -12,8 +12,8 @@ F1 2026 Race Results Scraper — 赛后成绩采集框架
   python scraper_results_2026.py --force           # 强制采集最近一场
   python scraper_results_2026.py --round 3         # 采集指定轮次
 
-注意：2026 赛季尚未开始，本脚本为预备框架。
-      实际解析逻辑需根据赛季开始后的页面结构微调。
+# 注意：本代码根据年度自适应抓取。
+#       实际解析逻辑需根据赛季开始后的页面结构微调。
 """
 
 import json
@@ -28,20 +28,23 @@ from scraper import F1DataCollector
 
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-SCHEDULE_FILE = os.path.join(SCRIPT_DIR, 'data', 'schedule_2026.json')
-RESULTS_DIR = os.path.join(SCRIPT_DIR, 'results_2026')
 
+def get_schedule_file(season):
+    return os.path.join(SCRIPT_DIR, 'data', f'schedule_{season}.json')
 
-def load_schedule():
+def get_results_dir(season):
+    return os.path.join(SCRIPT_DIR, f'results_{season}')
+
+def load_schedule(season):
     """加载赛历"""
-    if not os.path.exists(SCHEDULE_FILE):
-        print(f'[!] 赛历不存在: {SCHEDULE_FILE}')
+    schedule_file = get_schedule_file(season)
+    if not os.path.exists(schedule_file):
+        print(f'[!] 赛历不存在: {schedule_file}')
         return []
-    with open(SCHEDULE_FILE, 'r', encoding='utf-8') as f:
+    with open(schedule_file, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-
-def find_recent_race(schedule):
+def find_recent_race(schedule, season):
     """找到最近结束的比赛（赛后 1-3 天内）"""
     today = datetime.date.today()
     months = {
@@ -64,7 +67,7 @@ def find_recent_race(schedule):
             continue
 
         try:
-            race_end = datetime.date(2026, month, day)
+            race_end = datetime.date(season, month, day)
             delta = (today - race_end).days
             if 0 <= delta <= 3:
                 return race
@@ -96,8 +99,7 @@ def scrape_race_results(collector, race):
     round_text = race.get('round', '')
 
     # 构造结果页 URL
-    # 格式可能为: /en/results/2026/races/round-X/slug/race-result
-    result_url = f"{collector.base_url}/en/results/2026/races/{slug}/race-result"
+    result_url = f"{collector.base_url}/en/results/{collector.season}/races/{slug}/race-result"
 
     print(f'Race: 采集: {country} ({round_text})')
     print(f'   URL: {result_url}')
@@ -127,13 +129,14 @@ def scrape_race_results(collector, race):
     return output
 
 
-def save_results(data, race):
+def save_results(data, race, season):
     """保存采集结果"""
-    os.makedirs(RESULTS_DIR, exist_ok=True)
+    results_dir = get_results_dir(season)
+    os.makedirs(results_dir, exist_ok=True)
 
     slug = race.get('slug', 'unknown')
     filename = f'{slug}_results.json'
-    filepath = os.path.join(RESULTS_DIR, filename)
+    filepath = os.path.join(results_dir, filename)
 
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
@@ -143,22 +146,25 @@ def save_results(data, race):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='F1 2026 赛后成绩采集')
+    parser = argparse.ArgumentParser(description='F1 赛后成绩采集')
     parser.add_argument('--force', action='store_true',
                         help='强制采集最近一场（忽略窗口检测）')
     parser.add_argument('--round', type=int,
                         help='采集指定轮次的成绩')
+    parser.add_argument('--season', type=int, default=datetime.datetime.now().year,
+                        help='指定赛季年份')
     args = parser.parse_args()
 
     print('=' * 50)
-    print('F1 2026 Results Scraper')
+    print(f'F1 {args.season} Results Scraper')
     print('=' * 50)
 
-    schedule = load_schedule()
+    season = args.season
+    schedule = load_schedule(season)
     if not schedule:
         sys.exit(1)
 
-    collector = F1DataCollector(season=2026)
+    collector = F1DataCollector(season=season)
 
     # 确定目标比赛
     if args.round:
@@ -174,7 +180,7 @@ def main():
             print('[!] 赛历中无有效赛事')
             sys.exit(1)
     else:
-        race = find_recent_race(schedule)
+        race = find_recent_race(schedule, season)
         if not race:
             print('今天不在赛后窗口内，无需采集。')
             print('使用 --force 或 --round N 强制执行。')
@@ -183,7 +189,7 @@ def main():
     # 采集
     results = scrape_race_results(collector, race)
     if results:
-        save_results(results, race)
+        save_results(results, race, season)
         print('\n采集完成 [OK]')
     else:
         print('\n采集失败 [!]')
