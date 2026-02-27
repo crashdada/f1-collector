@@ -2,6 +2,8 @@ name: F1 Data Scraper
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'data/drivers_config_2026.json'
       - 'data/teams_config_2026.json'
