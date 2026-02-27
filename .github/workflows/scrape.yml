@@ -71,6 +71,8 @@ jobs:
           python scraper_results.py || echo "Not in race window, skipping."
 
       - name: Commit and Push changes
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
@@ -79,5 +81,6 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Auto-update F1 data $(date -u +'%Y-%m-%d') [skip ci]"
-            git push
+            # 使用 PAT 强制推送到远程，确保权限足够且触发后续流程
+            git push https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}.git HEAD:main
           fi
