@@ -16,10 +16,15 @@
         "firstNameCn": "马克斯",
         "lastNameCn": "维斯塔潘",
         "code": "VER",
-        "number": 1,
+        "number": 3,
         "team": "Red Bull",
         "teamCn": "红牛",
-        "country": "Netherlands"
+        "country": "Netherlands",
+        "history": {
+            "numbers": [
+                1
+            ]
+        }
     },
     {
         "firstName": "Charles",
@@ -38,10 +43,15 @@
         "firstNameCn": "兰多",
         "lastNameCn": "诺里斯",
         "code": "NOR",
-        "number": 4,
+        "number": 1,
         "team": "McLaren",
         "teamCn": "迈凯伦",
-        "country": "United Kingdom"
+        "country": "United Kingdom",
+        "history": {
+            "numbers": [
+                4
+            ]
+        }
     },
     {
         "firstName": "Oscar",
@@ -203,10 +213,15 @@
         "firstNameCn": "阿尔维德",
         "lastNameCn": "林德布拉德",
         "code": "LIN",
-        "number": 17,
+        "number": 41,
         "team": "Racing Bulls",
         "teamCn": "RB",
-        "country": "United Kingdom"
+        "country": "United Kingdom",
+        "history": {
+            "numbers": [
+                17
+            ]
+        }
     },
     {
         "firstName": "Sergio",
@@ -236,9 +251,14 @@
         "firstNameCn": "艾萨克",
         "lastNameCn": "哈贾尔",
         "code": "HAD",
-        "number": 20,
+        "number": 6,
         "team": "Red Bull",
         "teamCn": "红牛",
-        "country": "France"
+        "country": "France",
+        "history": {
+            "numbers": [
+                20
+            ]
+        }
     }
 ]
