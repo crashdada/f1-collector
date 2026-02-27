@@ -1,6 +1,12 @@
 name: F1 Data Scraper
 
 on:
+  push:
+    paths:
+      - 'data/drivers_config_2026.json'
+      - 'data/teams_config_2026.json'
+      - 'scraper_drivers.py'
+      - 'scraper_teams.py'
   schedule:
     # 每天 UTC 02:00 执行（北京时间 10:00）
     - cron: '0 2 * * *'
