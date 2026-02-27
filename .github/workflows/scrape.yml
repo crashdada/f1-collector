@@ -9,6 +9,7 @@ on:
       - 'data/teams_config_2026.json'
       - 'scraper_drivers.py'
       - 'scraper_teams.py'
+      - '.github/workflows/scrape.yml'
   schedule:
     # 每天 UTC 02:00 执行（北京时间 10:00）
     - cron: '0 2 * * *'
