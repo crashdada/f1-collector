@@ -106,12 +106,14 @@ def process_drivers(year=2026):
     
     changed = False
     for item in data:
-        code = item.get('code', 'unknown')
-        url = item.get('image', '')
+        first = item.get('firstName', '').lower().replace(' ', '_')
+        last = item.get('lastName', '').lower().replace(' ', '_')
+        if not first or not last: continue
         
+        url = item.get('officialImage', '') # Use officialImage as source
         if url.startswith('http'):
             ext = os.path.splitext(urlparse(url).path)[1] or '.webp'
-            filename = f"{code}{ext}"
+            filename = f"{first}_{last}{ext}"
             target = os.path.join(assets_dir, 'drivers', filename)
             if download_file(url, target):
                 item['image'] = f"/photos/seasons/{year}/drivers/{filename}"
@@ -138,30 +140,28 @@ def process_teams(year=2026):
         tid = item.get('id', 'unknown')
         
         # 1. Logo
-        if 'logo' in item:
-            url = item['logo']
-            if url.startswith('http'):
-                ext = os.path.splitext(urlparse(url).path)[1] or '.webp'
-                filename = f"{tid}_logo{ext}"
-                target = os.path.join(assets_dir, 'teams', filename)
-                if download_file(url, target):
-                    item['logo'] = f"/photos/seasons/{year}/teams/{filename}"
-                    changed = True
-            elif '/assets/' in url:
-                item['logo'] = url.replace('/assets/', f'/photos/seasons/')
+        url = item.get('officialLogo', '')
+        if url.startswith('http'):
+            ext = os.path.splitext(urlparse(url).path)[1] or '.webp'
+            filename = f"{tid}_logo{ext}"
+            target = os.path.join(assets_dir, 'teams', filename)
+            if download_file(url, target):
+                item['logo'] = f"/photos/seasons/{year}/teams/{filename}"
+                changed = True
+        elif '/assets/' in url: # Fallback legacy paths
+            item['logo'] = url.replace('/assets/', f'/photos/seasons/')
         
         # 2. Car Image
-        if 'carImage' in item:
-            url = item['carImage']
-            if url.startswith('http'):
-                ext = os.path.splitext(urlparse(url).path)[1] or '.webp'
-                filename = f"{tid}_car{ext}"
-                target = os.path.join(assets_dir, 'teams', filename)
-                if download_file(url, target):
-                    item['carImage'] = f"/photos/seasons/{year}/teams/{filename}"
-                    changed = True
-            elif '/assets/' in url:
-                item['carImage'] = url.replace('/assets/', f'/photos/seasons/')
+        url = item.get('officialCar', '')
+        if url.startswith('http'):
+            ext = os.path.splitext(urlparse(url).path)[1] or '.webp'
+            filename = f"{tid}_car{ext}"
+            target = os.path.join(assets_dir, 'teams', filename)
+            if download_file(url, target):
+                item['carImage'] = f"/photos/seasons/{year}/teams/{filename}"
+                changed = True
+        elif '/assets/' in url:
+            item['carImage'] = url.replace('/assets/', f'/photos/seasons/')
                 
     if changed or True:
         with open(path, 'w', encoding='utf-8') as f:

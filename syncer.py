@@ -164,6 +164,8 @@ def normalize_json_paths(filename, data):
                 modified = True
                 
     elif filename.startswith('schedule_') and isinstance(data, list):
+        tracks_dir = os.path.join(WEBSITE_ROOT, 'photos', 'seasons', season, 'tracks')
+        
         for event in data:
             slug = event.get('slug')
             country_raw = event.get('country', '')
@@ -171,9 +173,21 @@ def normalize_json_paths(filename, data):
             # 使用映射系统获取国旗
             flag_name = get_flag_name(country_raw)
             
+            # 动态检测赛道图后缀 (SVG vs PNG/WebP)
+            def find_ext(folder, base_name, default_ext):
+                if not os.path.exists(folder):
+                    return default_ext
+                for ext in ['.svg', '.webp', '.png', '.jpg']:
+                    if os.path.exists(os.path.join(folder, f"{base_name}{ext}")):
+                        return ext
+                return default_ext
+
+            outline_ext = find_ext(tracks_dir, f"{slug}_outline", ".svg")
+            detailed_ext = find_ext(tracks_dir, f"{slug}_detailed", ".webp")
+
             # 标准化路径
-            image_path = f"/photos/seasons/{season}/tracks/{slug}_outline.svg"
-            detailed_path = f"/photos/seasons/{season}/tracks/{slug}_detailed.webp"
+            image_path = f"/photos/seasons/{season}/tracks/{slug}_outline{outline_ext}"
+            detailed_path = f"/photos/seasons/{season}/tracks/{slug}_detailed{detailed_ext}"
             flag_path = f"/photos/seasons/flags/{flag_name}.svg"
             
             if event.get('image') and event.get('image') != image_path:

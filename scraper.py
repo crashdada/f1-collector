@@ -124,12 +124,20 @@ class F1DataCollector:
             data = json.loads(content[:end_idx])
             schedule = []
             for item in data:
+                slug = item.get("meetingKey", "").lower()
                 schedule.append({
                     "round": item.get("roundText"),
-                    "location": item.get("meetingName"),
+                    "roundNumber": int(item.get("roundNumber", 0)),
+                    "country": item.get("countryDescription", "").upper(),
+                    "gpName": item.get("meetingName", ""),
+                    "location": item.get("circuitShortName", ""),
                     "dates": item.get("startAndEndDateForF1RD"),
+                    "slug": slug,
+                    "image": f"https://media.formula1.com/image/upload/f_auto/q_auto/v1677245653/content/dam/fom-website/2018-redesign-assets/circuit-maps/main-menu/{slug.capitalize()}.png",
+                    "detailedImage": f"https://media.formula1.com/image/upload/f_auto/q_auto/v1677245653/content/dam/fom-website/2018-redesign-assets/circuit-maps/main/{slug.capitalize()}_Circuit.png",
+                    "flag": f"https://media.formula1.com/content/dam/fom-website/flags/{item.get('countryDescription', '').replace(' ', '%20')}.gpg",
                     "url": f"{self.base_url}{item.get('url')}" if item.get('url') else None,
-                    "isTest": item.get("isTestEvent", False)
+                    "sessions": item.get("sessionTimes", [])
                 })
             return schedule
         except:
@@ -184,7 +192,7 @@ if __name__ == "__main__":
     schedule_file = f'data/schedule_{collector.season}.json'
     
     # 强制更新逻辑：1. 处于赛后窗口期 2. 赛历文件不存在 3. 赛历文件超过 24 小时未更新
-    should_run = collector.check_is_race_window(schedule_file) or not os.path.exists(schedule_file)
+    should_run = True # collector.check_is_race_window(schedule_file) or not os.path.exists(schedule_file)
     
     # 增加一个时间检查，保证即使非窗口期，每天也至少更新一次赛历
     if not should_run and os.path.exists(schedule_file):

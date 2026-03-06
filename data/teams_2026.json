@@ -179,9 +179,9 @@
         "history": {
             "championships": 0,
             "wins": 1,
-            "podiums": 33,
+            "podiums": 32,
             "poles": 3,
-            "entries": 713,
+            "entries": 665,
             "firstEntry": "1963"
         },
         "stats": {
@@ -309,8 +309,8 @@
             "wins": 0,
             "podiums": 0,
             "poles": 0,
-            "entries": 0,
-            "firstEntry": "2026"
+            "entries": 24,
+            "firstEntry": "2024"
         },
         "stats": {
             "points": 0,
