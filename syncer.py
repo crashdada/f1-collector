@@ -67,6 +67,7 @@ def get_json_files(season):
         f'schedule_{season}.json',
         f'drivers_{season}.json',
         f'teams_{season}.json',
+        f'results_{season}.json',
     ]
 
 

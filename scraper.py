@@ -185,6 +185,39 @@ class F1DataCollector:
             print(f'  [!] 解析 rows 失败: {e}')
             return []
 
+    def get_starting_grid(self, url_or_html: str):
+        """解析发车起步格数据。提取第一名（杆位）车手的车号和排位成绩"""
+        if url_or_html.startswith('http'):
+            html = self.fetch_page(url_or_html)
+            if not html: return None
+        else:
+            html = url_or_html
+
+        full_text = self._reconstruct_next_data(html)
+        start_tag = '"rows":['
+        start_idx = full_text.find(start_tag)
+        if start_idx == -1: return None
+
+        content = full_text[start_idx + len(start_tag) - 1:]
+        brace_count, end_idx = 0, 0
+        for i, char in enumerate(content):
+            if char == '[': brace_count += 1
+            elif char == ']': brace_count -= 1
+            if brace_count == 0:
+                end_idx = i + 1
+                break
+        try:
+            rows = json.loads(content[:end_idx])
+            if rows:
+                row = rows[0]  # P1
+                no = row[1].get('content', [None])[0] if len(row) > 1 else None
+                time_str = row[4].get('content', [None])[0] if len(row) > 4 else None
+                if no is not None and str(no).isdigit():
+                    return {'no': no, 'time': time_str}
+        except:
+            pass
+        return None
+
 if __name__ == "__main__":
     collector = F1DataCollector()
     print(f"Starting F1 Data Collector for Season {collector.season}...")
