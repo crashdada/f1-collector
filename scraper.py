@@ -177,6 +177,8 @@ class F1DataCollector:
                 res = {
                     'pos':    row[0].get('content', [None])[0] if len(row) > 0 else None,
                     'no':     row[1].get('content', [None])[0] if len(row) > 1 else None,
+                    'laps':   row[4].get('content', [None])[0] if len(row) > 4 else None,
+                    'time':   row[5].get('content', [None])[0] if len(row) > 5 else None,
                     'points': row[6].get('content', [0])[0]    if len(row) > 6 else 0,
                 }
                 results.append(res)

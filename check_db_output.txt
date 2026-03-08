@@ -1,0 +1,54 @@
+﻿RACES TABLE:
+  race_id              INTEGER
+  season               INTEGER
+  round_number         INTEGER
+  circuit_id           INTEGER
+  race_date            TEXT
+  event_id             INTEGER
+  url                  TEXT
+
+RACE_RESULTS TABLE:
+  result_id            INTEGER
+  race_id              INTEGER
+  driver_id            INTEGER
+  team_id              INTEGER
+  position             INTEGER
+  laps                 INTEGER
+  time                 TEXT
+  status               TEXT
+  points               REAL
+  event_id             INTEGER
+
+DRIVERS TABLE:
+  driver_id            INTEGER
+  first_name           TEXT
+  last_name            TEXT
+  first_name_cn        TEXT
+  last_name_cn         TEXT
+  code                 TEXT
+  number               INTEGER
+  nationality          TEXT
+
+TEAMS TABLE:
+  team_id              INTEGER
+  name                 TEXT
+  name_cn              TEXT
+  full_name            TEXT
+  team_group           TEXT
+  color                TEXT
+
+CIRCUITS TABLE:
+  circuit_id           INTEGER
+  name                 TEXT
+  country              TEXT
+
+Max season: 2025
+
+2025 R1: (1127, 2025, 1, 4, None, 1254, 'https://www.formula1.com/en/results/2025/races/1')
+
+2025 R1 Top5 results:
+  (15, 1127, 15, 2, None, 46, 'DNF', 'DNF', 0.0, 1254, 'Liam', 'Lawson')
+  (16, 1127, 16, 6, None, 45, 'DNF', 'DNF', 0.0, 1254, 'Gabriel', 'Bortoleto')
+  (17, 1127, 17, 5, None, 32, 'DNF', 'DNF', 0.0, 1254, 'Fernando', 'Alonso')
+  (18, 1127, 18, 4, None, 0, 'DNF', 'DNF', 0.0, 1254, 'Carlos', 'Sainz')
+  (19, 1127, 19, 9, None, 0, 'DNF', 'DNF', 0.0, 1254, 'Jack', 'Doohan')

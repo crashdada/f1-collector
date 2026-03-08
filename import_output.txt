@@ -1,0 +1,28 @@
+﻿============================================================
+F1 Results -> Database Importer
+============================================================
+
+目标数据库: C:\Users\jaymz\Desktop\oc\f1-website\public\data\f1.db
+  已存在 race: season=2026, round=1, race_id=1150
+  清除旧结果: 22 条
+python : Traceback (most recent call last):
+所在位置 行:1 字符: 1
++ python import_results.py 2>&1 | Out-File -Encoding utf8 
+import_output ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (m 
+   ost recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\Users\jaymz\Desktop\oc\f1-collector\import_resu
+lts.py", line 238, in <module>
+    success = import_results(target_db, result_file, DRIVE
+RS_JSON, SCHEDULE_JSON)
+  File "C:\Users\jaymz\Desktop\oc\f1-collector\import_resu
+lts.py", line 198, in import_results
+    print(f"\n  \u2705 导入完成: {imported} 条成绩 -> race_id={ra
+ce_id}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
+UnicodeEncodeError: 'gbk' codec can't encode character '\u
+2705' in position 4: illegal multibyte sequence

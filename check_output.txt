@@ -1,0 +1,28 @@
+﻿2026 races (1):
+  Columns: ['race_id', 'season', 'round_number', 'circuit_id', 'race_date', 'event_id', 'url']
+  (1150, 2026, 1, 1, None, None, 'https://www.formula1.com/en/results/2026/races/1279/australia/race-result')
+
+2026 R1 Results (race_id=1150):
+  Total: 22 entries
+  P  1 | George Russell            | ???                  |  25.0 pts | Finished
+  P  2 | Kimi Antonelli            | ???                  |  18.0 pts | Finished
+  P  3 | Charles Leclerc           | ???                  |  15.0 pts | Finished
+  P  4 | Lewis Hamilton            | ???                  |  12.0 pts | Finished
+  P  5 | Lando Norris              | McLaren BRM          |  10.0 pts | Finished
+  P  6 | Max Verstappen            | ???                  |   8.0 pts | Finished
+  P  7 | Oliver Bearman            | ???                  |   6.0 pts | Finished
+  P  8 | Arvid Lindblad            | RB                   |   4.0 pts | Finished
+  P  9 | Gabriel Bortoleto         | ???                  |   2.0 pts | Finished
+  P 10 | Pierre Gasly              | Alpine               |   1.0 pts | Finished
+  P 11 | Esteban Ocon              | ???                  |   0.0 pts | Finished
+  P 12 | Alexander Albon           | ???                  |   0.0 pts | Finished
+  P 13 | Liam Lawson               | RB                   |   0.0 pts | Finished
+  P 14 | Franco Colapinto          | Alpine               |   0.0 pts | Finished
+  P 15 | Carlos Sainz              | ???                  |   0.0 pts | Finished
+  P 16 | Sergio Perez              | ???                  |   0.0 pts | Finished
+  P NC | Lance Stroll              | ???                  |   0.0 pts | DNF
+  P NC | Fernando Alonso           | ???                  |   0.0 pts | DNF
+  P NC | Valtteri Bottas           | ???                  |   0.0 pts | DNF
+  P NC | Isack Hadjar              | ???                  |   0.0 pts | DNF
+  P NC | Oscar Piastri             | McLaren BRM          |   0.0 pts | DNF
+  P NC | Nico Hulkenberg           | ???                  |   0.0 pts | DNF
