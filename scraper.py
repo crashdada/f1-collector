@@ -182,19 +182,25 @@ class F1DataCollector:
         for i, event in enumerate(schedule):
             if not event.get("sessions") and event.get("url"):
                 print(f"[{i+1}/{len(schedule)}] Fetching sessions for {event['slug']}...")
-                event["sessions"] = self.fetch_sessions_for_race(event["url"])
+                sessions, gmt_offset = self.fetch_sessions_for_race(event["url"])
+                event["sessions"] = sessions
+                if gmt_offset:
+                    event["gmtOffset"] = gmt_offset
                 time.sleep(0.5) # 礼貌延时
 
         return schedule
 
     def fetch_sessions_for_race(self, race_url):
         html = self.fetch_page(race_url)
-        if not html: return []
+        if not html: return [], None
         
         full_text = self._reconstruct_next_data(html)
         
-        # 使用广义正则抓取 description 和 startTime
-        # F1 Next.js 结构中这些字段通常是连在一起的
+        # 尝试抓取该分站的 gmtOffset
+        gmt_match = re.search(r'\"gmtOffset\":\"([+-]\d{2}:\d{2})\"', full_text)
+        gmt_offset = gmt_match.group(1) if gmt_match else None
+        
+        # 使用更精确的正则抓取会话信息
         pattern = r'\"description\":\"(Practice [123]|Qualifying|Race|Sprint Qualifying|Sprint|Grand Prix)\".*?\"startTime\":\"(.*?)\"'
         found = re.findall(pattern, full_text)
         
@@ -206,9 +212,17 @@ class F1DataCollector:
             if desc == "Grand Prix": name = "Race"
             
             if name not in seen:
+                # 如果有 gmtOffset 且 start_time 还没带 Z，则拼接上去
+                final_time = start_time
+                if gmt_offset and 'Z' not in start_time and '+' not in start_time and '-' not in start_time[10:]:
+                    final_time = f"{start_time}{gmt_offset}"
+                elif 'Z' not in start_time and not gmt_offset:
+                    # 如果实在没有 offset，假设是 UTC (Z) 至少比变成用户本地时间强
+                    final_time = f"{start_time}Z"
+                
                 sessions.append({
                     "name": name,
-                    "time": start_time
+                    "time": final_time
                 })
                 seen.add(name)
         
@@ -216,7 +230,7 @@ class F1DataCollector:
         order = {"Practice 1": 1, "Practice 2": 2, "Practice 3": 3, "Sprint Qualifying": 4, "Sprint": 5, "Qualifying": 6, "Race": 7}
         sessions.sort(key=lambda x: order.get(x['name'], 99))
         
-        return sessions
+        return sessions, gmt_offset
 
     def get_race_results(self, url_or_html: str):
         if url_or_html.startswith('http'):
