@@ -11,7 +11,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/australia_detailed.webp",
         "flag": "/photos/seasons/flags/Australia.svg",
         "url": "https://www.formula1.com/en/racing/2026/australia",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "5.278km",
+            "first_gp": 1996,
+            "laps": 58,
+            "distance": "306.124km",
+            "record": "1:19.813 (Charles Leclerc (2024))"
+        }
     },
     {
         "round": "ROUND 2",
@@ -25,7 +32,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/china_detailed.webp",
         "flag": "/photos/seasons/flags/China.svg",
         "url": "https://www.formula1.com/en/racing/2026/china",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "5.451km",
+            "first_gp": 2004,
+            "laps": 56,
+            "distance": "305.066km",
+            "record": "1:32.238 (Michael Schumacher (2004))"
+        }
     },
     {
         "round": "ROUND 3",
@@ -39,7 +53,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/japan_detailed.webp",
         "flag": "/photos/seasons/flags/Japan.svg",
         "url": "https://www.formula1.com/en/racing/2026/japan",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "5.807km",
+            "first_gp": 1987,
+            "laps": 53,
+            "distance": "307.471km",
+            "record": "1:30.965 (Kimi Antonelli (2025))"
+        }
     },
     {
         "round": "ROUND 4",
@@ -53,7 +74,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/bahrain_detailed.webp",
         "flag": "/photos/seasons/flags/Bahrain.svg",
         "url": "https://www.formula1.com/en/racing/2026/bahrain",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "5.412km",
+            "first_gp": 2004,
+            "laps": 57,
+            "distance": "308.238km",
+            "record": "1:31.447 (Pedro de la Rosa (2005))"
+        }
     },
     {
         "round": "ROUND 5",
@@ -67,7 +95,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/saudi-arabia_detailed.webp",
         "flag": "/photos/seasons/flags/Saudi Arabia.svg",
         "url": "https://www.formula1.com/en/racing/2026/saudi-arabia",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "6.175km",
+            "first_gp": 2021,
+            "laps": 50,
+            "distance": "308.5km",
+            "record": null
+        }
     },
     {
         "round": "ROUND 6",
@@ -81,7 +116,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/miami_detailed.webp",
         "flag": "/photos/seasons/flags/Usa.svg",
         "url": "https://www.formula1.com/en/racing/2026/miami",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "5.412km",
+            "first_gp": 2022,
+            "laps": 57,
+            "distance": "308.326km",
+            "record": "1:29.708 (Max Verstappen (2023))"
+        }
     },
     {
         "round": "ROUND 7",
@@ -95,7 +137,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/canada_detailed.webp",
         "flag": "/photos/seasons/flags/Canada.svg",
         "url": "https://www.formula1.com/en/racing/2026/canada",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "4.361km",
+            "first_gp": 1978,
+            "laps": 70,
+            "distance": "305.27km",
+            "record": "1:13.078 (Valtteri Bottas (2019))"
+        }
     },
     {
         "round": "ROUND 8",
@@ -109,7 +158,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/monaco_detailed.webp",
         "flag": "/photos/seasons/flags/Monaco.svg",
         "url": "https://www.formula1.com/en/racing/2026/monaco",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "3.337km",
+            "first_gp": 1950,
+            "laps": 78,
+            "distance": "260.286km",
+            "record": "1:12.909 (Lewis Hamilton (2021))"
+        }
     },
     {
         "round": "ROUND 9",
@@ -123,7 +179,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/barcelona-catalunya_detailed.webp",
         "flag": "/photos/seasons/flags/Spain.svg",
         "url": "https://www.formula1.com/en/racing/2026/barcelona-catalunya",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "4.657km",
+            "first_gp": 1991,
+            "laps": 66,
+            "distance": "307.236km",
+            "record": "1:15.743 (Oscar Piastri (2025))"
+        }
     },
     {
         "round": "ROUND 10",
@@ -137,7 +200,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/austria_detailed.webp",
         "flag": "/photos/seasons/flags/Austria.svg",
         "url": "https://www.formula1.com/en/racing/2026/austria",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "4.326km",
+            "first_gp": 1970,
+            "laps": 71,
+            "distance": "307.018km",
+            "record": "1:07.924 (Oscar Piastri (2025))"
+        }
     },
     {
         "round": "ROUND 11",
@@ -151,7 +221,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/great-britain_detailed.webp",
         "flag": "/photos/seasons/flags/United Kingdom.svg",
         "url": "https://www.formula1.com/en/racing/2026/great-britain",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "5.891km",
+            "first_gp": 1950,
+            "laps": 52,
+            "distance": "306.198km",
+            "record": "1:27.097 (Max Verstappen (2020))"
+        }
     },
     {
         "round": "ROUND 12",
@@ -165,7 +242,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/belgium_detailed.webp",
         "flag": "/photos/seasons/flags/Belgium.svg",
         "url": "https://www.formula1.com/en/racing/2026/belgium",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "7.004km",
+            "first_gp": 1950,
+            "laps": 44,
+            "distance": "308.052km",
+            "record": "1:44.701 (Sergio Perez (2024))"
+        }
     },
     {
         "round": "ROUND 13",
@@ -179,7 +263,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/hungary_detailed.webp",
         "flag": "/photos/seasons/flags/Hungary.svg",
         "url": "https://www.formula1.com/en/racing/2026/hungary",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "4.381km",
+            "first_gp": 1986,
+            "laps": 70,
+            "distance": "306.63km",
+            "record": "1:16.627 (Lewis Hamilton (2020))"
+        }
     },
     {
         "round": "ROUND 14",
@@ -193,7 +284,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/netherlands_detailed.webp",
         "flag": "/photos/seasons/flags/Netherlands.svg",
         "url": "https://www.formula1.com/en/racing/2026/netherlands",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "4.259km",
+            "first_gp": 1952,
+            "laps": 72,
+            "distance": "306.587km",
+            "record": "1:11.097 (Lewis Hamilton (2021))"
+        }
     },
     {
         "round": "ROUND 15",
@@ -207,7 +305,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/italy_detailed.webp",
         "flag": "/photos/seasons/flags/Italy.svg",
         "url": "https://www.formula1.com/en/racing/2026/italy",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "5.793km",
+            "first_gp": 1950,
+            "laps": 53,
+            "distance": "306.72km",
+            "record": "1:20.901 (Lando Norris (2025))"
+        }
     },
     {
         "round": "ROUND 16",
@@ -221,7 +326,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/spain_detailed.webp",
         "flag": "/photos/seasons/flags/Spain.svg",
         "url": "https://www.formula1.com/en/racing/2026/spain",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "5.416km",
+            "first_gp": 2026,
+            "laps": 57,
+            "distance": "308.524km",
+            "record": null
+        }
     },
     {
         "round": "ROUND 17",
@@ -235,7 +347,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/azerbaijan_detailed.webp",
         "flag": "/photos/seasons/flags/Azerbaijan.svg",
         "url": "https://www.formula1.com/en/racing/2026/azerbaijan",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "6.003km",
+            "first_gp": 2016,
+            "laps": 51,
+            "distance": "306.049km",
+            "record": "1:43.009 (Charles Leclerc (2019))"
+        }
     },
     {
         "round": "ROUND 18",
@@ -249,7 +368,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/singapore_detailed.webp",
         "flag": "/photos/seasons/flags/Singapore.svg",
         "url": "https://www.formula1.com/en/racing/2026/singapore",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "4.927km",
+            "first_gp": 2008,
+            "laps": 62,
+            "distance": "305.337km",
+            "record": "1:33.808 (Lewis Hamilton (2025))"
+        }
     },
     {
         "round": "ROUND 19",
@@ -263,7 +389,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/united-states_detailed.webp",
         "flag": "/photos/seasons/flags/Usa.svg",
         "url": "https://www.formula1.com/en/racing/2026/united-states",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "5.513km",
+            "first_gp": 2012,
+            "laps": 56,
+            "distance": "308.405km",
+            "record": "1:36.169 (Charles Leclerc (2019))"
+        }
     },
     {
         "round": "ROUND 20",
@@ -277,7 +410,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/mexico_detailed.webp",
         "flag": "/photos/seasons/flags/Mexico.svg",
         "url": "https://www.formula1.com/en/racing/2026/mexico",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "4.304km",
+            "first_gp": 1963,
+            "laps": 71,
+            "distance": "305.354km",
+            "record": "1:17.774 (Valtteri Bottas (2021))"
+        }
     },
     {
         "round": "ROUND 21",
@@ -291,7 +431,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/brazil_detailed.webp",
         "flag": "/photos/seasons/flags/Brazil.svg",
         "url": "https://www.formula1.com/en/racing/2026/brazil",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "4.309km",
+            "first_gp": 1973,
+            "laps": 71,
+            "distance": "305.879km",
+            "record": "1:10.540 (Valtteri Bottas (2018))"
+        }
     },
     {
         "round": "ROUND 22",
@@ -305,7 +452,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/las-vegas_detailed.webp",
         "flag": "/photos/seasons/flags/Usa.svg",
         "url": "https://www.formula1.com/en/racing/2026/las-vegas",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "6.201km",
+            "first_gp": 2023,
+            "laps": 50,
+            "distance": "309.958km",
+            "record": "1:33.365 (Max Verstappen (2025))"
+        }
     },
     {
         "round": "ROUND 23",
@@ -319,7 +473,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/qatar_detailed.webp",
         "flag": "/photos/seasons/flags/Qatar.svg",
         "url": "https://www.formula1.com/en/racing/2026/qatar",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "5.419km",
+            "first_gp": 2021,
+            "laps": 57,
+            "distance": "308.611km",
+            "record": "1:22.384 (Lando Norris (2024))"
+        }
     },
     {
         "round": "ROUND 24",
@@ -333,6 +494,13 @@
         "detailedImage": "/photos/seasons/2026/tracks/abu-dhabi_detailed.webp",
         "flag": "/photos/seasons/flags/Uae.svg",
         "url": "https://www.formula1.com/en/racing/2026/united-arab-emirates",
-        "sessions": []
+        "sessions": [],
+        "circuitSpecs": {
+            "length": "5.281km",
+            "laps": 58,
+            "record": "1:26.103 (Verstappen)",
+            "first_gp": 2009,
+            "distance": "306.183km"
+        }
     }
 ]

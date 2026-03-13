@@ -14,8 +14,7 @@ class F1DataCollector:
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
         
-        # 2026 赛季元数据修正映射（处理 HTML 抓取到的简写或不完整数据）
-        # 键为 URL slug，值为修正后的各项信息
+        # 2026 赛季元数据修正映射
         self.SEASON_2026_CONFIG = {
             "australia": {"country": "AUSTRALIA", "location": "Melbourne", "gp": "Australian Grand Prix"},
             "china": {"country": "CHINA", "location": "Shanghai", "gp": "Chinese Grand Prix"},
@@ -44,6 +43,14 @@ class F1DataCollector:
             "united-arab-emirates": {"country": "UAE", "location": "Yas Marina", "gp": "Abu Dhabi Grand Prix", "file_slug": "abu-dhabi"},
         }
 
+        # 加载静态赛道参数 metadata
+        self.circuit_metadata = {}
+        try:
+            with open('circuit_metadata.json', 'r', encoding='utf-8') as f:
+                self.circuit_metadata = json.load(f)
+        except:
+            print("Warning: circuit_metadata.json not found, using empty metadata")
+
     def save_data(self, data, filename):
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
@@ -68,14 +75,12 @@ class F1DataCollector:
         return None
 
     def get_schedule(self):
-        """混合抓取模式：优先尝试 JSON 碎片，失败则通过 HTML 结构抓取全部 24 站"""
         url = f"{self.base_url}/en/racing/{self.season}"
         html = self.fetch_page(url)
         if not html: return []
 
         schedule = []
         
-        # 尝试 1: 解析 Next.js 碎片中的导航数据
         try:
             full_text = self._reconstruct_next_data(html)
             start_tag = '"secondaryNavigationSchedule":['
@@ -97,6 +102,10 @@ class F1DataCollector:
                     
                     config = self.SEASON_2026_CONFIG.get(slug, {})
                     file_slug = config.get("file_slug", slug)
+                    
+                    # 获取赛道参数
+                    # 优先映射 file_slug (如 abu-dhabi)，其次是 slug
+                    specs = self.circuit_metadata.get(file_slug) or self.circuit_metadata.get(slug) or {}
 
                     schedule.append({
                         "round": item.get("roundText"),
@@ -110,12 +119,12 @@ class F1DataCollector:
                         "detailedImage": f"/photos/seasons/{self.season}/tracks/{file_slug}_detailed.webp",
                         "flag": f"/photos/seasons/flags/{item.get('countryDescription', '').title()}.svg",
                         "url": f"{self.base_url}{item.get('url')}" if item.get('url') else None,
-                        "sessions": item.get("sessionTimes", [])
+                        "sessions": item.get("sessionTimes", []),
+                        "circuitSpecs": specs
                     })
         except Exception as e:
             print(f"Level 1 sync failed: {e}")
 
-        # 尝试 2: 如果数据量不足，改用 HTML 结构抓取
         if len(schedule) < 20:
             print(f"Detected low count ({len(schedule)}), fallback to HTML scraping...")
             soup = BeautifulSoup(html, 'html.parser')
@@ -148,6 +157,8 @@ class F1DataCollector:
                 location = location_str or config.get("location", "")
                 file_slug = config.get("file_slug", slug)
                 
+                specs = self.circuit_metadata.get(file_slug) or self.circuit_metadata.get(slug) or {}
+                
                 html_schedule.append({
                     "round": round_str,
                     "roundNumber": int(round_str.split()[-1]) if ' ' in round_str else 0,
@@ -160,7 +171,8 @@ class F1DataCollector:
                     "detailedImage": f"/photos/seasons/{self.season}/tracks/{file_slug}_detailed.webp",
                     "flag": f"/photos/seasons/flags/{country.title() if country else 'Unknown'}.svg",
                     "url": f"{self.base_url}{href}",
-                    "sessions": []
+                    "sessions": [],
+                    "circuitSpecs": specs
                 })
                 seen_slugs.add(slug)
             
@@ -170,6 +182,7 @@ class F1DataCollector:
         return schedule
 
     def get_race_results(self, url_or_html: str):
+        # ... (rest of the code remains the same)
         if url_or_html.startswith('http'):
             html = self.fetch_page(url_or_html)
             if not html: return []
