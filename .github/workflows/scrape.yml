@@ -38,7 +38,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Schedule Scraper
+      - name: Run Schedule Scraper (One-time info)
+        if: github.event_name != 'schedule'
         run: python scraper.py
 
       - name: Checkout F1 Website (for DB access)
@@ -48,40 +49,31 @@ jobs:
           path: f1-website
           token: ${{ secrets.GH_PAT }}
 
-      - name: Run Drivers & Teams Scraper
+      - name: Run Drivers & Teams Scraper (One-time info)
+        if: github.event_name != 'schedule'
         run: |
           python scraper_drivers.py
           python scraper_teams.py
 
       - name: Refine with Historical Stats
+        if: github.event_name != 'schedule'
         env:
           F1_DB_PATH: f1-website/public/data/f1.db
         run: |
-          # Use f1.db from the checked out f1-website repo
-          # Structure:
-          #   workspace/
-          #     f1-collector/ (current dir)
-          #     f1-website/ (checked out in parallel)
-          # refine_with_stats.py uses F1_DB_PATH env var to locate the DB.
-          
           python refine_with_stats.py
 
-      - name: Run Results Scraper (if in race window or forced)
-        if: ${{ github.event.inputs.force_results == 'true' || github.event_name == 'schedule' }}
+      - name: Run Results Scraper (Periodic check)
+        # 始终运行以支持 push 测试，但在 schedule 模式下由脚本内部判断是否在赛后窗口
         run: |
-          python scraper_results.py || echo "Not in race window, skipping."
+          python scraper_results.py || echo "Not in race window or failed, skipping."
           python export_results_json.py || echo "Failed to generate JSON results."
 
-      - name: Update F1-Website CSV and DB
-        if: ${{ github.event.inputs.force_results == 'true' || github.event_name == 'schedule' }}
+      - name: Update F1-Website CSV and DB (Muted for 2026)
+        # 仅在有新结果时可能触发，但目前处于 Muted 状态
+        if: github.event.inputs.force_results == 'true' || github.event_name == 'schedule'
         env:
           F1_WEBSITE_DIR: f1-website
         run: |
-          # The database sync step is temporarily disabled per user instruction
-          # during the 2026 season. The historical F1.db shouldn't be touched.
-          # python export_results_csv.py || echo "CSV append failed."
-          # cd f1-website
-          # python scripts/sync_f1_data.py --force || echo "DB sync failed."
           echo 'DB update is muted for the running season.'
 
       - name: Commit and Push changes to collector
@@ -95,22 +87,25 @@ jobs:
             echo "No changes to commit for collector"
           else
             git commit -m "Auto-update F1 data $(date -u +'%Y-%m-%d') [skip ci]"
-            # 使用 PAT 强制推送到远程，确保权限足够且触发后续流程
             git push https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}.git HEAD:main
           fi
 
-      - name: Commit and Push changes to website
-        if: ${{ github.event.inputs.force_results == 'true' || github.event_name == 'schedule' }}
+      - name: Commit and Push changes to website (JSON only)
+        # 只有在 schedule 或手动强制时才把 JSON 同步回 website 的 data 目录（如果需要）
+        # 注意：此处 push 回 website 会触发 website 的构建流程
+        if: github.event_name == 'schedule' || github.event.inputs.force_results == 'true'
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           cd f1-website
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git add csv/ public/data/f1.db 2>/dev/null || true
+          # 将 collector 生成的最新的 JSON 同步到 website 的 public/data/
+          cp ../data/*.json public/data/
+          git add public/data/*.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No changes to commit for website"
           else
-            git commit -m "Auto-update F1 DB and CSV $(date -u +'%Y-%m-%d') [skip ci]"
+            git commit -m "Auto-update F1 JSON data $(date -u +'%Y-%m-%d') [skip ci]"
             git push https://x-access-token:${GH_PAT}@github.com/crashdada/f1-website.git HEAD:main
           fi

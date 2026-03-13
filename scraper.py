@@ -46,7 +46,7 @@ class F1DataCollector:
         # 加载静态赛道参数 metadata
         self.circuit_metadata = {}
         try:
-            with open('circuit_metadata.json', 'r', encoding='utf-8') as f:
+            with open('config/circuit_metadata.json', 'r', encoding='utf-8') as f:
                 self.circuit_metadata = json.load(f)
         except:
             print("Warning: circuit_metadata.json not found, using empty metadata")

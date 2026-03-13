@@ -49,11 +49,14 @@ f1-collector/
 ├── scraper_results.py            # 赛后单场成绩采集 → results_{season}/
 ├── syncer.py                     # 统一同步器 (核心逻辑：实时更新展示端，自动处理路径)
 ├── refine_with_stats.py          # 注入历史统计数据至车手 JSON
+├── tools/                        # 🛠️ 实用工具与一次性脚本 (check_*, test_*, find_*)
+├── archive/                      # 📦 历史记录、调试产物及 HTML 离线快照
 ├── data/                         # 📦 采集产物 (Source of Truth)
 │   ├── f1.db                     # 历史数据库源文件
 │   └── *_config_{season}.json    # 手动维护的底板或基础配置 (如 drivers_config_2026.json)
+├── config/                       # ⚙️ 配置文件 (mappings.json, circuit_metadata.json)
 ├── assets/                       # 视觉资源库 (由 syncer 同步至展示网站的 photos/ 目录下)
-├── photos/                       # 额外照片存储仓库
+├── results_{season}/             # 采集的原始结构化成绩
 └── .github/workflows/
     └── scrape.yml                # GitHub Actions：每日自动在云端采集
 ```
@@ -92,15 +95,31 @@ f1-collector/
    python scraper_results.py --force     # 若出问题或错过窗口期，使用此命令强制抓取距离现在最近的一场比赛
    ```
 
+## ⏰ 采集任务执行策略 (Execution Strategy)
+
+采集任务分为“一次性静态信息”和“周期性动态赛果”两类，配置于 GitHub Actions (`scrape.yml`) 中：
+
+### 1. 周期性自动采集 (Periodic / Scheduled)
+*   **执行频率**：每 3 小时执行一次 (`cron: '15 */3 * * *'`)。
+*   **核心任务**：仅运行 `scraper_results.py`。
+*   **触发窗口**：脚本内部会自动判断当前是否处于“赛后 3 天”的触发窗口内，若不在窗口内则直接跳过，节省资源。
+*   **跳过内容**：在 `schedule` 事件下，会自动跳过赛历、车手、车队等静态信息的重新采集，避免产生无意义的提交。
+
+### 2. 手动或代码变更触发 (Manual / Push)
+*   **触发方式**：向 `main` 分支提交代码，或在 GitHub Actions 页面点击 `workflow_dispatch` 手动触发。
+*   **执行任务**：全量执行所有采集脚本（赛历 + 车手 + 车队 + 赛果 + 统计注入）。
+*   **用途**：用于赛季开始前初始化数据、更新车手名单、或在逻辑变更后强制刷新全量数据。
+
 ## 🖥️ NAS 部署与持续集成
 
 ```
 Docker 自动定时任务机制 (配合 GitHub Action)
-  ├── 1. 拉取 (Pull) 本仓库代码至云端
-  ├── 2. 运行 scraper.py / scraper_drivers.py / scraper_teams.py 等爬虫保证数据最新
-  ├── 3. 运行 scraper_results.py 动态检测是否需要更新成绩结果 (赛后生效)
-  └── 4. 将所有产生的数据变更直接合并推送提交 (git commit --auto-update)
+  ├── 1. 拉取 (Pull) 本仓库代码至云端 (或由 CI 自动完成)
+  ├── 2. [仅 Push 改动时] 运行 scraper.py / scraper_drivers.py 等保证基础数据最新
+  ├── 3. [每 3 小时] 运行 scraper_results.py 动态检测并更新赛果
+  └── 4. 将产生的数据变更 Push 回网站 (f1-website) 触发生产环境热重载
 ```
+
 注意：基于该架构，实体化部署生产环境 (NAS) 时，只需要启动一个 Docker，每日定时将此 `f1-collector` 仓库最新分支重新拉取到本地，然后运行 `syncer.py` 后；再配合 Web Station 等服务软件将 `f1-website` 的构建好的 `dist` 目录设为静态托管，便能够一劳永逸地实现数据的**无头热更新体验**。
 
 ## 代码规范与系统原则 (Code Style Guidelines)
