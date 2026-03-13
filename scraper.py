@@ -175,10 +175,48 @@ class F1DataCollector:
                 })
                 seen_slugs.add(slug)
             
-            if len(html_schedule) >= len(schedule):
                 schedule = sorted(html_schedule, key=lambda x: x['roundNumber'])
 
+        # 为列表中的每个比赛补充具体时刻表
+        print(f"Enriching {len(schedule)} events with session timetables...")
+        for i, event in enumerate(schedule):
+            if not event.get("sessions") and event.get("url"):
+                print(f"[{i+1}/{len(schedule)}] Fetching sessions for {event['slug']}...")
+                event["sessions"] = self.fetch_sessions_for_race(event["url"])
+                time.sleep(0.5) # 礼貌延时
+
         return schedule
+
+    def fetch_sessions_for_race(self, race_url):
+        html = self.fetch_page(race_url)
+        if not html: return []
+        
+        full_text = self._reconstruct_next_data(html)
+        
+        # 使用广义正则抓取 description 和 startTime
+        # F1 Next.js 结构中这些字段通常是连在一起的
+        pattern = r'\"description\":\"(Practice [123]|Qualifying|Race|Sprint Qualifying|Sprint|Grand Prix)\".*?\"startTime\":\"(.*?)\"'
+        found = re.findall(pattern, full_text)
+        
+        sessions = []
+        seen = set()
+        for desc, start_time in found:
+            # 归一化名称
+            name = desc
+            if desc == "Grand Prix": name = "Race"
+            
+            if name not in seen:
+                sessions.append({
+                    "name": name,
+                    "time": start_time
+                })
+                seen.add(name)
+        
+        # 排序：P1 -> P2 -> P3 -> Qualy -> Race
+        order = {"Practice 1": 1, "Practice 2": 2, "Practice 3": 3, "Sprint Qualifying": 4, "Sprint": 5, "Qualifying": 6, "Race": 7}
+        sessions.sort(key=lambda x: order.get(x['name'], 99))
+        
+        return sessions
 
     def get_race_results(self, url_or_html: str):
         if url_or_html.startswith('http'):
