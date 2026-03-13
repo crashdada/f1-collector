@@ -8,158 +8,178 @@ import os
 
 class F1DataCollector:
     def __init__(self, season=None):
-        # 如果未指定年份，自动获取当前年份
         self.season = season or datetime.datetime.now().year
         self.base_url = "https://www.formula1.com"
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
+        
+        # 2026 赛季元数据修正映射（处理 HTML 抓取到的简写或不完整数据）
+        # 键为 URL slug，值为修正后的各项信息
+        self.SEASON_2026_CONFIG = {
+            "australia": {"country": "AUSTRALIA", "location": "Melbourne", "gp": "Australian Grand Prix"},
+            "china": {"country": "CHINA", "location": "Shanghai", "gp": "Chinese Grand Prix"},
+            "japan": {"country": "JAPAN", "location": "Suzuka", "gp": "Japanese Grand Prix"},
+            "bahrain": {"country": "BAHRAIN", "location": "Sakhir", "gp": "Bahrain Grand Prix"},
+            "saudi-arabia": {"country": "SAUDI ARABIA", "location": "Jeddah", "gp": "Saudi Arabian Grand Prix"},
+            "miami": {"country": "USA", "location": "Miami", "gp": "Miami Grand Prix"},
+            "emilia-romagna": {"country": "ITALY", "location": "Imola", "gp": "Emilia Romagna Grand Prix"},
+            "monaco": {"country": "MONACO", "location": "Monaco", "gp": "Monaco Grand Prix"},
+            "spain": {"country": "SPAIN", "location": "Barcelona", "gp": "Spanish Grand Prix"},
+            "barcelona-catalunya": {"country": "SPAIN", "location": "Barcelona", "gp": "Spanish Grand Prix"},
+            "canada": {"country": "CANADA", "location": "Montreal", "gp": "Canadian Grand Prix"},
+            "austria": {"country": "AUSTRIA", "location": "Spielberg", "gp": "Austrian Grand Prix"},
+            "great-britain": {"country": "UNITED KINGDOM", "location": "Silverstone", "gp": "British Grand Prix"},
+            "belgium": {"country": "BELGIUM", "location": "Spa-Francorchamps", "gp": "Belgian Grand Prix"},
+            "hungary": {"country": "HUNGARY", "location": "Budapest", "gp": "Hungarian Grand Prix"},
+            "netherlands": {"country": "NETHERLANDS", "location": "Zandvoort", "gp": "Dutch Grand Prix"},
+            "italy": {"country": "ITALY", "location": "Monza", "gp": "Italian Grand Prix"},
+            "azerbaijan": {"country": "AZERBAIJAN", "location": "Baku", "gp": "Azerbaijan Grand Prix"},
+            "singapore": {"country": "SINGAPORE", "location": "Singapore", "gp": "Singapore Grand Prix"},
+            "united-states": {"country": "USA", "location": "Austin", "gp": "United States Grand Prix"},
+            "mexico": {"country": "MEXICO", "location": "Mexico City", "gp": "Mexico City Grand Prix"},
+            "brazil": {"country": "BRAZIL", "location": "Sao Paulo", "gp": "Sao Paulo Grand Prix"},
+            "las-vegas": {"country": "USA", "location": "Las Vegas", "gp": "Las Vegas Grand Prix"},
+            "qatar": {"country": "QATAR", "location": "Lusail", "gp": "Qatar Grand Prix"},
+            "united-arab-emirates": {"country": "UAE", "location": "Yas Marina", "gp": "Abu Dhabi Grand Prix", "file_slug": "abu-dhabi"},
+        }
 
     def save_data(self, data, filename):
-        """保存数据到 JSON 文件"""
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
         print(f"Data saved to {filename}")
 
     def _reconstruct_next_data(self, html):
-        """还原 Next.js 碎片数据"""
         pattern = r'self\.__next_f\.push\(\[1,\"(.*?)\"\]\)'
         matches = re.findall(pattern, html)
         full_text = "".join(matches).replace('\\"', '"').replace('\\\\', '\\')
         return full_text
 
-    def check_is_race_window(self, schedule_path=None):
-        """检测当前日期是否处于赛后数据更新窗口 (赛后 1-3 天)"""
-        if schedule_path is None:
-            schedule_path = f'data/schedule_{self.season}.json'
-        try:
-            with open(schedule_path, 'r', encoding='utf-8') as f:
-                schedule = json.load(f)
-            
-            today = datetime.date.today()
-            for race in schedule:
-                # 提取日期 (例如 "06 - 08 MAR")
-                date_str = race.get('dates', '')
-                if not date_str: continue
-                
-                # 简单解析结束日期 (假设格式为 "... - DD MMM")
-                match = re.search(r'-\s+(\d+)\s+([A-Z]{3})', date_str)
-                if match:
-                    end_day = int(match.group(1))
-                    end_month_str = match.group(2)
-                    
-                    # 月份映射
-                    months = {
-                        'JAN': 1, 'FEB': 2, 'MAR': 3, 'APR': 4, 'MAY': 5, 'JUN': 6,
-                        'JUL': 7, 'AUG': 8, 'SEP': 9, 'OCT': 10, 'NOV': 11, 'DEC': 12
-                    }
-                    month = months.get(end_month_str.upper(), today.month)
-                    
-                    # 构造 race_end_date (注意：这里假设是当前年份)
-                    race_end_date = datetime.date(self.season, month, end_day)
-                    
-                    # 判断今天是否在赛后 3 天内
-                    delta = (today - race_end_date).days
-                    if 0 <= delta <= 3:
-                        print(f"Match found: {race['location']} ended {delta} days ago. Entering Scrape Window.")
-                        return True
-            
-            print("Today is not in a primary post-race window. Skipping deep scrape.")
-            return False
-        except Exception as e:
-            print(f"Schedule check failed: {e}. Defaulting to run.")
-            return True
-
-    def fetch_page(self, url, max_retries=5, initial_delay=1800):
-        """获取页面并包含延后重试机制"""
-        retries = 0
-        while retries < max_retries:
+    def fetch_page(self, url, max_retries=3):
+        for i in range(max_retries):
             try:
-                print(f"Fetching: {url} (Attempt {retries + 1})")
-                response = requests.get(url, headers=self.headers)
+                print(f"Fetching: {url} (Attempt {i+1})")
+                response = requests.get(url, headers=self.headers, timeout=15)
                 response.raise_for_status()
-                
-                # 检查数据是否就绪 (检查关键词如 TBC, TBD 或 缺少 rows)
-                if "To be confirmed" in response.text or "TBC" in response.text:
-                    if retries < max_retries - 1:
-                        wait_time = initial_delay * (2 ** retries)
-                        print(f"Data not ready (TBC). Retrying in {wait_time/60:.1f} min...")
-                        time.sleep(wait_time)
-                        retries += 1
-                        continue
-                
                 return response.text
             except Exception as e:
                 print(f"Request failed: {e}")
-                if retries < max_retries - 1:
-                    time.sleep(60)
-                    retries += 1
-                else:
-                    return None
+                time.sleep(2)
         return None
 
     def get_schedule(self):
-        """获取并解析赛季日程"""
+        """混合抓取模式：优先尝试 JSON 碎片，失败则通过 HTML 结构抓取全部 24 站"""
         url = f"{self.base_url}/en/racing/{self.season}"
-        html = self.fetch_page(url, max_retries=1)
+        html = self.fetch_page(url)
         if not html: return []
 
-        full_text = self._reconstruct_next_data(html)
+        schedule = []
         
-        # 寻找 secondaryNavigationSchedule
-        start_tag = '"secondaryNavigationSchedule":['
-        start_idx = full_text.find(start_tag)
-        if start_idx == -1: return []
-        
-        content = full_text[start_idx + len(start_tag) - 1:]
-        brace_count, end_idx = 0, 0
-        for i, char in enumerate(content):
-            if char == '[': brace_count += 1
-            elif char == ']': brace_count -= 1
-            if brace_count == 0:
-                end_idx = i + 1
-                break
-        
+        # 尝试 1: 解析 Next.js 碎片中的导航数据
         try:
-            data = json.loads(content[:end_idx])
-            schedule = []
-            for item in data:
-                slug = item.get("meetingKey", "").lower()
-                schedule.append({
-                    "round": item.get("roundText"),
-                    "roundNumber": int(item.get("roundNumber", 0)),
-                    "country": item.get("countryDescription", "").upper(),
-                    "gpName": item.get("meetingName", ""),
-                    "location": item.get("circuitShortName", ""),
-                    "dates": item.get("startAndEndDateForF1RD"),
+            full_text = self._reconstruct_next_data(html)
+            start_tag = '"secondaryNavigationSchedule":['
+            start_idx = full_text.find(start_tag)
+            if start_idx != -1:
+                content = full_text[start_idx + len(start_tag) - 1:]
+                brace_count, end_idx = 0, 0
+                for i, char in enumerate(content):
+                    if char == '[': brace_count += 1
+                    elif char == ']': brace_count -= 1
+                    if brace_count == 0:
+                        end_idx = i + 1
+                        break
+                data = json.loads(content[:end_idx])
+                for item in data:
+                    slug = item.get("meetingKey", "").lower()
+                    if not slug: 
+                        slug = item.get("url", "").split('/')[-1]
+                    
+                    config = self.SEASON_2026_CONFIG.get(slug, {})
+                    file_slug = config.get("file_slug", slug)
+
+                    schedule.append({
+                        "round": item.get("roundText"),
+                        "roundNumber": int(item.get("roundNumber", 0)),
+                        "country": item.get("countryDescription", "").upper(),
+                        "gpName": item.get("meetingName", ""),
+                        "location": item.get("circuitShortName", ""),
+                        "dates": item.get("startAndEndDateForF1RD"),
+                        "slug": slug,
+                        "image": f"/photos/seasons/{self.season}/tracks/{file_slug}_outline.svg",
+                        "detailedImage": f"/photos/seasons/{self.season}/tracks/{file_slug}_detailed.webp",
+                        "flag": f"/photos/seasons/flags/{item.get('countryDescription', '').title()}.svg",
+                        "url": f"{self.base_url}{item.get('url')}" if item.get('url') else None,
+                        "sessions": item.get("sessionTimes", [])
+                    })
+        except Exception as e:
+            print(f"Level 1 sync failed: {e}")
+
+        # 尝试 2: 如果数据量不足，改用 HTML 结构抓取
+        if len(schedule) < 20:
+            print(f"Detected low count ({len(schedule)}), fallback to HTML scraping...")
+            soup = BeautifulSoup(html, 'html.parser')
+            cards = soup.find_all('a', href=re.compile(rf'/en/racing/{self.season}/'))
+            
+            html_schedule = []
+            seen_slugs = set()
+            
+            for card in cards:
+                href = card.get('href', '')
+                slug = href.split('/')[-1]
+                if slug in [str(self.season), 'Schedule', 'testing'] or 'testing' in slug or slug in seen_slugs:
+                    continue
+                
+                text_parts = card.get_text(separator='|', strip=True).split('|')
+                
+                round_str = "ROUND 0"
+                date_str = ""
+                location_str = ""
+                
+                for p in text_parts:
+                    if p.startswith('ROUND'): round_str = p
+                    elif re.search(r'\d+\s+-\s+\d+\s+[A-Z]{3}', p): date_str = p
+                    elif any(p == v['location'] for v in self.SEASON_2026_CONFIG.values()):
+                        location_str = p
+                
+                config = self.SEASON_2026_CONFIG.get(slug, {})
+                country = config.get("country", "")
+                gp_name = config.get("gp", "")
+                location = location_str or config.get("location", "")
+                file_slug = config.get("file_slug", slug)
+                
+                html_schedule.append({
+                    "round": round_str,
+                    "roundNumber": int(round_str.split()[-1]) if ' ' in round_str else 0,
+                    "country": country,
+                    "gpName": gp_name,
+                    "location": location,
+                    "dates": date_str,
                     "slug": slug,
-                    "image": f"https://media.formula1.com/image/upload/f_auto/q_auto/v1677245653/content/dam/fom-website/2018-redesign-assets/circuit-maps/main-menu/{slug.capitalize()}.png",
-                    "detailedImage": f"https://media.formula1.com/image/upload/f_auto/q_auto/v1677245653/content/dam/fom-website/2018-redesign-assets/circuit-maps/main/{slug.capitalize()}_Circuit.png",
-                    "flag": f"https://media.formula1.com/content/dam/fom-website/flags/{item.get('countryDescription', '').replace(' ', '%20')}.gpg",
-                    "url": f"{self.base_url}{item.get('url')}" if item.get('url') else None,
-                    "sessions": item.get("sessionTimes", [])
+                    "image": f"/photos/seasons/{self.season}/tracks/{file_slug}_outline.svg",
+                    "detailedImage": f"/photos/seasons/{self.season}/tracks/{file_slug}_detailed.webp",
+                    "flag": f"/photos/seasons/flags/{country.title() if country else 'Unknown'}.svg",
+                    "url": f"{self.base_url}{href}",
+                    "sessions": []
                 })
-            return schedule
-        except:
-            return []
+                seen_slugs.add(slug)
+            
+            if len(html_schedule) >= len(schedule):
+                schedule = sorted(html_schedule, key=lambda x: x['roundNumber'])
+
+        return schedule
 
     def get_race_results(self, url_or_html: str):
-        """解析比赛结果。可传入 URL（自动 fetch）或已有 HTML 字符串。"""
-        # 判断是 URL 还是 HTML
         if url_or_html.startswith('http'):
             html = self.fetch_page(url_or_html)
-            if not html:
-                return []
+            if not html: return []
         else:
             html = url_or_html
 
         full_text = self._reconstruct_next_data(html)
-
-        # 寻找 rows
         start_tag = '"rows":['
         start_idx = full_text.find(start_tag)
-        if start_idx == -1:
-            return []
+        if start_idx == -1: return []
 
         content = full_text[start_idx + len(start_tag) - 1:]
         brace_count, end_idx = 0, 0
@@ -169,56 +189,20 @@ class F1DataCollector:
             if brace_count == 0:
                 end_idx = i + 1
                 break
-
         try:
             rows = json.loads(content[:end_idx])
             results = []
             for row in rows:
-                res = {
+                results.append({
                     'pos':    row[0].get('content', [None])[0] if len(row) > 0 else None,
                     'no':     row[1].get('content', [None])[0] if len(row) > 1 else None,
                     'laps':   row[4].get('content', [None])[0] if len(row) > 4 else None,
                     'time':   row[5].get('content', [None])[0] if len(row) > 5 else None,
                     'points': row[6].get('content', [0])[0]    if len(row) > 6 else 0,
-                }
-                results.append(res)
+                })
             return results
-        except Exception as e:
-            print(f'  [!] 解析 rows 失败: {e}')
-            return []
-
-    def get_starting_grid(self, url_or_html: str):
-        """解析发车起步格数据。提取第一名（杆位）车手的车号和排位成绩"""
-        if url_or_html.startswith('http'):
-            html = self.fetch_page(url_or_html)
-            if not html: return None
-        else:
-            html = url_or_html
-
-        full_text = self._reconstruct_next_data(html)
-        start_tag = '"rows":['
-        start_idx = full_text.find(start_tag)
-        if start_idx == -1: return None
-
-        content = full_text[start_idx + len(start_tag) - 1:]
-        brace_count, end_idx = 0, 0
-        for i, char in enumerate(content):
-            if char == '[': brace_count += 1
-            elif char == ']': brace_count -= 1
-            if brace_count == 0:
-                end_idx = i + 1
-                break
-        try:
-            rows = json.loads(content[:end_idx])
-            if rows:
-                row = rows[0]  # P1
-                no = row[1].get('content', [None])[0] if len(row) > 1 else None
-                time_str = row[4].get('content', [None])[0] if len(row) > 4 else None
-                if no is not None and str(no).isdigit():
-                    return {'no': no, 'time': time_str}
         except:
-            pass
-        return None
+            return []
 
 if __name__ == "__main__":
     collector = F1DataCollector()
@@ -226,21 +210,10 @@ if __name__ == "__main__":
     
     schedule_file = f'data/schedule_{collector.season}.json'
     
-    # 强制更新逻辑：1. 处于赛后窗口期 2. 赛历文件不存在 3. 赛历文件超过 24 小时未更新
-    should_run = True # collector.check_is_race_window(schedule_file) or not os.path.exists(schedule_file)
-    
-    # 增加一个时间检查，保证即使非窗口期，每天也至少更新一次赛历
-    if not should_run and os.path.exists(schedule_file):
-        file_age = time.time() - os.path.getmtime(schedule_file)
-        if file_age > 86400: # 24 小时
-            print("Schedule file is old. Forcing a refresh.")
-            should_run = True
-
-    if should_run:
-        print("Executing sync...")
-        sched = collector.get_schedule()
-        if sched:
-            collector.save_data(sched, schedule_file)
-            print(f"Sync successful. Found {len(sched)} events.")
+    print("Executing sync...")
+    sched = collector.get_schedule()
+    if sched:
+        collector.save_data(sched, schedule_file)
+        print(f"Sync successful. Found {len(sched)} events.")
     else:
-        print("System is up to date. No action required today.")
+        print("Failed to sync schedule.")
