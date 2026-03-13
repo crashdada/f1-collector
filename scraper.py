@@ -16,31 +16,31 @@ class F1DataCollector:
         
         # 2026 赛季元数据修正映射
         self.SEASON_2026_CONFIG = {
-            "australia": {"country": "AUSTRALIA", "location": "Melbourne", "gp": "Australian Grand Prix"},
-            "china": {"country": "CHINA", "location": "Shanghai", "gp": "Chinese Grand Prix"},
-            "japan": {"country": "JAPAN", "location": "Suzuka", "gp": "Japanese Grand Prix"},
-            "bahrain": {"country": "BAHRAIN", "location": "Sakhir", "gp": "Bahrain Grand Prix"},
-            "saudi-arabia": {"country": "SAUDI ARABIA", "location": "Jeddah", "gp": "Saudi Arabian Grand Prix"},
-            "miami": {"country": "USA", "location": "Miami", "gp": "Miami Grand Prix"},
-            "emilia-romagna": {"country": "ITALY", "location": "Imola", "gp": "Emilia Romagna Grand Prix"},
-            "monaco": {"country": "MONACO", "location": "Monaco", "gp": "Monaco Grand Prix"},
-            "spain": {"country": "SPAIN", "location": "Barcelona", "gp": "Spanish Grand Prix"},
-            "barcelona-catalunya": {"country": "SPAIN", "location": "Barcelona", "gp": "Spanish Grand Prix"},
-            "canada": {"country": "CANADA", "location": "Montreal", "gp": "Canadian Grand Prix"},
-            "austria": {"country": "AUSTRIA", "location": "Spielberg", "gp": "Austrian Grand Prix"},
-            "great-britain": {"country": "UNITED KINGDOM", "location": "Silverstone", "gp": "British Grand Prix"},
-            "belgium": {"country": "BELGIUM", "location": "Spa-Francorchamps", "gp": "Belgian Grand Prix"},
-            "hungary": {"country": "HUNGARY", "location": "Budapest", "gp": "Hungarian Grand Prix"},
-            "netherlands": {"country": "NETHERLANDS", "location": "Zandvoort", "gp": "Dutch Grand Prix"},
-            "italy": {"country": "ITALY", "location": "Monza", "gp": "Italian Grand Prix"},
-            "azerbaijan": {"country": "AZERBAIJAN", "location": "Baku", "gp": "Azerbaijan Grand Prix"},
-            "singapore": {"country": "SINGAPORE", "location": "Singapore", "gp": "Singapore Grand Prix"},
-            "united-states": {"country": "USA", "location": "Austin", "gp": "United States Grand Prix"},
-            "mexico": {"country": "MEXICO", "location": "Mexico City", "gp": "Mexico City Grand Prix"},
-            "brazil": {"country": "BRAZIL", "location": "Sao Paulo", "gp": "Sao Paulo Grand Prix"},
-            "las-vegas": {"country": "USA", "location": "Las Vegas", "gp": "Las Vegas Grand Prix"},
-            "qatar": {"country": "QATAR", "location": "Lusail", "gp": "Qatar Grand Prix"},
-            "united-arab-emirates": {"country": "UAE", "location": "Yas Marina", "gp": "Abu Dhabi Grand Prix", "file_slug": "abu-dhabi"},
+            "australia": {"country": "AUSTRALIA", "location": "Melbourne", "gp": "Australian Grand Prix", "flag": "Australia.svg"},
+            "china": {"country": "CHINA", "location": "Shanghai", "gp": "Chinese Grand Prix", "flag": "China.svg"},
+            "japan": {"country": "JAPAN", "location": "Suzuka", "gp": "Japanese Grand Prix", "flag": "Japan.svg"},
+            "bahrain": {"country": "BAHRAIN", "location": "Sakhir", "gp": "Bahrain Grand Prix", "flag": "Bahrain.svg"},
+            "saudi-arabia": {"country": "SAUDI ARABIA", "location": "Jeddah", "gp": "Saudi Arabian Grand Prix", "flag": "Saudi_Arabia.svg"},
+            "miami": {"country": "USA", "location": "Miami", "gp": "Miami Grand Prix", "flag": "USA.svg"},
+            "emilia-romagna": {"country": "ITALY", "location": "Imola", "gp": "Emilia Romagna Grand Prix", "flag": "Italy.svg"},
+            "monaco": {"country": "MONACO", "location": "Monaco", "gp": "Monaco Grand Prix", "flag": "Monaco.svg"},
+            "spain": {"country": "SPAIN", "location": "Barcelona", "gp": "Spanish Grand Prix", "flag": "Spain.svg"},
+            "barcelona-catalunya": {"country": "SPAIN", "location": "Barcelona", "gp": "Spanish Grand Prix", "flag": "Spain.svg"},
+            "canada": {"country": "CANADA", "location": "Montreal", "gp": "Canadian Grand Prix", "flag": "Canada.svg"},
+            "austria": {"country": "AUSTRIA", "location": "Spielberg", "gp": "Austrian Grand Prix", "flag": "Austria.svg"},
+            "great-britain": {"country": "UNITED KINGDOM", "location": "Silverstone", "gp": "British Grand Prix", "flag": "Great_Britain.svg"},
+            "belgium": {"country": "BELGIUM", "location": "Spa-Francorchamps", "gp": "Belgian Grand Prix", "flag": "Belgium.svg"},
+            "hungary": {"country": "HUNGARY", "location": "Budapest", "gp": "Hungarian Grand Prix", "flag": "Hungary.svg"},
+            "netherlands": {"country": "NETHERLANDS", "location": "Zandvoort", "gp": "Dutch Grand Prix", "flag": "Netherlands.svg"},
+            "italy": {"country": "ITALY", "location": "Monza", "gp": "Italian Grand Prix", "flag": "Italy.svg"},
+            "azerbaijan": {"country": "AZERBAIJAN", "location": "Baku", "gp": "Azerbaijan Grand Prix", "flag": "Azerbaijan.svg"},
+            "singapore": {"country": "SINGAPORE", "location": "Singapore", "gp": "Singapore Grand Prix", "flag": "Singapore.svg"},
+            "united-states": {"country": "USA", "location": "Austin", "gp": "United States Grand Prix", "flag": "USA.svg"},
+            "mexico": {"country": "MEXICO", "location": "Mexico City", "gp": "Mexico City Grand Prix", "flag": "Mexico.svg"},
+            "brazil": {"country": "BRAZIL", "location": "Sao Paulo", "gp": "Sao Paulo Grand Prix", "flag": "Brazil.svg"},
+            "las-vegas": {"country": "USA", "location": "Las Vegas", "gp": "Las Vegas Grand Prix", "flag": "USA.svg"},
+            "qatar": {"country": "QATAR", "location": "Lusail", "gp": "Qatar Grand Prix", "flag": "Qatar.svg"},
+            "united-arab-emirates": {"country": "UAE", "location": "Yas Marina", "gp": "Abu Dhabi Grand Prix", "file_slug": "abu-dhabi", "flag": "UAE.svg"},
         }
 
         # 加载静态赛道参数 metadata
@@ -102,9 +102,7 @@ class F1DataCollector:
                     
                     config = self.SEASON_2026_CONFIG.get(slug, {})
                     file_slug = config.get("file_slug", slug)
-                    
-                    # 获取赛道参数
-                    # 优先映射 file_slug (如 abu-dhabi)，其次是 slug
+                    flag_file = config.get("flag", f"{item.get('countryDescription', '').title()}.svg")
                     specs = self.circuit_metadata.get(file_slug) or self.circuit_metadata.get(slug) or {}
 
                     schedule.append({
@@ -117,7 +115,7 @@ class F1DataCollector:
                         "slug": slug,
                         "image": f"/photos/seasons/{self.season}/tracks/{file_slug}_outline.svg",
                         "detailedImage": f"/photos/seasons/{self.season}/tracks/{file_slug}_detailed.webp",
-                        "flag": f"/photos/seasons/flags/{item.get('countryDescription', '').title()}.svg",
+                        "flag": f"/photos/seasons/flags/{flag_file}",
                         "url": f"{self.base_url}{item.get('url')}" if item.get('url') else None,
                         "sessions": item.get("sessionTimes", []),
                         "circuitSpecs": specs
@@ -156,6 +154,7 @@ class F1DataCollector:
                 gp_name = config.get("gp", "")
                 location = location_str or config.get("location", "")
                 file_slug = config.get("file_slug", slug)
+                flag_file = config.get("flag", f"{country.title() if country else 'Unknown'}.svg")
                 
                 specs = self.circuit_metadata.get(file_slug) or self.circuit_metadata.get(slug) or {}
                 
@@ -169,7 +168,7 @@ class F1DataCollector:
                     "slug": slug,
                     "image": f"/photos/seasons/{self.season}/tracks/{file_slug}_outline.svg",
                     "detailedImage": f"/photos/seasons/{self.season}/tracks/{file_slug}_detailed.webp",
-                    "flag": f"/photos/seasons/flags/{country.title() if country else 'Unknown'}.svg",
+                    "flag": f"/photos/seasons/flags/{flag_file}",
                     "url": f"{self.base_url}{href}",
                     "sessions": [],
                     "circuitSpecs": specs
@@ -182,7 +181,6 @@ class F1DataCollector:
         return schedule
 
     def get_race_results(self, url_or_html: str):
-        # ... (rest of the code remains the same)
         if url_or_html.startswith('http'):
             html = self.fetch_page(url_or_html)
             if not html: return []

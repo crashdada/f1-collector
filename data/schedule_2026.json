@@ -93,7 +93,7 @@
         "slug": "saudi-arabia",
         "image": "/photos/seasons/2026/tracks/saudi-arabia_outline.svg",
         "detailedImage": "/photos/seasons/2026/tracks/saudi-arabia_detailed.webp",
-        "flag": "/photos/seasons/flags/Saudi Arabia.svg",
+        "flag": "/photos/seasons/flags/Saudi_Arabia.svg",
         "url": "https://www.formula1.com/en/racing/2026/saudi-arabia",
         "sessions": [],
         "circuitSpecs": {
@@ -114,7 +114,7 @@
         "slug": "miami",
         "image": "/photos/seasons/2026/tracks/miami_outline.svg",
         "detailedImage": "/photos/seasons/2026/tracks/miami_detailed.webp",
-        "flag": "/photos/seasons/flags/Usa.svg",
+        "flag": "/photos/seasons/flags/USA.svg",
         "url": "https://www.formula1.com/en/racing/2026/miami",
         "sessions": [],
         "circuitSpecs": {
@@ -219,7 +219,7 @@
         "slug": "great-britain",
         "image": "/photos/seasons/2026/tracks/great-britain_outline.svg",
         "detailedImage": "/photos/seasons/2026/tracks/great-britain_detailed.webp",
-        "flag": "/photos/seasons/flags/United Kingdom.svg",
+        "flag": "/photos/seasons/flags/Great_Britain.svg",
         "url": "https://www.formula1.com/en/racing/2026/great-britain",
         "sessions": [],
         "circuitSpecs": {
@@ -387,7 +387,7 @@
         "slug": "united-states",
         "image": "/photos/seasons/2026/tracks/united-states_outline.svg",
         "detailedImage": "/photos/seasons/2026/tracks/united-states_detailed.webp",
-        "flag": "/photos/seasons/flags/Usa.svg",
+        "flag": "/photos/seasons/flags/USA.svg",
         "url": "https://www.formula1.com/en/racing/2026/united-states",
         "sessions": [],
         "circuitSpecs": {
@@ -450,7 +450,7 @@
         "slug": "las-vegas",
         "image": "/photos/seasons/2026/tracks/las-vegas_outline.svg",
         "detailedImage": "/photos/seasons/2026/tracks/las-vegas_detailed.webp",
-        "flag": "/photos/seasons/flags/Usa.svg",
+        "flag": "/photos/seasons/flags/USA.svg",
         "url": "https://www.formula1.com/en/racing/2026/las-vegas",
         "sessions": [],
         "circuitSpecs": {
@@ -492,7 +492,7 @@
         "slug": "united-arab-emirates",
         "image": "/photos/seasons/2026/tracks/abu-dhabi_outline.svg",
         "detailedImage": "/photos/seasons/2026/tracks/abu-dhabi_detailed.webp",
-        "flag": "/photos/seasons/flags/Uae.svg",
+        "flag": "/photos/seasons/flags/UAE.svg",
         "url": "https://www.formula1.com/en/racing/2026/united-arab-emirates",
         "sessions": [],
         "circuitSpecs": {
