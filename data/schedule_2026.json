@@ -140,36 +140,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/bahrain_detailed.webp",
         "flag": "/photos/seasons/flags/Bahrain.svg",
         "url": "https://www.formula1.com/en/racing/2026/bahrain",
-        "sessions": [
-            {
-                "name": "Practice 1",
-                "time": "2026-04-10T14:30:00+03:00"
-            },
-            {
-                "name": "Practice 2",
-                "time": "2026-04-10T18:00:00+03:00"
-            },
-            {
-                "name": "Practice 3",
-                "time": "2026-04-11T15:30:00+03:00"
-            },
-            {
-                "name": "Qualifying",
-                "time": "2026-04-11T19:00:00+03:00"
-            },
-            {
-                "name": "Race",
-                "time": "2026-04-12T18:00:00+03:00"
-            }
-        ],
+        "sessions": [],
         "circuitSpecs": {
             "length": "5.412km",
             "first_gp": 2004,
             "laps": 57,
             "distance": "308.238km",
             "record": "1:31.447 (Pedro de la Rosa (2005))"
-        },
-        "gmtOffset": "+03:00"
+        }
     },
     {
         "round": "ROUND 5",
@@ -183,36 +161,14 @@
         "detailedImage": "/photos/seasons/2026/tracks/saudi-arabia_detailed.webp",
         "flag": "/photos/seasons/flags/Saudi_Arabia.svg",
         "url": "https://www.formula1.com/en/racing/2026/saudi-arabia",
-        "sessions": [
-            {
-                "name": "Practice 1",
-                "time": "2026-04-17T16:30:00+03:00"
-            },
-            {
-                "name": "Practice 2",
-                "time": "2026-04-17T20:00:00+03:00"
-            },
-            {
-                "name": "Practice 3",
-                "time": "2026-04-18T16:30:00+03:00"
-            },
-            {
-                "name": "Qualifying",
-                "time": "2026-04-18T20:00:00+03:00"
-            },
-            {
-                "name": "Race",
-                "time": "2026-04-19T20:00:00+03:00"
-            }
-        ],
+        "sessions": [],
         "circuitSpecs": {
             "length": "6.175km",
             "first_gp": 2021,
             "laps": 50,
             "distance": "308.5km",
             "record": null
-        },
-        "gmtOffset": "+03:00"
+        }
     },
     {
         "round": "ROUND 6",
