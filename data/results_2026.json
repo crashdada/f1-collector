@@ -2566,19 +2566,6 @@
       },
       {
         "pos": 12,
-        "firstName": "Carlos",
-        "lastName": "Sainz",
-        "firstNameCn": "卡洛斯",
-        "lastNameCn": "赛恩斯",
-        "code": "SAI",
-        "number": 55,
-        "team": "Williams",
-        "teamCn": "威廉姆斯",
-        "points": 0,
-        "status": "Finished"
-      },
-      {
-        "pos": 13,
         "firstName": "Oliver",
         "lastName": "Bearman",
         "firstNameCn": "奥利弗",
@@ -2591,7 +2578,7 @@
         "status": "Finished"
       },
       {
-        "pos": 14,
+        "pos": 13,
         "firstName": "Esteban",
         "lastName": "Ocon",
         "firstNameCn": "埃斯特班",
@@ -2604,7 +2591,7 @@
         "status": "Finished"
       },
       {
-        "pos": 15,
+        "pos": 14,
         "firstName": "Sergio",
         "lastName": "Perez",
         "firstNameCn": "塞尔吉奥",
@@ -2617,7 +2604,7 @@
         "status": "Finished"
       },
       {
-        "pos": 16,
+        "pos": 15,
         "firstName": "Kimi",
         "lastName": "Antonelli",
         "firstNameCn": "安德里亚",
@@ -2630,7 +2617,7 @@
         "status": "Finished"
       },
       {
-        "pos": 17,
+        "pos": 16,
         "firstName": "Valtteri",
         "lastName": "Bottas",
         "firstNameCn": "瓦尔特利",
@@ -2639,6 +2626,19 @@
         "number": 77,
         "team": "Cadillac",
         "teamCn": "Cadillac",
+        "points": 0,
+        "status": "Finished"
+      },
+      {
+        "pos": 17,
+        "firstName": "Carlos",
+        "lastName": "Sainz",
+        "firstNameCn": "卡洛斯",
+        "lastNameCn": "赛恩斯",
+        "code": "SAI",
+        "number": 55,
+        "team": "Williams",
+        "teamCn": "威廉姆斯",
         "points": 0,
         "status": "Finished"
       },
