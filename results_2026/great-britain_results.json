@@ -2,166 +2,173 @@
     "round": "ROUND 11",
     "country": "UNITED KINGDOM",
     "slug": "great-britain",
-    "url": "https://www.formula1.com/en/results/2026/races/1289/great-britain/race-result",
-    "scraped_at": "2026-07-07T09:59:26.861790",
+    "url": "https://www.formula1.com/en/results/2026/races/94/great-britain/race-result",
+    "scraped_at": "2026-07-07T15:13:03.436769",
     "results": [
         {
             "pos": "1",
-            "no": "16",
-            "laps": "52",
-            "time": "1:27:11.335",
-            "points": 25
+            "no": "2",
+            "laps": "70",
+            "time": "2:13:23.600",
+            "points": 9
         },
         {
             "pos": "2",
-            "no": "63",
-            "laps": "52",
-            "time": "+0.427s",
-            "points": 18
-        },
-        {
-            "pos": "3",
-            "no": "44",
-            "laps": "52",
-            "time": "+0.772s",
-            "points": 15
-        },
-        {
-            "pos": "4",
-            "no": "1",
-            "laps": "52",
-            "time": "+1.149s",
-            "points": 12
-        },
-        {
-            "pos": "5",
-            "no": "6",
-            "laps": "52",
-            "time": "+1.598s",
-            "points": 10
-        },
-        {
-            "pos": "6",
-            "no": "30",
-            "laps": "52",
-            "time": "+2.023s",
-            "points": 8
-        },
-        {
-            "pos": "7",
-            "no": "41",
-            "laps": "52",
-            "time": "+2.214s",
+            "no": "3",
+            "laps": "70",
+            "time": "+2.600s",
             "points": 6
         },
         {
-            "pos": "8",
-            "no": "5",
-            "laps": "52",
-            "time": "+2.413s",
+            "pos": "3",
+            "no": "4",
+            "laps": "70",
+            "time": "+52.000s",
             "points": 4
         },
         {
-            "pos": "9",
-            "no": "43",
-            "laps": "52",
-            "time": "+3.229s",
+            "pos": "4",
+            "no": "14",
+            "laps": "68",
+            "time": "+2 laps",
+            "points": 3
+        },
+        {
+            "pos": "5",
+            "no": "15",
+            "laps": "68",
+            "time": "+2 laps",
             "points": 2
+        },
+        {
+            "pos": "6",
+            "no": "12",
+            "laps": "67",
+            "time": "+3 laps",
+            "points": 0
+        },
+        {
+            "pos": "7",
+            "no": "11",
+            "laps": "67",
+            "time": "+3 laps",
+            "points": 0
+        },
+        {
+            "pos": "8",
+            "no": "16",
+            "laps": "65",
+            "time": "+5 laps",
+            "points": 0
+        },
+        {
+            "pos": "9",
+            "no": "6",
+            "laps": "64",
+            "time": "+6 laps",
+            "points": 0
         },
         {
             "pos": "10",
             "no": "10",
-            "laps": "52",
-            "time": "+3.445s",
-            "points": 1
+            "laps": null,
+            "time": "SHC",
+            "points": 0
+        },
+        {
+            "pos": "10",
+            "no": "10",
+            "laps": "64",
+            "time": "+6 laps",
+            "points": 0
         },
         {
             "pos": "11",
-            "no": "81",
-            "laps": "52",
-            "time": "+4.014s",
-            "points": 0
-        },
-        {
-            "pos": "12",
-            "no": "87",
-            "laps": "52",
-            "time": "+5.245s",
-            "points": 0
-        },
-        {
-            "pos": "13",
-            "no": "31",
-            "laps": "52",
-            "time": "+5.512s",
-            "points": 0
-        },
-        {
-            "pos": "14",
-            "no": "11",
-            "laps": "52",
-            "time": "+7.403s",
-            "points": 0
-        },
-        {
-            "pos": "15",
-            "no": "12",
-            "laps": "52",
-            "time": "+8.005s",
-            "points": 0
-        },
-        {
-            "pos": "16",
-            "no": "77",
-            "laps": "52",
-            "time": "+8.162s",
-            "points": 0
-        },
-        {
-            "pos": "17",
-            "no": "55",
-            "laps": "51",
-            "time": "+1 lap",
-            "points": 0
-        },
-        {
-            "pos": "18",
-            "no": "14",
-            "laps": "51",
-            "time": "+1 lap",
-            "points": 0
-        },
-        {
-            "pos": "19",
             "no": "18",
-            "laps": "51",
-            "time": "+1 lap",
+            "laps": "64",
+            "time": "+6 laps",
             "points": 0
         },
         {
-            "pos": "20",
-            "no": "3",
-            "laps": "46",
+            "pos": "NC",
+            "no": "1",
+            "laps": "62",
             "time": "DNF",
             "points": 0
         },
         {
             "pos": "NC",
             "no": "23",
+            "laps": "57",
+            "time": "+13 laps",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "21",
+            "laps": "49",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "5",
+            "laps": "44",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "24",
             "laps": "43",
             "time": "DNF",
             "points": 0
         },
         {
             "pos": "NC",
-            "no": "27",
+            "no": "20",
             "laps": "36",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "19",
+            "laps": "24",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "17",
+            "laps": "8",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "9",
+            "laps": null,
+            "time": "SHC",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "9",
+            "laps": "5",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "8",
+            "laps": "2",
             "time": "DNF",
             "points": 0
         }
     ],
     "polePosition": {
-        "no": "12",
-        "time": "1:28.111"
+        "no": "2",
+        "time": "1:50.800"
     }
 }
