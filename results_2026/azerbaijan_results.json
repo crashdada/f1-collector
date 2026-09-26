@@ -1,0 +1,167 @@
+{
+    "round": "ROUND 17",
+    "country": "AZERBAIJAN",
+    "slug": "azerbaijan",
+    "url": "https://www.formula1.com/en/results/2026/races/1295/azerbaijan/race-result",
+    "scraped_at": "2026-09-26T16:22:02.629952",
+    "results": [
+        {
+            "pos": "1",
+            "no": "63",
+            "laps": "51",
+            "time": "1:38:02.143",
+            "points": 25
+        },
+        {
+            "pos": "2",
+            "no": "3",
+            "laps": "51",
+            "time": "+0.196s",
+            "points": 18
+        },
+        {
+            "pos": "3",
+            "no": "6",
+            "laps": "51",
+            "time": "+10.704s",
+            "points": 15
+        },
+        {
+            "pos": "4",
+            "no": "16",
+            "laps": "51",
+            "time": "+14.136s",
+            "points": 12
+        },
+        {
+            "pos": "5",
+            "no": "12",
+            "laps": "51",
+            "time": "+14.512s",
+            "points": 10
+        },
+        {
+            "pos": "6",
+            "no": "44",
+            "laps": "51",
+            "time": "+22.382s",
+            "points": 8
+        },
+        {
+            "pos": "7",
+            "no": "41",
+            "laps": "51",
+            "time": "+31.159s",
+            "points": 6
+        },
+        {
+            "pos": "8",
+            "no": "31",
+            "laps": "51",
+            "time": "+31.189s",
+            "points": 4
+        },
+        {
+            "pos": "9",
+            "no": "87",
+            "laps": "51",
+            "time": "+31.929s",
+            "points": 2
+        },
+        {
+            "pos": "10",
+            "no": "55",
+            "laps": "51",
+            "time": "+32.416s",
+            "points": 1
+        },
+        {
+            "pos": "11",
+            "no": "27",
+            "laps": "51",
+            "time": "+33.231s",
+            "points": 0
+        },
+        {
+            "pos": "12",
+            "no": "30",
+            "laps": "51",
+            "time": "+34.013s",
+            "points": 0
+        },
+        {
+            "pos": "13",
+            "no": "5",
+            "laps": "51",
+            "time": "+34.230s",
+            "points": 0
+        },
+        {
+            "pos": "14",
+            "no": "81",
+            "laps": "51",
+            "time": "+36.401s",
+            "points": 0
+        },
+        {
+            "pos": "15",
+            "no": "11",
+            "laps": "51",
+            "time": "+41.400s",
+            "points": 0
+        },
+        {
+            "pos": "16",
+            "no": "77",
+            "laps": "49",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "43",
+            "laps": "36",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "10",
+            "laps": "35",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "1",
+            "laps": "35",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "23",
+            "laps": "29",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "14",
+            "laps": "20",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "18",
+            "laps": "7",
+            "time": "DNF",
+            "points": 0
+        }
+    ],
+    "polePosition": {
+        "no": "63",
+        "time": "1:42.526"
+    }
+}
