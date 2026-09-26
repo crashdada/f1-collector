@@ -3,7 +3,7 @@
     "country": "AZERBAIJAN",
     "slug": "azerbaijan",
     "url": "https://www.formula1.com/en/results/2026/races/1295/azerbaijan/race-result",
-    "scraped_at": "2026-09-26T16:22:02.629952",
+    "scraped_at": "2026-09-26T21:08:11.669918",
     "results": [
         {
             "pos": "1",
@@ -91,23 +91,23 @@
         },
         {
             "pos": "13",
-            "no": "5",
-            "laps": "51",
-            "time": "+34.230s",
-            "points": 0
-        },
-        {
-            "pos": "14",
             "no": "81",
             "laps": "51",
             "time": "+36.401s",
             "points": 0
         },
         {
-            "pos": "15",
+            "pos": "14",
             "no": "11",
             "laps": "51",
             "time": "+41.400s",
+            "points": 0
+        },
+        {
+            "pos": "15",
+            "no": "5",
+            "laps": "51",
+            "time": "+44.230s",
             "points": 0
         },
         {

@@ -4391,19 +4391,6 @@
       },
       {
         "pos": 13,
-        "firstName": "Gabriel",
-        "lastName": "Bortoleto",
-        "firstNameCn": "加布里埃尔",
-        "lastNameCn": "博托莱托",
-        "code": "BOR",
-        "number": 5,
-        "team": "Audi",
-        "teamCn": "Audi",
-        "points": 0,
-        "status": "Finished"
-      },
-      {
-        "pos": 14,
         "firstName": "Oscar",
         "lastName": "Piastri",
         "firstNameCn": "奥斯卡",
@@ -4416,7 +4403,7 @@
         "status": "Finished"
       },
       {
-        "pos": 15,
+        "pos": 14,
         "firstName": "Sergio",
         "lastName": "Perez",
         "firstNameCn": "塞尔吉奥",
@@ -4425,6 +4412,19 @@
         "number": 11,
         "team": "Cadillac",
         "teamCn": "Cadillac",
+        "points": 0,
+        "status": "Finished"
+      },
+      {
+        "pos": 15,
+        "firstName": "Gabriel",
+        "lastName": "Bortoleto",
+        "firstNameCn": "加布里埃尔",
+        "lastNameCn": "博托莱托",
+        "code": "BOR",
+        "number": 5,
+        "team": "Audi",
+        "teamCn": "Audi",
         "points": 0,
         "status": "Finished"
       },
