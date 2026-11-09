@@ -5521,19 +5521,6 @@
       },
       {
         "pos": 7,
-        "firstName": "Charles",
-        "lastName": "Leclerc",
-        "firstNameCn": "夏尔",
-        "lastNameCn": "勒克莱尔",
-        "code": "LEC",
-        "number": 16,
-        "team": "Ferrari",
-        "teamCn": "法拉利",
-        "points": 6,
-        "status": "Finished"
-      },
-      {
-        "pos": 8,
         "firstName": "Liam",
         "lastName": "Lawson",
         "firstNameCn": "利亚姆",
@@ -5542,6 +5529,19 @@
         "number": 30,
         "team": "Racing Bulls",
         "teamCn": "Racing Bulls",
+        "points": 6,
+        "status": "Finished"
+      },
+      {
+        "pos": 8,
+        "firstName": "Charles",
+        "lastName": "Leclerc",
+        "firstNameCn": "夏尔",
+        "lastNameCn": "勒克莱尔",
+        "code": "LEC",
+        "number": 16,
+        "team": "Ferrari",
+        "teamCn": "法拉利",
         "points": 4,
         "status": "Finished"
       },

@@ -3,7 +3,7 @@
     "country": "BRAZIL",
     "slug": "brazil",
     "url": "https://www.formula1.com/en/results/2026/races/1299/brazil/race-result",
-    "scraped_at": "2026-11-08T22:00:48.652634",
+    "scraped_at": "2026-11-09T06:21:53.257886",
     "results": [
         {
             "pos": "1",
@@ -37,7 +37,7 @@
             "pos": "5",
             "no": "12",
             "laps": "71",
-            "time": "+36.017s",
+            "time": "+41.017s",
             "points": 10
         },
         {
@@ -49,16 +49,16 @@
         },
         {
             "pos": "7",
-            "no": "16",
+            "no": "30",
             "laps": "71",
-            "time": "+73.586s",
+            "time": "+75.402s",
             "points": 6
         },
         {
             "pos": "8",
-            "no": "30",
+            "no": "16",
             "laps": "71",
-            "time": "+75.402s",
+            "time": "+78.586s",
             "points": 4
         },
         {
