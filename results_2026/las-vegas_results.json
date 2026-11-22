@@ -1,0 +1,167 @@
+{
+    "round": "ROUND 22",
+    "country": "USA",
+    "slug": "las-vegas",
+    "url": "https://www.formula1.com/en/results/2026/races/1300/las-vegas/race-result",
+    "scraped_at": "2026-11-22T11:18:41.910291",
+    "results": [
+        {
+            "pos": "1",
+            "no": "3",
+            "laps": "50",
+            "time": "1:27:39.624",
+            "points": 25
+        },
+        {
+            "pos": "2",
+            "no": "1",
+            "laps": "50",
+            "time": "+0.639s",
+            "points": 18
+        },
+        {
+            "pos": "3",
+            "no": "81",
+            "laps": "50",
+            "time": "+1.529s",
+            "points": 15
+        },
+        {
+            "pos": "4",
+            "no": "12",
+            "laps": "50",
+            "time": "+2.574s",
+            "points": 12
+        },
+        {
+            "pos": "5",
+            "no": "10",
+            "laps": "50",
+            "time": "+2.927s",
+            "points": 10
+        },
+        {
+            "pos": "6",
+            "no": "43",
+            "laps": "50",
+            "time": "+7.955s",
+            "points": 8
+        },
+        {
+            "pos": "7",
+            "no": "44",
+            "laps": "50",
+            "time": "+12.795s",
+            "points": 6
+        },
+        {
+            "pos": "8",
+            "no": "55",
+            "laps": "50",
+            "time": "+12.938s",
+            "points": 4
+        },
+        {
+            "pos": "9",
+            "no": "63",
+            "laps": "50",
+            "time": "+13.192s",
+            "points": 2
+        },
+        {
+            "pos": "10",
+            "no": "16",
+            "laps": "50",
+            "time": "+17.554s",
+            "points": 1
+        },
+        {
+            "pos": "11",
+            "no": "27",
+            "laps": "50",
+            "time": "+22.720s",
+            "points": 0
+        },
+        {
+            "pos": "12",
+            "no": "5",
+            "laps": "50",
+            "time": "+28.602s",
+            "points": 0
+        },
+        {
+            "pos": "13",
+            "no": "87",
+            "laps": "50",
+            "time": "+28.843s",
+            "points": 0
+        },
+        {
+            "pos": "14",
+            "no": "30",
+            "laps": "50",
+            "time": "+36.588s",
+            "points": 0
+        },
+        {
+            "pos": "15",
+            "no": "6",
+            "laps": "50",
+            "time": "+46.488s",
+            "points": 0
+        },
+        {
+            "pos": "16",
+            "no": "51",
+            "laps": "50",
+            "time": "+47.814s",
+            "points": 0
+        },
+        {
+            "pos": "17",
+            "no": "18",
+            "laps": "50",
+            "time": "+68.353s",
+            "points": 0
+        },
+        {
+            "pos": "18",
+            "no": "77",
+            "laps": "50",
+            "time": "+71.673s",
+            "points": 0
+        },
+        {
+            "pos": "19",
+            "no": "14",
+            "laps": "49",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "41",
+            "laps": "19",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "11",
+            "laps": "17",
+            "time": "DNF",
+            "points": 0
+        },
+        {
+            "pos": "NC",
+            "no": "23",
+            "laps": "0",
+            "time": "DNS",
+            "points": 0
+        }
+    ],
+    "polePosition": {
+        "no": "3",
+        "time": "1:34.151"
+    }
+}
